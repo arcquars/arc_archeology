@@ -4,10 +4,10 @@ namespace App\Livewire\Projects;
 
 use Livewire\Component;
 
-class CreateProject extends Component
+class ListUuEe extends Component
 {
     public function render()
     {
-        return view('livewire.projects.create-project');
+        return view('livewire.projects.list-uu-ee');
     }
 }

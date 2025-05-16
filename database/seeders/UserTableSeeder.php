@@ -27,6 +27,14 @@ class UserTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+            'name' => 'Arcquars',
+            'email' => 'arc.quars@gmail.com',
+            'password' => Hash::make('123pedro'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
             'name' => 'Usuario',
             'email' => 'user@test.net',
             'password' => Hash::make('password'),
@@ -52,6 +60,9 @@ class UserTableSeeder extends Seeder
         $superadmin->assignRole('admin');
 
         $admin = User::find(2);
+        $admin->assignRole('admin');
+
+        $admin = User::find(3);
         $admin->assignRole('user');
     }
 }

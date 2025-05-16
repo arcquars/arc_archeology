@@ -1,0 +1,19 @@
+.dl-arq {
+    margin-bottom: .4rem;
+}
+
+.dl-arq dd {
+    margin-bottom: .2rem;
+}
+
+.fieldset-arq legend {
+    width: auto;
+}
+
+.thick-border {
+    border-width: 0.15rem !important; /* Use !important to override Bootstrap's default */
+}
+
+.thick-border h5 {
+    margin-bottom: .2rem;
+}
