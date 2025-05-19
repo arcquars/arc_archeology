@@ -60,6 +60,17 @@ return [
             'report' => false,
         ],
 
+        'wasabi' => [
+            'driver' => 's3',
+            'key' => env('WASABI_ACCESS_KEY_ID'),
+            'secret' => env('WASABI_SECRET_ACCESS_KEY'),
+            'region' => env('WASABI_DEFAULT_REGION'),
+            'bucket' => env('WASABI_BUCKET'),
+            'url' => env('WASABI_URL'),
+            'endpoint' => env('WASABI_ENDPOINT'), // Asegúrate que esto esté aquí
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false), // Generalmente false para Wasabi
+            'visibility' => 'public', // o 'public' según tus necesidades
+        ],
     ],
 
     /*

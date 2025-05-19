@@ -2,20 +2,28 @@
     <div class="row">
         <div class="col-md-3 form-group">
             <label for="pName">Fecha</label>
-            <input type="text" class="form-control form-control-sm" id="pName" name="name" placeholder="" value="{{ request('name') }}">
+            <input type="date" class="form-control form-control-sm" id="pName" name="name"
+                   wire:model.defer="f_msc_date"
+            >
         </div>
         <div class="col-md-3 form-group">
-            <label for="pAcronym">UE</label>
-            <input type="text" class="form-control form-control-sm" id="pAcronym" name="acronym" placeholder="" value="{{ request('acronym') }}">
+            <label for="pAcronym">Planta</label>
+            <input type="text" class="form-control form-control-sm" id="pAcronym"
+                   wire:model.defer="f_floor"
+            >
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="submit" title="Buscar...">
+                <button class="btn btn-sm btn-primary" type="button" title="Buscar..."
+                        wire:click="applySearch"
+                >
                     <i class="fas fa-search"></i>
                 </button>
-                <a href="{{ route('projects.index') }}" class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda">
+                <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
+                   wire:click="clearSearch"
+                >
                     <i class="fas fa-eraser"></i>
-                </a>
+                </button>
                 <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
                         {{--                            onclick="Livewire.dispatch('openModal', { title: 'Título Modal', content: 'Este es el contenido del modal111.' });">--}}
                         wire:click="$dispatch('toggleCreateFieldWork')"
@@ -25,5 +33,52 @@
                 </button>
             </div>
         </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('msc_date')">
+                Fecha
+                @if ($sortBy === 'msc_date')
+                    <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
+                @endif
+            </th>
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('floor')">
+                Piso
+                @if ($sortBy === 'floor')
+                    <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
+                @endif
+            </th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        @forelse ($murals as $mural)
+            <tr>
+                <td>{{ $mural->msc_date }}</td>
+                <td>{{ $mural->floor }}</td>
+                <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', -{muralId: {{$mural->id}} })">
+                        <i class="far fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary">
+                        <i class="far fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="3" class="text-center">No se encontraron registros.</td>
+            </tr>
+        @endforelse
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+        {{ $murals->links() }}
     </div>
 </div>

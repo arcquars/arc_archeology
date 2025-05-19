@@ -36,13 +36,13 @@
             // });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            $('.btn-group-toggle label input').on('change', function() {
-                const step = $(this).val();
-                location.href = "{{url(route('projects.steps.show', ['projectId' => $project->id]))}}/" + step;
-                // $('#opcionSeleccionada').text($(this).text().trim());
-            });
-        });
+        {{--document.addEventListener('DOMContentLoaded', function() {--}}
+        {{--    $('.btn-group-toggle label input').on('change', function() {--}}
+        {{--        const step = $(this).val();--}}
+        {{--        location.href = "{{url(route('projects.steps.show', ['projectId' => $project->id]))}}/" + step;--}}
+        {{--        // $('#opcionSeleccionada').text($(this).text().trim());--}}
+        {{--    });--}}
+        {{--});--}}
 
     </script>
 @endsection

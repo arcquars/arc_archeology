@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -83,6 +84,7 @@ class ProjectController extends Controller
         if($step >4 || $step<1){
             $step = 1;
         }
+
         $project = Project::find($projectId);
 
         switch ($step){

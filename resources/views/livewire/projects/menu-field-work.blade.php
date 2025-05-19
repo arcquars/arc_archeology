@@ -28,9 +28,8 @@
                     5. Ficha restos humanos
                 </a>
             </div>
-
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             @if ($componenteActivo === 'muralStratigraphyCard')
                 @livewire('projects.mural-stratigraphy-card')
             @elseif ($componenteActivo === 'listUuEe')
@@ -47,6 +46,11 @@
 
     @if ($showCreateFieldWork)
         @livewire('projects.field-work.create-field-work', ['projectId' => $projectId])
+    @endif
+
+    @if ($showViewFieldWork)
+        @livewire('projects.field-work.view-field-work', ['muralId' => $muralId])
+{{--        @livewire('projects.field-work.view-field-work')--}}
     @endif
 
 </div>

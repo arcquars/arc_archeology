@@ -7,12 +7,19 @@ use Livewire\Component;
 class MenuFieldWork extends Component
 {
     public $projectId;
+    public $muralId = 0;
     public $componenteActivo = 'muralStratigraphyCard';
-//showCreateFieldWork
 
     public bool $showCreateFieldWork = false;
+    public bool $showViewFieldWork = false;
 
-    protected $listeners = ['toggleCreateFieldWork' => 'toggle', 'closeCreateFieldWork' => 'closeForm'];
+    protected $listeners = [
+        'toggleCreateFieldWork' => 'toggle',
+        'closeCreateFieldWork' => 'closeForm',
+
+        'toggleViewFieldWork' => 'toggleView',
+        'closeViewFieldWork' => 'closeView'
+    ];
 
     public function toggle(){
         $this->showCreateFieldWork = !$this->showCreateFieldWork;
@@ -28,6 +35,17 @@ class MenuFieldWork extends Component
 
     public function closeForm(){
         $this->showCreateFieldWork = false;
+    }
+
+    public function toggleView($muralId){
+        $this->showViewFieldWork = !$this->showViewFieldWork;
+        if($this->showViewFieldWork){
+            $this->muralId = $muralId;
+        }
+    }
+
+    public function closeView(){
+        $this->showViewFieldWork = false;
     }
 
     public function mount(string $projectId)
