@@ -1,17 +1,17 @@
 <div>
-    <div class="modal fade @if($show) show @endif" id="projectDeleteModal" tabindex="-1" role="dialog" aria-labelledby="projectDeleteModalLabel" aria-hidden="@if(!$show) true @else false @endif" style="@if($show) display: block; @endif">
+    <div class="modal fade @if($show) show @endif" id="muralPcDeleteModal" tabindex="-1" role="dialog" aria-labelledby="muralPcDeleteModalLabel" aria-hidden="@if(!$show) true @else false @endif" style="@if($show) display: block; @endif">
         <div class="modal-dialog" role="document">
-            <form wire:submit.prevent="deleteProject">
+            <form wire:submit.prevent="deleteMuralStratigraphyCard">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="projectDeleteModalLabel">Eliminar Proyecto</h5>
+                        <h5 class="modal-title" id="muralPcDeleteModalLabel">Eliminar Proyecto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" wire:click="closeModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="callout callout-danger">
-                            <p>Esta seguro que quiere eliminar el proyecto: <b>{{ $project? $project->name : "--" }}</b></p>
+                            <p>Esta seguro que quiere eliminar la Ficha estratigrafia mural: <b>{{ $muralStratigraphyCard? $muralStratigraphyCard->floor : "--" }}</b></p>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -11,11 +11,15 @@ class MenuFieldWork extends Component
     public $componenteActivo = 'muralStratigraphyCard';
 
     public bool $showCreateFieldWork = false;
+    public bool $showUpdateFieldWork = false;
     public bool $showViewFieldWork = false;
 
     protected $listeners = [
         'toggleCreateFieldWork' => 'toggle',
         'closeCreateFieldWork' => 'closeForm',
+
+        'toggleUpdateFieldWork' => 'toggleUpdate',
+        'closeUpdateFieldWork' => 'closeUpdate',
 
         'toggleViewFieldWork' => 'toggleView',
         'closeViewFieldWork' => 'closeView'
@@ -24,7 +28,7 @@ class MenuFieldWork extends Component
     public function toggle(){
         $this->showCreateFieldWork = !$this->showCreateFieldWork;
         if($this->showCreateFieldWork){
-            $this->dispatch('show-notificacion');
+            $this->closeView();
         }
     }
 
@@ -38,14 +42,44 @@ class MenuFieldWork extends Component
     }
 
     public function toggleView($muralId){
-        $this->showViewFieldWork = !$this->showViewFieldWork;
-        if($this->showViewFieldWork){
-            $this->muralId = $muralId;
+        if(!$this->showViewFieldWork){
+            $this->showViewFieldWork = !$this->showViewFieldWork;
+            if($this->showViewFieldWork){
+                $this->muralId = $muralId;
+            }
+        } else {
+            $newId = $muralId;
+            $this->dispatch('updateMuralId', $newId);
         }
+
+        if($this->showViewFieldWork){
+            $this->closeForm();
+        }
+
     }
 
     public function closeView(){
-        $this->showViewFieldWork = false;
+        $this->showUpdateFieldWork = false;
+    }
+
+    public function toggleUpdate($muralId){
+        if(!$this->showUpdateFieldWork){
+            $this->showUpdateFieldWork = !$this->showUpdateFieldWork;
+            if($this->showUpdateFieldWork){
+                $this->muralId = $muralId;
+            }
+        } else {
+            $newId = $muralId;
+            $this->dispatch('updateFieldWorkMuralId', $newId);
+        }
+
+        if(!$this->showUpdateFieldWork){
+            $this->closeUpdate();
+        }
+    }
+
+    public function closeUpdate(){
+        $this->showUpdateFieldWork = false;
     }
 
     public function mount(string $projectId)

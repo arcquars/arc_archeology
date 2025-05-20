@@ -16,7 +16,6 @@ class DeleteProjectModal extends Component
     {
         $this->project = Project::find($project_id);
         $this->resetErrorBag();
-//        $this->reset(['project_id']);
         $this->show = true;
     }
 
@@ -27,11 +26,10 @@ class DeleteProjectModal extends Component
 
     public function deleteProject()
     {
-//        $project = Project::find($this->project_id);
         $this->project->active = 0;
         $this->project->save();
 
-        session()->flash('mensaje', 'Proyecto creado exitosamente.');
+        session()->flash('mensaje', 'El Proyecto se borro exitosamente.');
         $this->closeModal();
         $this->dispatch('reloadPageLi');
     }

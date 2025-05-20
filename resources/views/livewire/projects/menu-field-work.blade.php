@@ -1,4 +1,5 @@
 <div>
+    <livewire:projects.field-work.delete-field-work />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -50,7 +51,10 @@
 
     @if ($showViewFieldWork)
         @livewire('projects.field-work.view-field-work', ['muralId' => $muralId])
-{{--        @livewire('projects.field-work.view-field-work')--}}
+    @endif
+
+    @if ($showUpdateFieldWork)
+        @livewire('projects.field-work.update-field-work', ['muralId' => $muralId])
     @endif
 
 </div>

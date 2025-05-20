@@ -59,13 +59,16 @@
                 <td>{{ $mural->msc_date }}</td>
                 <td>{{ $mural->floor }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', -{muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary">
+{{--                    <button class="btn btn-sm btn-primary" wire:click="reloadViewFieldWork({{ $mural->id }})">--}}
+{{--                        <i class="far fa-eye"></i>--}}
+{{--                    </button>--}}
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteFw', {muralId: {{$mural->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>

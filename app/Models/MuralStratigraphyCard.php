@@ -54,4 +54,8 @@ class MuralStratigraphyCard extends Model
         'num_flat',
         'num_photography',
     ];
+
+    public function urlCroquisAttribute(){
+        return "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->id."/croquis";
+    }
 }

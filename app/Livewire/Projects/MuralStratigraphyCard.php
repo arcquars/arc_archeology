@@ -20,7 +20,7 @@ class MuralStratigraphyCard extends Component
     public string $sortBy = 'msc_date';
     public string $sortDirection = 'asc';
 
-    protected $listeners = ['mscClearSearch' => 'clearSearch'];
+    protected $listeners = ['mscClearSearch' => 'clearSearch', 'reload-mural-stratigraphy-card' => 'applySearch'];
 
     public function mount()
     {
@@ -50,6 +50,10 @@ class MuralStratigraphyCard extends Component
         $this->resetPage();
     }
 
+    public function reloadViewFieldWork($muralId){
+        dd("xxxx:: " . $muralId);
+    }
+
     public function updateSortBy(string $field): void
     {
         if ($this->sortBy === $field) {
@@ -63,6 +67,7 @@ class MuralStratigraphyCard extends Component
     public function render()
     {
         $murals = \App\Models\MuralStratigraphyCard::query()
+            ->where('active', 1)
             ->when($this->s_msc_date || $this->s_floor, function ($query) {
                 if ($this->s_msc_date && $this->s_floor) {
                     // Si ambos parámetros tienen valor (AND)
