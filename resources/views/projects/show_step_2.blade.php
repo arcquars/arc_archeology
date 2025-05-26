@@ -9,9 +9,7 @@
 
 @section('content')
     @include('projects.partials._menu_steps', ['step' => $step])
-
-    @livewire('projects.menu-field-work', ['projectId' => $project->id])
-
+    <h4 class="mt-2">Inventario de materiales</h4>
 
 @endsection
 
