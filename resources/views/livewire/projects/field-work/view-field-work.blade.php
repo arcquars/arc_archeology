@@ -1,4 +1,12 @@
 <div>
+    <div wire:loading class="mt-2">
+        <div class="fa-1x">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+    </div>
+    <div wire:loading>
+        Cargando...
+    </div>
     <div class="card card-outline card-primary mb-2 mt-2">
         <div class="card-header">
             <h3 class="card-title text-primary">{{ $muralStratigraphy->id }} - Ficha estratigrafia mural</h3>

@@ -56,6 +56,10 @@ class MuralStratigraphyCard extends Model
     ];
 
     public function urlCroquisAttribute(){
-        return "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->id."/croquis";
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->id."/croquis";
+    }
+
+    public function urlPhotosAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->id."/fotografias";
     }
 }

@@ -1,5 +1,7 @@
 <div>
     <livewire:projects.field-work.delete-field-work />
+    <livewire:projects.uuee.delete-ue />
+    <livewire:projects.stratum-tab.delete-stratum-tab />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -13,8 +15,8 @@
                 >
                     2. Listado UU.EE.
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'stratumCard' ? 'active' : '' }}"
-                   wire:click="seleccionarComponente('stratumCard')"
+                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listStratumTab' ? 'active' : '' }}"
+                   wire:click="seleccionarComponente('listStratumTab')"
                 >
                     3. Ficha de estrato
                 </a>
@@ -34,9 +36,9 @@
             @if ($componenteActivo === 'muralStratigraphyCard')
                 @livewire('projects.mural-stratigraphy-card')
             @elseif ($componenteActivo === 'listUuEe')
-                @livewire('projects.list-uu-ee')
-            @elseif ($componenteActivo === 'stratumCard')
-                @livewire('projects.stratum-card')
+                @livewire('projects.uuee.list-ue')
+            @elseif ($componenteActivo === 'listStratumTab')
+                @livewire('projects.stratum-tab.list-stratum-tab')
             @elseif ($componenteActivo === 'structureSheet')
                 @livewire('projects.structure-sheet')
             @elseif ($componenteActivo === 'humanRemainsFile')
@@ -47,14 +49,22 @@
 
     @if ($showCreateFieldWork)
         @livewire('projects.field-work.create-field-work', ['projectId' => $projectId])
-    @endif
-
-    @if ($showViewFieldWork)
-        @livewire('projects.field-work.view-field-work', ['muralId' => $muralId])
-    @endif
-
-    @if ($showUpdateFieldWork)
+    @elseif ($showUpdateFieldWork)
         @livewire('projects.field-work.update-field-work', ['muralId' => $muralId])
+    @elseif ($showViewFieldWork)
+        @livewire('projects.field-work.view-field-work', ['muralId' => $muralId])
+    @elseif ($showCreateUe)
+        @livewire('projects.uuee.create-ue', ['projectId' => $projectId])
+    @elseif ($showUpdateUe)
+        @livewire('projects.uuee.update-ue', ['ueId' => $ueId])
+    @elseif ($showViewUe)
+        @livewire('projects.uuee.view-ue', ['ueId' => $ueId])
+    @elseif ($showCreateStratumCard)
+        @livewire('projects.stratum-tab.create-stratum-tab', ['projectId' => $projectId])
+    @elseif ($showUpdateStratumCard)
+        @livewire('projects.stratum-tab.update-stratum-tab', ['stratumCardId' => $stratumCardId])
+    @elseif ($showViewStratumCard)
+        @livewire('projects.stratum-tab.view-stratum-tab', ['stratumCardId' => $stratumCardId])
     @endif
 
 </div>

@@ -11,6 +11,12 @@
     <label class="btn btn-sm bg-blue">
         <input type="radio" name="options" value="4" autocomplete="off" @if($step == 4) checked @endif > 4. Memoria definitiva
     </label>
+    <label class="btn btn-sm bg-blue">
+        <input type="radio" name="options" value="5" autocomplete="off" @if($step == 5) checked @endif > 5. Comentarios
+    </label>
+    <label class="btn btn-sm bg-blue">
+        <input type="radio" name="options" value="6" autocomplete="off" @if($step == 6) checked @endif > 6. Repositorio de imágenes
+    </label>
 </div>
 @section('js')
     <script>

@@ -1,16 +1,16 @@
 <div>
-    <h4>Fichas estratigrafia mural</h4>
+    <h4>Fichas de estratos</h4>
     <div class="row">
         <div class="col-md-3 form-group">
-            <label for="pName">Fecha</label>
-            <input type="date" class="form-control form-control-sm" id="pName" name="name"
-                   wire:model.defer="f_msc_date"
+            <label for="iDate">Fecha</label>
+            <input type="date" class="form-control form-control-sm" id="pUe" name="iDate"
+                   wire:model.defer="f_date"
             >
         </div>
         <div class="col-md-3 form-group">
-            <label for="pAcronym">Planta</label>
-            <input type="text" class="form-control form-control-sm" id="pAcronym"
-                   wire:model.defer="f_floor"
+            <label for="pInue">N. UE</label>
+            <input type="text" class="form-control form-control-sm" id="pInue"
+                   wire:model.defer="f_n_ue"
             >
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
@@ -21,12 +21,12 @@
                     <i class="fas fa-search"></i>
                 </button>
                 <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
-                   wire:click="clearSearch"
+                         wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
-                        wire:click="$dispatch('toggleCreateFieldWork')"
+                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
+                        wire:click="$dispatch('toggle-stratum-card-create',)"
                 >
                     <i class="far fa-plus-square"></i>
                 </button>
@@ -37,37 +37,38 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('msc_date')">
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('i_date')">
                 Fecha
-                @if ($sortBy === 'msc_date')
+                @if ($sortBy === 'i_date')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
             </th>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('floor')">
-                Piso
-                @if ($sortBy === 'floor')
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('i_n_ue')">
+                N. UE
+                @if ($sortBy === 'i_n_ue')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
+            </th>
+            <th scope="col">
+                Acronimo
             </th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
-        @forelse ($murals as $mural)
+        @forelse ($stratumCards as $stratumCard)
             <tr>
-                <td>{{ $mural->msc_date }}</td>
-                <td>{{ $mural->floor }}</td>
+                <td>{{ $stratumCard->i_date }}</td>
+                <td>{{ $stratumCard->i_n_ue }}</td>
+                <td>{{ $stratumCard->i_acronym }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-stratum-card-view', {stratumCardId: {{$stratumCard->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-{{--                    <button class="btn btn-sm btn-primary" wire:click="reloadViewFieldWork({{ $mural->id }})">--}}
-{{--                        <i class="far fa-eye"></i>--}}
-{{--                    </button>--}}
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-stratum-card-update', {stratumCardId: {{$stratumCard->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteFw', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteStratumCard', {stratumCardId: {{$stratumCard->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>
@@ -81,6 +82,6 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $murals->links() }}
+        {{ $stratumCards->links() }}
     </div>
 </div>

@@ -81,10 +81,9 @@ class ProjectController extends Controller
     }
 
     public function showSteps(Request $request, $projectId, $step=1){
-        if($step >4 || $step<1){
+        if($step >6 || $step<1){
             $step = 1;
         }
-
         $project = Project::find($projectId);
 
         switch ($step){

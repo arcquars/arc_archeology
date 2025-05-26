@@ -110,7 +110,8 @@ class CreateFieldWork extends Component
         if($mural->save()){
             Log::info('Mural id::: ' . $mural->id);
 
-            $dirCroquis = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/croquis";
+//            $dirCroquis = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/croquis";
+            $dirCroquis = $mural->urlCroquisAttribute();
             $exists = Storage::disk("wasabi")->exists($dirCroquis);
             if (!$exists) {
                 Storage::disk('wasabi')->makeDirectory($dirCroquis);
@@ -126,7 +127,8 @@ class CreateFieldWork extends Component
                 }
             }
 
-            $dirPhotos = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/fotografias";
+//            $dirPhotos = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/fotografias";
+            $dirPhotos = $mural->urlPhotosAttribute();
             $exists = Storage::disk("wasabi")->exists($dirPhotos);
             if (!$exists) {
                 Storage::disk('wasabi')->makeDirectory($dirPhotos);

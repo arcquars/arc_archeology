@@ -35,6 +35,7 @@ class ViewFieldWork extends Component
         }
         Log::info("eeee:: " . $dirCroquis);
         Log::info("eeee:: " . json_encode($files));
+        Log::info("eeee:: " . json_encode($croquisUrls));
         return view('livewire.projects.field-work.view-field-work', compact('croquisUrls'));
     }
 }

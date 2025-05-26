@@ -8,11 +8,21 @@ class MenuFieldWork extends Component
 {
     public $projectId;
     public $muralId = 0;
+    public $ueId = 0;
+    public $stratumCardId = 0;
     public $componenteActivo = 'muralStratigraphyCard';
 
     public bool $showCreateFieldWork = false;
     public bool $showUpdateFieldWork = false;
     public bool $showViewFieldWork = false;
+
+    public bool $showCreateUe = false;
+    public bool $showUpdateUe = false;
+    public bool $showViewUe = false;
+
+    public bool $showCreateStratumCard = false;
+    public bool $showUpdateStratumCard = false;
+    public bool $showViewStratumCard = false;
 
     protected $listeners = [
         'toggleCreateFieldWork' => 'toggle',
@@ -22,18 +32,42 @@ class MenuFieldWork extends Component
         'closeUpdateFieldWork' => 'closeUpdate',
 
         'toggleViewFieldWork' => 'toggleView',
-        'closeViewFieldWork' => 'closeView'
+        'closeViewFieldWork' => 'closeView',
+
+        'toggle-ue-create' => 'toggleUeCreate',
+        'close-ue-create' => 'closeUeCreate',
+
+        'toggle-ue-update' => 'toggleUeUpdate',
+        'close-ue-update' => 'closeUeUpdate',
+
+        'toggle-view-ue' => 'toggleUeView',
+        'close-view-ue' => 'closeUeView',
+
+        'toggle-stratum-card-create' => 'toggleStratumCardCreate',
+        'close-stratum-card-create' => 'closeStratumCardCreate',
+
+        'toggle-stratum-card-update' => 'toggleStratumCardUpdate',
+        'close-stratum-card-update' => 'closeStratumCardUpdate',
+
+        'toggle-stratum-card-view' => 'toggleStratumCardView',
+        'close-stratum-card-view' => 'closeStratumCardView',
+
+        'close-all' => 'closeAll',
     ];
 
     public function toggle(){
         $this->showCreateFieldWork = !$this->showCreateFieldWork;
         if($this->showCreateFieldWork){
             $this->closeView();
+            $this->closeUpdate();
+            $this->closeUeView();
         }
+
     }
 
     public function seleccionarComponente($componente)
     {
+        $this->closeAll();
         $this->componenteActivo = $componente;
     }
 
@@ -54,12 +88,14 @@ class MenuFieldWork extends Component
 
         if($this->showViewFieldWork){
             $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeView();
         }
 
     }
 
     public function closeView(){
-        $this->showUpdateFieldWork = false;
+        $this->showViewFieldWork = false;
     }
 
     public function toggleUpdate($muralId){
@@ -73,13 +109,150 @@ class MenuFieldWork extends Component
             $this->dispatch('updateFieldWorkMuralId', $newId);
         }
 
-        if(!$this->showUpdateFieldWork){
-            $this->closeUpdate();
+        if($this->showUpdateFieldWork){
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUeView();
         }
     }
 
     public function closeUpdate(){
         $this->showUpdateFieldWork = false;
+    }
+
+    public function toggleUeCreate(){
+        if(!$this->showCreateUe){
+            $this->showCreateUe = !$this->showCreateUe;
+        }
+
+        if($this->showCreateUe){
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeView();
+        }
+    }
+
+    public function closeUeCreate(){
+        $this->showCreateUe = false;
+    }
+
+    public function toggleUeUpdate($ueId){
+        $this->ueId = $ueId;
+        if(!$this->showUpdateUe){
+            $this->showUpdateUe = !$this->showUpdateUe;
+        }
+
+        if($this->showUpdateUe){
+            $newId = $ueId;
+            $this->dispatch('updateUeId', $newId);
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeView();
+        }
+    }
+
+    public function closeUeUpdate(){
+        $this->showUpdateUe = false;
+    }
+
+    public function toggleUeView($ueId){
+        $this->ueId = $ueId;
+        if(!$this->showViewUe){
+            $this->showViewUe = !$this->showViewUe;
+        }
+
+        if($this->showViewUe){
+            $newId = $ueId;
+            $this->dispatch('updateViewUeId', $newId);
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeUpdate();
+        }
+    }
+
+    public function closeUeView(){
+        $this->showViewUe = false;
+    }
+
+    public function toggleStratumCardUpdate($stratumCardId){
+        $this->stratumCardId = $stratumCardId;
+        if(!$this->showUpdateStratumCard){
+            $this->showUpdateStratumCard = !$this->showUpdateStratumCard;
+        }
+
+        if($this->showUpdateStratumCard){
+            $newId = $stratumCardId;
+            $this->dispatch('updateStratumCardId', $newId);
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeView();
+            $this->closeUeCreate();
+            $this->closeStratumCardCreate();
+            $this->closeStratumCardView();
+        }
+    }
+
+    public function closeStratumCardUpdate(){
+        $this->showUpdateStratumCard = false;
+    }
+
+    public function toggleStratumCardView($stratumCardId){
+        $this->stratumCardId = $stratumCardId;
+        if(!$this->showViewStratumCard){
+            $this->showViewStratumCard = !$this->showViewStratumCard;
+        }
+
+        if($this->showViewStratumCard){
+            $newId = $stratumCardId;
+            $this->dispatch('viewStratumCardId', $newId);
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeView();
+            $this->closeUeCreate();
+            $this->closeStratumCardCreate();
+            $this->closeStratumCardUpdate();
+        }
+    }
+
+    public function closeStratumCardView(){
+        $this->showViewStratumCard = false;
+    }
+
+    public function toggleStratumCardCreate(){
+        if(!$this->showCreateStratumCard){
+            $this->showCreateStratumCard = !$this->showCreateStratumCard;
+        }
+
+        if($this->showCreateStratumCard){
+            $this->closeView();
+            $this->closeForm();
+            $this->closeUpdate();
+            $this->closeUeCreate();
+            $this->closeUeView();
+        }
+    }
+
+    public function closeStratumCardCreate(){
+        $this->showCreateStratumCard = false;
+    }
+
+    public function closeAll(){
+        $this->closeView();
+        $this->closeForm();
+        $this->closeUpdate();
+
+        $this->closeUeUpdate();
+        $this->closeUeView();
+        $this->closeUeCreate();
+
+        $this->closeStratumCardCreate();
+        $this->closeStratumCardUpdate();
+        $this->closeStratumCardView();
     }
 
     public function mount(string $projectId)

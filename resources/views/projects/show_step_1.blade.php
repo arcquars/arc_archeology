@@ -10,7 +10,26 @@
 @section('content')
     @include('projects.partials._menu_steps', ['step' => $step])
 
-    @livewire('projects.menu-field-work', ['projectId' => $project->id])
+    @switch($step)
+        @case(2)
+        Inventario de materiales
+            @break
+        @case(3)
+        Informe preliminar
+            @break
+        @case(4)
+        Memoria definitiva
+            @break
+        @case(5)
+        Comentarios
+            @break
+        @case(6)
+            Repositorio de imágenes
+            @break
+        @default
+            @livewire('projects.menu-field-work', ['projectId' => $project->id])
+    @endswitch
+
 
 @endsection
 

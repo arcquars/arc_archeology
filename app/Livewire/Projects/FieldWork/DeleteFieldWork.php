@@ -34,6 +34,7 @@ class DeleteFieldWork extends Component
         $this->closeModal();
 //        $this->dispatch('reloadPageLi');
     }
+
     public function render()
     {
         return view('livewire.projects.field-work.delete-field-work');

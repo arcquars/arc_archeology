@@ -1,16 +1,16 @@
 <div>
-    <h4>Fichas estratigrafia mural</h4>
+    <h4>Listado de UUEEs</h4>
     <div class="row">
         <div class="col-md-3 form-group">
-            <label for="pName">Fecha</label>
-            <input type="date" class="form-control form-control-sm" id="pName" name="name"
-                   wire:model.defer="f_msc_date"
+            <label for="pUe">UE</label>
+            <input type="text" class="form-control form-control-sm" id="pUe" name="ue"
+                   wire:model.defer="f_ue"
             >
         </div>
         <div class="col-md-3 form-group">
-            <label for="pAcronym">Planta</label>
-            <input type="text" class="form-control form-control-sm" id="pAcronym"
-                   wire:model.defer="f_floor"
+            <label for="pCoveredBy">Cubierto por</label>
+            <input type="text" class="form-control form-control-sm" id="pCoveredBy"
+                   wire:model.defer="f_covered_by"
             >
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
@@ -21,12 +21,12 @@
                     <i class="fas fa-search"></i>
                 </button>
                 <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
-                   wire:click="clearSearch"
+                         wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
-                        wire:click="$dispatch('toggleCreateFieldWork')"
+                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
+                        wire:click="$dispatch('toggle-ue-create',)"
                 >
                     <i class="far fa-plus-square"></i>
                 </button>
@@ -37,37 +37,38 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('msc_date')">
-                Fecha
-                @if ($sortBy === 'msc_date')
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('code')">
+                UE
+                @if ($sortBy === 'code')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
             </th>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('floor')">
-                Piso
-                @if ($sortBy === 'floor')
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('covered_by')">
+                Cubierto por
+                @if ($sortBy === 'covered_by')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
+            </th>
+            <th scope="col" style="cursor: pointer;">
+                Cubre a
             </th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
-        @forelse ($murals as $mural)
+        @forelse ($ues as $ue)
             <tr>
-                <td>{{ $mural->msc_date }}</td>
-                <td>{{ $mural->floor }}</td>
+                <td>{{ $ue->code }}</td>
+                <td>{{ $ue->covered_by }}</td>
+                <td>{{ $ue->covers_to }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-view-ue', {ueId: {{$ue->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-{{--                    <button class="btn btn-sm btn-primary" wire:click="reloadViewFieldWork({{ $mural->id }})">--}}
-{{--                        <i class="far fa-eye"></i>--}}
-{{--                    </button>--}}
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-ue-update', {ueId: {{$ue->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteFw', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteUe', {ueId: {{$ue->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>
@@ -81,6 +82,6 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $murals->links() }}
+        {{ $ues->links() }}
     </div>
 </div>

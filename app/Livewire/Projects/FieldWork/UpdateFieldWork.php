@@ -119,7 +119,7 @@ class UpdateFieldWork extends Component
     public function updateFieldWork(){
         $this->validate();
 
-        $this->muralStratigraphyCard->project_id = $this->projectId;
+        $this->muralStratigraphyCard->project_id = $this->project_id;
         $this->muralStratigraphyCard->msc_date = $this->msc_date;
         $this->muralStratigraphyCard->floor = $this->floor;
         $this->muralStratigraphyCard->quadrant = $this->quadrant;
@@ -160,7 +160,7 @@ class UpdateFieldWork extends Component
         if($this->muralStratigraphyCard->save()){
             Log::info('Mural id::: ' . $this->muralStratigraphyCard->id);
 
-            $dirCroquis = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/croquis";
+            $dirCroquis = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/croquis";
             $exists = Storage::disk("wasabi")->exists($dirCroquis);
             if (!$exists) {
                 Storage::disk('wasabi')->makeDirectory($dirCroquis);
@@ -176,7 +176,7 @@ class UpdateFieldWork extends Component
                 }
             }
 
-            $dirPhotos = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/fotografias";
+            $dirPhotos = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/fotografias";
             $exists = Storage::disk("wasabi")->exists($dirPhotos);
             if (!$exists) {
                 Storage::disk('wasabi')->makeDirectory($dirPhotos);
@@ -193,7 +193,7 @@ class UpdateFieldWork extends Component
             }
 
             $this->dispatch('mscClearSearch');
-            $this->dispatch('closeCreateFieldWork');
+            $this->dispatch('closeUpdateFieldWork');
         }
     }
 
