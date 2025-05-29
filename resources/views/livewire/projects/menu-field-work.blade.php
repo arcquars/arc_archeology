@@ -2,6 +2,7 @@
     <livewire:projects.field-work.delete-field-work />
     <livewire:projects.uuee.delete-ue />
     <livewire:projects.stratum-tab.delete-stratum-tab />
+    <livewire:projects.structure-tab.delete-structure-tab />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -25,7 +26,7 @@
                 >
                     4. Ficha de estructura
                 </a>
-                <a class="list-group-item list-group-item-action {{ $componenteActivo === 'humanRemainsFile' ? 'active' : '' }}"
+                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'humanRemainsFile' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('humanRemainsFile')"
                 >
                     5. Ficha restos humanos
@@ -40,9 +41,9 @@
             @elseif ($componenteActivo === 'listStratumTab')
                 @livewire('projects.stratum-tab.list-stratum-tab')
             @elseif ($componenteActivo === 'structureSheet')
-                @livewire('projects.structure-sheet')
+                @livewire('projects.structure-tab.list-structure-tab')
             @elseif ($componenteActivo === 'humanRemainsFile')
-                @livewire('projects.human-remains-file')
+                @livewire('projects.human-remains-card.list-human-remains-card')
             @endif
         </div>
     </div>
@@ -59,12 +60,28 @@
         @livewire('projects.uuee.update-ue', ['ueId' => $ueId])
     @elseif ($showViewUe)
         @livewire('projects.uuee.view-ue', ['ueId' => $ueId])
+    {{-- Stratum tab --}}
     @elseif ($showCreateStratumCard)
         @livewire('projects.stratum-tab.create-stratum-tab', ['projectId' => $projectId])
     @elseif ($showUpdateStratumCard)
         @livewire('projects.stratum-tab.update-stratum-tab', ['stratumCardId' => $stratumCardId])
     @elseif ($showViewStratumCard)
         @livewire('projects.stratum-tab.view-stratum-tab', ['stratumCardId' => $stratumCardId])
+    {{-- Structure tab --}}
+    @elseif ($showCreateStructureTab)
+        @livewire('projects.structure-tab.create-structure-tab', ['projectId' => $projectId])
+    @elseif ($showUpdateStructureTab)
+        @livewire('projects.structure-tab.update-structure-tab', ['structureTabId' => $structureTabId])
+    @elseif ($showViewStructureTab)
+        @livewire('projects.structure-tab.view-structure-tab', ['structureTabId' => $structureTabId])
+
+    {{-- Human remain Card --}}
+    @elseif ($showCreateHumanRemainCard)
+        @livewire('projects.human-remains-card.create-human-remains-card', ['projectId' => $projectId])
+    @elseif ($showUpdateHumanRemainCard)
+        @livewire('projects.human-remains-card.update-human-remains-card', ['humanRemainCardId' => $humanRemainCardId])
+    @elseif ($showViewHumanRemainCard)
+        @livewire('projects.human-remains-card.view-human-remains-card', ['humanRemainCardId' => $humanRemainCardId])
     @endif
 
 </div>

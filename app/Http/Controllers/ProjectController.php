@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -125,7 +127,8 @@ class ProjectController extends Controller
 
     protected function comments(Project $project, int $step)
     {
-        return view('projects.show_step_5', compact('project', 'step'));
+        $comments = Comment::active()->where('project_id', $project->id)->orderBy('c_date', 'asc')->limit(5)->get();
+        return view('projects.show_step_5', compact('project', 'step', 'comments'));
     }
 
     protected function imageRepository(Project $project, int $step)
@@ -147,5 +150,15 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->route('projects.steps.show', ['projectId' => $projectId, 'step' => 4])->with('success', "Se actualizo correctamente la Memoria definitiva.");
+    }
+
+    public function createComment(int $projectId, int $step, Request $request){
+        $comment = new Comment();
+        $comment->comment = $request->input('comment');
+        $comment->user_id = Auth::id();
+        $comment->project_id = $projectId;
+        $comment->save();
+
+        return redirect()->route('projects.steps.show', ['projectId' => $projectId, 'step' => 5])->with('success', "Se creo correctamente el Comentario.");
     }
 }

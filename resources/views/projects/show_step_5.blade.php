@@ -32,43 +32,31 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body card-comments">
-            <div class="card-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="https://randomuser.me/api/portraits/men/19.jpg" alt="User Image">
+            @foreach($comments as $comment)
+                <div class="card-comment">
+                    <!-- User image -->
+                    <img class="img-circle img-sm" src="{{ asset('img/user.png') }}" alt="{{ $comment->user->name }}">
 
-                <div class="comment-text">
+                    <div class="comment-text">
                     <span class="username">
-                      Maria Gonzales
-                      <span class="text-muted float-right">8:03 PM Today</span>
+                      {{ $comment->user->name }}
+                      <span class="text-muted float-right">{{ $comment->c_date }}</span>
                     </span><!-- /.username -->
-                    It is a long established fact that a reader will be distracted
-                    by the readable content of a page when looking at its layout.
+                        {{ $comment->comment }}
+                    </div>
+                    <!-- /.comment-text -->
                 </div>
-                <!-- /.comment-text -->
-            </div>
-            <!-- /.card-comment -->
-            <div class="card-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="https://randomuser.me/api/portraits/men/17.jpg" alt="User Image">
-
-                <div class="comment-text">
-                    <span class="username">
-                      Luna Stark
-                      <span class="text-muted float-right">8:03 PM Today</span>
-                    </span><!-- /.username -->
-                    It is a long established fact that a reader will be distracted
-                    by the readable content of a page when looking at its layout.
-                </div>
-                <!-- /.comment-text -->
-            </div>
+            @endforeach
         </div>
         <!-- /.card-footer -->
         <div class="card-footer">
-            <form action="#" method="post">
-                <img class="img-fluid img-circle img-sm" src="https://randomuser.me/api/portraits/men/16.jpg" alt="Alt Text">
+            <form action="{{ route('projects.comment.create', ['projectId' => $project->id, 'step' => $step]) }}" method="post">
+                @csrf
+                <img class="img-fluid img-circle img-sm" src="{{ asset('img/user.png') }}" alt="">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
-                    <input type="text" class="form-control form-control-sm" placeholder="Press enter to post comment">
+                    <input id="iComment" type="text" class="form-control form-control-sm" name="comment"
+                           placeholder="Pulse Enter para comentar el proyecto" required>
                 </div>
             </form>
         </div>
