@@ -27,10 +27,11 @@ class DeleteStructureTab extends Component
     public function deleteStructureTab()
     {
         $this->structureTab->active = 0;
-        $this->structureTab->save();
+//        $this->structureTab->save();
 
         $this->dispatch('reload-list-structure-tab');
         session()->flash('mensaje', 'La Ficha de estructure se borro exitosamente.');
+        $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estructure se borro exitosamente.');
         $this->closeModal();
     }
 

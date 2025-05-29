@@ -39,6 +39,7 @@ class CreateStratumTab extends Component
         if($stratumCard->save()){
             $this->dispatch('lscClearSearch');
             $this->dispatch('close-stratum-card-create');
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estrato se creo exitosamente.');
         }
     }
 

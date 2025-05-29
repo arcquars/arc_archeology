@@ -31,6 +31,7 @@ class DeleteStratumTab extends Component
 
         $this->dispatch('reload-list-stratum-tab');
         session()->flash('mensaje', 'La Ficha de estrato se borro exitosamente.');
+        $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estrato se borro exitosamente.');
         $this->closeModal();
     }
 

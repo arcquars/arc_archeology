@@ -51,6 +51,7 @@ class UpdateStratumTab extends Component
         if($this->stratumCard->save()){
             $this->dispatch('lscClearSearch');
             $this->dispatch('close-stratum-card-update');
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estrato se actualizo exitosamente.');
         }
     }
 

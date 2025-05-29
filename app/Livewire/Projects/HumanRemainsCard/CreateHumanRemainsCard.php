@@ -40,6 +40,8 @@ class CreateHumanRemainsCard extends Component
         if($humanRemainCard->save()){
             $this->dispatch('human-remain-clear-search');
             $this->dispatch('close-human-remain-card-create');
+
+            $this->dispatch('show_alert', type: 'success', message: 'Se creo la ficha de restos humanos');
         }
     }
 

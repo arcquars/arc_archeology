@@ -37,6 +37,7 @@ class CreateStructureTab extends Component
         if($structureTab->save()){
             $this->dispatch('clear-structure-tab-clear-search');
             $this->dispatch('close-structure-tab-create');
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estructura se creo exitosamente.');
         }
     }
     public function render()

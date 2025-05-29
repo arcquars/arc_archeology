@@ -1,5 +1,5 @@
-{{--@extends('layouts.arqueologia')--}}
-@extends('adminlte::page')
+@extends('layouts.arqueologia')
+{{--@extends('adminlte::page')--}}
 
 @section('title', env("APP_NAME"). ' - Proyectos')
 
@@ -7,7 +7,7 @@
     <h1>{{ $project->name }}</h1>
 @stop
 
-@section('content')
+@section('content-aque')
     @include('projects.partials._menu_steps', ['step' => $step])
 
     <form method="POST" action="{{ route('projects.save_preliminary_report', ['projectId' => $project->id]) }}">

@@ -54,6 +54,8 @@ class UpdateHumanRemainsCard extends Component
         if($this->humanRemainCard->save()){
             $this->dispatch('human-remain-clear-search');
             $this->dispatch('close-human-remain-card-update');
+
+            $this->dispatch('show_alert', type: 'success', message: 'Se actualizo la ficha de restos humanos');
         }
     }
 

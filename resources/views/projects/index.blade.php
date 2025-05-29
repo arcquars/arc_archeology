@@ -6,9 +6,10 @@
     <h1>Proyectos</h1>
 @stop
 
-@section('content')
+@section('content-aque')
     <livewire:projects.create-project-modal />
     <livewire:projects.delete-project-modal />
+    <livewire:projects.update-project-modal />
 
     <form id="fProjectSearch" action="{{ route('projects.index') }}" method="GET">
         <div class="row">
@@ -61,10 +62,11 @@
                 <td>{{ $project->name }}</td>
                 <td>{{ $project->acronym }}</td>
                 <td>{{ $project->expedient }}</td>
-                <td>{{ $project->initial_quota }}</td>
-                <td>{{ $project->final_quota }}</td>
+                <td class="text-right">{{ $project->initial_quota }}</td>
+                <td class="text-right">{{ $project->final_quota }}</td>
                 <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-link" onclick="openEditProject({{$project->id}})" title="Editar">
+{{--                    <a href="#" class="btn btn-sm btn-link" onclick="openEditProject({{$project->id}})" title="Editar">--}}
+                    <a href="#" class="btn btn-sm btn-link" onclick="Livewire.dispatch('openUpdateProjectModal', { project_id: '{{$project->id}}' });" title="Editar">
                         <i class="far fa-edit"></i>
                     </a>
 {{--                    <a href="{{route('ues.index', ['projectId' => $project->id])}}" class="btn btn-sm btn-link" title="Ver proyecto">--}}

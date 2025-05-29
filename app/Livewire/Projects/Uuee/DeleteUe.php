@@ -31,6 +31,7 @@ class DeleteUe extends Component
 
         $this->dispatch('reload-list-ue');
         session()->flash('mensaje', 'La UE se borro exitosamente.');
+        $this->dispatch('show_alert', type: 'success', message: 'La UUEE se borro exitosamente.');
         $this->closeModal();
     }
 

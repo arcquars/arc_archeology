@@ -146,6 +146,7 @@ class CreateFieldWork extends Component
 
             $this->dispatch('mscClearSearch');
             $this->dispatch('closeCreateFieldWork');
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha estratigrafia mural se creo exitosamente.');
         }
     }
 

@@ -44,6 +44,7 @@ class CreateUe extends Component
         if($ue->save()){
             $this->dispatch('lueClearSearch');
             $this->dispatch('close-ue-create');
+            $this->dispatch('show_alert', type: 'success', message: 'La UUEE se creo exitosamente.');
         }
     }
 

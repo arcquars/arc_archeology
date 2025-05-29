@@ -68,7 +68,7 @@
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-human-remain-card-update', {humanRemainCardId: {{$humanRemainCard->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteStructureTab', {structureTabId: {{$humanRemainCard->id}} })">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteHumanRemainCard', {humanRemainCardId: {{$humanRemainCard->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>

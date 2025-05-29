@@ -3,6 +3,7 @@
     <livewire:projects.uuee.delete-ue />
     <livewire:projects.stratum-tab.delete-stratum-tab />
     <livewire:projects.structure-tab.delete-structure-tab />
+    <livewire:projects.human-remains-card.delete-human-remains-card />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">

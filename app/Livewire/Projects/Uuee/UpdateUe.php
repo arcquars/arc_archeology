@@ -60,6 +60,7 @@ class UpdateUe extends Component
         if($this->ue->save()){
             $this->dispatch('lueClearSearch');
             $this->dispatch('close-ue-update');
+            $this->dispatch('show_alert', type: 'success', message: 'La UUEE se actualizo exitosamente.');
         }
 
     }

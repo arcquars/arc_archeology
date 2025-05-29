@@ -194,6 +194,7 @@ class UpdateFieldWork extends Component
 
             $this->dispatch('mscClearSearch');
             $this->dispatch('closeUpdateFieldWork');
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha estratigrafia mural se actualizo exitosamente.');
         }
     }
 

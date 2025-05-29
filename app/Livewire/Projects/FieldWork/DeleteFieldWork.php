@@ -31,6 +31,7 @@ class DeleteFieldWork extends Component
 
         $this->dispatch('reload-mural-stratigraphy-card');
         session()->flash('mensaje', 'La Ficha se borro exitosamente.');
+        $this->dispatch('show_alert', type: 'success', message: 'La Ficha estratigrafia mural se borro exitosamente.');
         $this->closeModal();
 //        $this->dispatch('reloadPageLi');
     }

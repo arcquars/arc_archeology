@@ -51,6 +51,8 @@ class UpdateStructureTab extends Component
         if($this->structureTab->save()){
             $this->dispatch('clear-structure-tab-clear-search');
             $this->dispatch('close-structure-tab-update');
+
+            $this->dispatch('show_alert', type: 'success', message: 'La Ficha de estructura se actualizo exitosamente.');
         }
     }
 

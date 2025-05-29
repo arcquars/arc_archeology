@@ -39,9 +39,10 @@ class CreateProjectModal extends Component
 
     public function saveProject()
     {
-        $project = Project::create(array_merge($this->validate(), ['user_id' => auth()->id()]));
+//        $project = Project::create(array_merge($this->validate(), ['user_id' => auth()->id()]));
 
         session()->flash('mensaje', 'Proyecto creado exitosamente.');
+        $this->dispatch('show_alert', type: 'success', message: 'Proyecto creado exitosamente.');
         $this->closeModal();
         $this->dispatch('reloadPageLi');
     }
