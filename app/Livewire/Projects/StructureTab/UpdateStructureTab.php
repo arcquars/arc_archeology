@@ -3,15 +3,33 @@
 namespace App\Livewire\Projects\StructureTab;
 
 use App\Http\Requests\StoreStructureTabRequest;
+use App\Models\StructureQuote;
 use App\Models\StructureTab;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class UpdateStructureTab extends Component
 {
+    /** @var StructureTab */
     public $structureTab;
 
     public $project_id;
     public $i_date, $i_n_ue, $i_location_intervention, $i_acronym, $i_fact;
+
+    public $i_provisional_dating, $i_stratigraphic_reliability, $i_type, $conservation;
+    public $interpretation_description, $aparejo, $largo, $anchura, $alto_grueso, $orientacion_1, $orientacion_2;
+    public $stratigraphy_equals, $stratigraphy_support_provided, $stratigraphy_covered_by, $stratigraphy_filling_by;
+    public $stratigraphy_cut_by, $stratigraphy_equivale, $stratigraphy_supported_by, $stratigraphy_overlaps_or_covers;
+    public $stratigraphy_fill_in, $stratigraphy_cut_to;
+
+    public $quotes = []; // Array para almacenar las "quotes"
+    public $maxQuotes = 5; // Límite máximo de quotes
+
+    public $bricks = [];
+    public $maxBricks = 5;
+
+    public $formworks = [];
+    public $maxFormworks = 5;
 
     protected $listeners = ['updateStructureTabId'];
 
@@ -24,6 +42,8 @@ class UpdateStructureTab extends Component
     }
 
     public function load(string $structureTabId){
+        $this->quotes = [];
+
         $this->structureTab = StructureTab::find($structureTabId);
 
         $this->project_id = $this->structureTab->project_id;
@@ -32,6 +52,63 @@ class UpdateStructureTab extends Component
         $this->i_location_intervention = $this->structureTab->i_location_intervention;
         $this->i_acronym = $this->structureTab->i_acronym;
         $this->i_fact = $this->structureTab->i_fact;
+
+        $this->i_provisional_dating = $this->structureTab->i_provisional_dating;
+        $this->i_stratigraphic_reliability = $this->structureTab->i_stratigraphic_reliability;
+        $this->i_type = $this->structureTab->i_type;
+        $this->conservation = $this->structureTab->conservation;
+        $this->interpretation_description = $this->structureTab->interpretation_description;
+        $this->aparejo = $this->structureTab->di_rigging;
+        $this->largo = $this->structureTab->di_length;
+        $this->anchura = $this->structureTab->di_width;
+        $this->alto_grueso = $this->structureTab->di_thick_height;
+        $this->orientacion_1 = $this->structureTab->di_orientation_degrees_1;
+        $this->orientacion_2 = $this->structureTab->di_orientation_degrees_2;
+        $this->stratigraphy_equals = $this->structureTab->stratigraphy_equals;
+        $this->stratigraphy_support_provided = $this->structureTab->stratigraphy_support_provided;
+        $this->stratigraphy_covered_by = $this->structureTab->stratigraphy_covered_by;
+        $this->stratigraphy_filling_by = $this->structureTab->stratigraphy_filling_by;
+        $this->stratigraphy_cut_by = $this->structureTab->stratigraphy_cut_by;
+        $this->stratigraphy_equivale = $this->structureTab->stratigraphy_equivale;
+        $this->stratigraphy_supported_by = $this->structureTab->stratigraphy_supported_by;
+        $this->stratigraphy_overlaps_or_covers = $this->structureTab->stratigraphy_overlaps_or_covers;
+        $this->stratigraphy_fill_in = $this->structureTab->stratigraphy_fill_in;
+        $this->stratigraphy_cut_to = $this->structureTab->stratigraphy_cut_to;
+
+        $quotes = $this->structureTab->quotes;
+        foreach ($quotes as $quote){
+            $this->addQuote($quote->id, $quote->surface, $quote->information, );
+        }
+//        $this-> = $this->structureTab->;
+//        $this-> = $this->structureTab->;
+//        $this-> = $this->structureTab->;
+//        $this-> = $this->structureTab->;
+    }
+
+    public function addQuote($id, $surface, $information)
+    {
+        if (count($this->quotes) < $this->maxQuotes) {
+            $this->quotes[] = [
+                'id' => $id,
+                'surface' => $surface,
+                'information' => $information,
+                'structure_tab_id' => $this->structureTab->id
+            ];
+        }
+    }
+
+    public function removeQuote($index)
+    {
+        if(isset($this->quotes[$index]['id'])){
+            $deleteRows = StructureQuote::destroy($this->quotes[$index]['id']);
+            if($deleteRows > 0){
+                unset($this->quotes[$index]);
+                $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+            }
+        } else {
+            unset($this->quotes[$index]);
+            $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+        }
     }
 
     public function mount(string $structureTabId)
@@ -48,7 +125,47 @@ class UpdateStructureTab extends Component
         $this->structureTab->i_location_intervention = $this->i_location_intervention;
         $this->structureTab->i_acronym = $this->i_acronym;
 
+        $this->structureTab->i_fact = $this->i_fact;
+
+        $this->structureTab->i_provisional_dating = $this->i_provisional_dating;
+        $this->structureTab->i_stratigraphic_reliability = $this->i_stratigraphic_reliability;
+        $this->structureTab->i_type = $this->i_type;
+        $this->structureTab->conservation = $this->conservation;
+        $this->structureTab->interpretation_description = $this->interpretation_description;
+        $this->structureTab->di_rigging = $this->aparejo;
+        $this->structureTab->di_length = $this->largo;
+        $this->structureTab->di_width = $this->anchura;
+        $this->structureTab->di_thick_height = $this->alto_grueso;
+        $this->structureTab->di_orientation_degrees_1 = $this->orientacion_1;
+        $this->structureTab->di_orientation_degrees_2 = $this->orientacion_2;
+        $this->structureTab->stratigraphy_equals = $this->stratigraphy_equals;
+        $this->structureTab->stratigraphy_support_provided = $this->stratigraphy_support_provided;
+        $this->structureTab->stratigraphy_covered_by = $this->stratigraphy_covered_by;
+        $this->structureTab->stratigraphy_filling_by = $this->stratigraphy_filling_by;
+        $this->structureTab->stratigraphy_cut_by = $this->stratigraphy_cut_by;
+        $this->structureTab->stratigraphy_equivale = $this->stratigraphy_equivale;
+        $this->structureTab->stratigraphy_supported_by = $this->stratigraphy_supported_by;
+        $this->structureTab->stratigraphy_overlaps_or_covers = $this->stratigraphy_overlaps_or_covers;
+        $this->structureTab->stratigraphy_fill_in = $this->stratigraphy_fill_in;
+        $this->structureTab->stratigraphy_cut_to = $this->stratigraphy_cut_to;
+
         if($this->structureTab->save()){
+            foreach ($this->quotes as $quote){
+                if(!isset($quote['id'])){
+                    $q = StructureQuote::create([
+                        'surface' => $quote['surface'],
+                        'information' => $quote['information'],
+                        'structure_tab_id' => $quote['structure_tab_id'],
+                    ]);
+                } else {
+                    $sQuote = StructureQuote::find($quote['id']);
+                    $q = $sQuote->update([
+                        'surface' => $quote['surface'],
+                        'information' => $quote['information'],
+                    ]);
+                }
+            }
+
             $this->dispatch('clear-structure-tab-clear-search');
             $this->dispatch('close-structure-tab-update');
 

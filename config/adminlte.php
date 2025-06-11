@@ -282,6 +282,7 @@ return [
     |
     */
 
+//    'laravel_asset_bundling' => false,
     'laravel_asset_bundling' => 'vite',
     'laravel_css_path' => 'resources/css/app.css',
     'laravel_js_path' => 'resources/js/app.js',
@@ -385,8 +386,9 @@ return [
         ],
         [
             'text' => 'Usuarios',
-            'url' => 'admin/settings',
+            'url' => 'users',
             'icon' => 'fas fa-users',
+            'can' => ['manager-users']
         ],
         [
             'text' => 'Salir',

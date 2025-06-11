@@ -27,6 +27,38 @@ class StoreStructureTabRequest extends FormRequest
             'i_location_intervention' => 'required',
             'i_acronym' => 'required',
             'i_fact' => 'required',
+            'i_provisional_dating' => 'nullable|string|max:200',
+            'i_stratigraphic_reliability' => 'nullable|string|max:200',
+            'i_type' => 'nullable|string|max:200',
+            'conservation' => 'nullable|string|max:200',
+            'interpretation_description' => 'nullable|string|max:200',
+            'aparejo' => 'nullable|numeric|max:200',
+            'largo' => 'nullable|numeric|max:200',
+            'anchura' => 'nullable|numeric|max:200',
+            'alto_grueso' => 'nullable|numeric|max:200',
+            'orientacion_1' => 'nullable|numeric|max:200',
+            'orientacion_2' => 'nullable|numeric|max:200',
+            'stratigraphy_equals' => 'nullable|string|max:200',
+            'stratigraphy_support_provided' => 'nullable|string|max:200',
+            'stratigraphy_covered_by' => 'nullable|string|max:200',
+            'stratigraphy_filling_by' => 'nullable|string|max:200',
+            'stratigraphy_cut_by' => 'nullable|string|max:200',
+            'stratigraphy_equivale' => 'nullable|string|max:200',
+            'stratigraphy_supported_by' => 'nullable|string|max:200',
+            'stratigraphy_overlaps_or_covers' => 'nullable|string|max:200',
+            'stratigraphy_fill_in' => 'nullable|string|max:200',
+            'stratigraphy_cut_to' => 'nullable|string|max:200',
+
+            'quotes.*.surface' => 'required|numeric|min:0|max:2500',
+            'quotes.*.information' => 'nullable|string|max:200',
+
+            'bricks.*.long' => 'required|numeric|min:0|max:2500',
+            'bricks.*.width' => 'required|numeric|min:0|max:2500',
+            'bricks.*.thick' => 'required|numeric|min:0|max:2500',
+
+            'formworks.*.formwork' => 'required|numeric|min:0|max:2500',
+
+
         ];
     }
 }

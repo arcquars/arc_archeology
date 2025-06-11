@@ -9,6 +9,8 @@ class MuralStratigraphyCard extends Component
 {
     use WithPagination;
 
+    public $projectId;
+
     #[Url(as: 'msc_date')]
     public string $f_msc_date = '';
     #[Url(as: 'floor')]
@@ -22,9 +24,10 @@ class MuralStratigraphyCard extends Component
 
     protected $listeners = ['mscClearSearch' => 'clearSearch', 'reload-mural-stratigraphy-card' => 'applySearch'];
 
-    public function mount()
+    public function mount($projectId)
     {
         // Al iniciar, copiar URL en inputs visibles
+        $this->projectId = $projectId;
         $this->s_msc_date = $this->f_msc_date;
         $this->s_floor = $this->f_floor;
     }
@@ -68,6 +71,7 @@ class MuralStratigraphyCard extends Component
     {
         $murals = \App\Models\MuralStratigraphyCard::query()
             ->where('active', 1)
+            ->where('project_id', $this->projectId)
             ->when($this->s_msc_date || $this->s_floor, function ($query) {
                 if ($this->s_msc_date && $this->s_floor) {
                     // Si ambos parámetros tienen valor (AND)

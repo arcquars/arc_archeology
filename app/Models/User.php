@@ -48,4 +48,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the projects that belong to the user.
+     */
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class);
+        // De nuevo, si no sigues la convención, especifica los nombres:
+        // return $this->belongsToMany(Proyecto::class, 'nombre_de_tu_tabla_pivote', 'clave_foranea_user', 'clave_foranea_proyecto');
+    }
 }

@@ -10,6 +10,7 @@ class ListHumanRemainsCard extends Component
 {
     use WithPagination;
 
+    public $projectId;
     public string $f_intervention = '';
     public string $f_ue = '';
 
@@ -21,8 +22,9 @@ class ListHumanRemainsCard extends Component
 
     protected $listeners = ['human-remain-clear-search' => 'clearSearch', 'reload-list-human-remain' => 'applySearch'];
 
-    public function mount()
+    public function mount($projectId)
     {
+        $this->projectId = $projectId;
         $this->s_intervention = $this->f_intervention;
         $this->s_ue = $this->f_ue;
     }
@@ -62,6 +64,7 @@ class ListHumanRemainsCard extends Component
     {
         $humanRemainCards = HumanRemainCard::query()
             ->where('active', 1)
+            ->where('project_id', $this->projectId)
             ->when($this->s_intervention || $this->s_ue, function ($query) {
                 if ($this->s_intervention && $this->s_ue) {
                     $query->where('intervention', '=', $this->s_intervention)

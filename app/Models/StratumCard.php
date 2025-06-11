@@ -15,6 +15,10 @@ class StratumCard extends Model
         '',
     ];
 
+    public function meta(){
+        return $this->hasOne(StratumCardMeta::class);
+    }
+
     public function project(){
         return $this->belongsTo(Project::class);
     }
@@ -23,5 +27,9 @@ class StratumCard extends Model
     public function scopeActive($query)
     {
         return $query->where('active', '1');
+    }
+
+    public function urlPhotosAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estrato/".$this->id."/fotografias";
     }
 }

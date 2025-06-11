@@ -12,39 +12,39 @@
                 >
                     1. Ficha estratigrafia mural
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listUuEe' ? 'active' : '' }}"
-                   wire:click="seleccionarComponente('listUuEe')"
-                >
-                    2. Listado UU.EE.
-                </a>
                 <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listStratumTab' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('listStratumTab')"
                 >
-                    3. Ficha de estrato
+                    2. Ficha de estrato
                 </a>
                 <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'structureSheet' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('structureSheet')"
                 >
-                    4. Ficha de estructura
+                    3. Ficha de estructura
                 </a>
                 <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'humanRemainsFile' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('humanRemainsFile')"
                 >
-                    5. Ficha restos humanos
+                    4. Ficha restos humanos
+                </a>
+                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listUuEe' ? 'active' : '' }}"
+                   wire:click="seleccionarComponente('listUuEe')"
+                >
+                    Listado UU.EE.
                 </a>
             </div>
         </div>
         <div class="col-md-10">
             @if ($componenteActivo === 'muralStratigraphyCard')
-                @livewire('projects.mural-stratigraphy-card')
+                @livewire('projects.mural-stratigraphy-card', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'listUuEe')
                 @livewire('projects.uuee.list-ue')
             @elseif ($componenteActivo === 'listStratumTab')
-                @livewire('projects.stratum-tab.list-stratum-tab')
+                @livewire('projects.stratum-tab.list-stratum-tab', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'structureSheet')
-                @livewire('projects.structure-tab.list-structure-tab')
+                @livewire('projects.structure-tab.list-structure-tab', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'humanRemainsFile')
-                @livewire('projects.human-remains-card.list-human-remains-card')
+                @livewire('projects.human-remains-card.list-human-remains-card', ['projectId' => $projectId])
             @endif
         </div>
     </div>

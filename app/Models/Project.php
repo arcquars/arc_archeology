@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
@@ -33,6 +34,14 @@ class Project extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Get the users that belong to the project.
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     // Scope para proyectos activos
     public function scopeActive($query)

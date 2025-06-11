@@ -36,14 +36,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group form-group-sm">
-                                <label for="initial_quota" class="form-label">Cuota inicial</label>
+                                <label for="initial_quota" class="form-label">Cota inicial</label>
                                 <input type="number" class="form-control form-control-sm @error('initial_quota') is-invalid @enderror" id="initial_quota" wire:model="initial_quota" step="0.01">
                                 @error('initial_quota')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 form-group form-group-sm">
-                                <label for="final_quota" class="form-label">Cuota Final</label>
+                                <label for="final_quota" class="form-label">Cota Final</label>
                                 <input type="number" class="form-control form-control-sm @error('final_quota') is-invalid @enderror" id="final_quota" wire:model="final_quota" step="0.01">
                                 @error('final_quota')
                                 <div class="invalid-feedback">{{ $message }}</div>

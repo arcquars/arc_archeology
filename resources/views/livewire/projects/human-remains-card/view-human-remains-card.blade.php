@@ -7,8 +7,19 @@
     <div wire:loading>
         Cargando...
     </div>
-    <div class="card border border-primary mb-2 mt-2">
-        <div class="card-header p-2 text-primary">Ficha de restos humanos - {{ $humanRemainCard->ue }}</div>
+    <div class="card card-outline card-primary mb-2 mt-2">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class="text-primary">{{ $humanRemainCard->project->name }}</h4>
+                    <h5 class="text-secondary">{{ $humanRemainCard->ue }} - Ficha de restos humanos</h5>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ asset('img/semar.png') }}" class="img-thumbnail float-right" alt="Logo semar" width="120">
+                </div>
+            </div>
+
+        </div>
         <div class="card-body text-secondary p-2">
             <div class="row">
                 <div class="col-md-3 form-group">

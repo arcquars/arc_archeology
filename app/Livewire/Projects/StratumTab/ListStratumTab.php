@@ -10,6 +10,7 @@ class ListStratumTab extends Component
 {
     use WithPagination;
 
+    public $projectId;
     public string $f_date = '';
     public string $f_n_ue = '';
 
@@ -21,8 +22,9 @@ class ListStratumTab extends Component
 
     protected $listeners = ['lscClearSearch' => 'clearSearch', 'reload-list-stratum-tab' => 'applySearch'];
 
-    public function mount()
+    public function mount($projectId)
     {
+        $this->projectId = $projectId;
         $this->s_date = $this->f_date;
         $this->s_n_ue = $this->f_n_ue;
     }
@@ -62,6 +64,7 @@ class ListStratumTab extends Component
     {
         $stratumCards = StratumCard::query()
             ->where('active', 1)
+            ->where('project_id', $this->projectId)
             ->when($this->s_date || $this->s_n_ue, function ($query) {
                 if ($this->s_date && $this->s_n_ue) {
                     $query->where('i_date', '=', $this->s_date)

@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProjectController;
 use \App\Http\Controllers\UeController;
+use \App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,4 +27,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Otras rutas protegidas relacionadas con proyectos podrían ir aquí
     // Route::get('/projects/reports', [ProjectController::class, 'reports'])->name('projects.reports');
+});
+
+Route::group(['middleware' => ['role:system-owner']], function () { // Solo usuarios con rol 'admin'
+    Route::resource('users', UserController::class);
 });

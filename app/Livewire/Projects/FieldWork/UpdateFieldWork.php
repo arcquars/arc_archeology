@@ -176,7 +176,8 @@ class UpdateFieldWork extends Component
                 }
             }
 
-            $dirPhotos = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/fotografias";
+//            $dirPhotos = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/fotografias";
+            $dirPhotos = $this->muralStratigraphyCard->urlPhotosAttribute();
             $exists = Storage::disk("wasabi")->exists($dirPhotos);
             if (!$exists) {
                 Storage::disk('wasabi')->makeDirectory($dirPhotos);

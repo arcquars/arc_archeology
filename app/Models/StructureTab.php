@@ -19,6 +19,10 @@ class StructureTab extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function quotes(){
+        return $this->hasMany(StructureQuote::class);
+    }
+
     // Scope para Ue's activos
     public function scopeActive($query)
     {

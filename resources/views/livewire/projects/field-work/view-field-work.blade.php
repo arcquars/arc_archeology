@@ -9,12 +9,14 @@
     </div>
     <div class="card card-outline card-primary mb-2 mt-2">
         <div class="card-header">
-            <h3 class="card-title text-primary">{{ $muralStratigraphy->id }} - Ficha estratigrafia mural</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" wire:click="$dispatch('closeViewFieldWork')">
-                    <i class="fas fa-minus"></i>
-                </button>
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class="text-primary">{{ $muralStratigraphy->project->name }}</h4>
+                    <h5 class="text-secondary">{{ $muralStratigraphy->id }} - Ficha estratigrafia mural</h5>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ asset('img/semar.png') }}" class="img-thumbnail float-right" alt="Logo semar" width="120">
+                </div>
             </div>
             <!-- /.card-tools -->
         </div>
