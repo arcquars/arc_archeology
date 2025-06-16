@@ -23,7 +23,7 @@ class StoreStructureTabRequest extends FormRequest
     {
         return [
             'i_date' => 'required',
-            'i_n_ue' => 'required',
+            'i_n_ue' => 'required|integer|min:1',
             'i_location_intervention' => 'required',
             'i_acronym' => 'required',
             'i_fact' => 'required',

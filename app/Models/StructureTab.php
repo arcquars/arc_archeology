@@ -23,6 +23,14 @@ class StructureTab extends Model
         return $this->hasMany(StructureQuote::class);
     }
 
+    public function bricks(){
+        return $this->hasMany(StructureBrick::class);
+    }
+
+    public function formWorks(){
+        return $this->hasMany(StructureFormworks::class);
+    }
+
     // Scope para Ue's activos
     public function scopeActive($query)
     {

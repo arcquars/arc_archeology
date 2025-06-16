@@ -42,7 +42,7 @@
                     <div class="col-md-3 form-group">
                         <label for="sc-i_n_ue">N. UE</label>
                         <input type="text" class="form-control form-control-sm @error('i_n_ue') is-invalid @enderror"
-                               wire:model="i_n_ue" id="sc-i_n_ue"
+                               wire:model="i_n_ue" id="sc-i_n_ue" disabled
                         >
                         @error('i_n_ue')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -280,11 +280,13 @@
                     @foreach($quotes as $index => $quote)
                         <div class="col-md-3">
                             <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    Cota #{{ $index + 1 }}
-                                    <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Cota #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group mb-2">
@@ -313,6 +315,110 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="bg-info p-1 text-center mb-1">DIMENSIONES EN CM DE LOS LADRILLOS (DE PARED O PAVIMENTO), TOMAR COMO MÍNIMO 25 EJEMPLOS DE PIEZAS COMPLETAS (si es posible).</h6>
+                    </div>
+                </div>
+                <h5>
+                    {{-- Botón para añadir dimension de ladrillos --}}
+                    <button wire:click="addBrick(null, '', '', '')" class="btn btn-outline-info btn-sm" type="button"
+                            @if (count($bricks) >= $maxBricks) disabled @endif>
+                        Añadir dimension ladrillo ({{ count($bricks) }} / {{ $maxBricks }})
+                    </button>
+                </h5>
+                <div class="row">
+                    @foreach($bricks as $index => $brick)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Ladrillo #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeBrick({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="long-{{ $index }}">Largo:</label>
+                                        <input type="number" id="long-{{ $index }}"
+                                               wire:model="bricks.{{ $index }}.long"
+                                               class="form-control @error('bricks.' . $index . '.long') is-invalid @enderror"
+                                               placeholder="Ej: 100.50">
+                                        @error('bricks.' . $index . '.long')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="width-{{ $index }}">Ancho:</label>
+                                        <input type="number" id="width-{{ $index }}"
+                                               wire:model="bricks.{{ $index }}.width"
+                                               class="form-control @error('bricks.' . $index . '.width') is-invalid @enderror"
+                                               placeholder="Ej: 100.50">
+                                        @error('bricks.' . $index . '.width')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="thick-{{ $index }}">Grueso:</label>
+                                        <input type="number" id="thick-{{ $index }}"
+                                               wire:model="bricks.{{ $index }}.thick"
+                                               class="form-control @error('bricks.' . $index . '.thick') is-invalid @enderror"
+                                               placeholder="Ej: 100.50">
+                                        @error('bricks.' . $index . '.thick')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="bg-info p-1 text-center mb-1">Altura de las tapias</h6>
+                    </div>
+                </div>
+                <h5>
+                    {{-- Botón para añadir altura de las tapias --}}
+                    <button wire:click="addFormwork(null, '')" class="btn btn-outline-info btn-sm" type="button"
+                            @if (count($formworks) >= $maxFormworks) disabled @endif>
+                        Añadir Estructura encofrada ({{ count($formworks) }} / {{ $maxFormworks }})
+                    </button>
+                </h5>
+                <div class="row">
+                    @foreach($formworks as $index => $formwork)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Encofrado #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeFormwork({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="formwork-{{ $index }}">Encofrado:</label>
+                                        <input type="number" id="formwork-{{ $index }}"
+                                               wire:model="formworks.{{ $index }}.formwork"
+                                               class="form-control @error('formworks.' . $index . '.formwork') is-invalid @enderror"
+                                               placeholder="Ej: 100.50">
+                                        @error('formworks.' . $index . '.formwork')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+
+
 
             </div>
             <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">

@@ -23,7 +23,7 @@ class StoreStratumCardRequest extends FormRequest
     {
         return [
             'i_date' => 'required',
-            'i_n_ue' => 'required',
+            'i_n_ue' => 'required|integer|min:1',
             'i_location_intervention' => 'required|string|max:250',
             'i_acronym' => 'required|string|max:250',
             'i_fact' => 'required|string|max:250',

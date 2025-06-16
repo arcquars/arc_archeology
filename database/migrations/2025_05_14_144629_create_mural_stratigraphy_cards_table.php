@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('quadrant', 250)->nullable();
             $table->string('acronym', 250)->nullable();
             $table->string('fact', 250)->nullable();
-            $table->string('n_ue', 250)->nullable();
+            $table->integer('n_ue');
             $table->string('provisional_dating', 250)->nullable();
             $table->string('stratigraphic_reliability', 250)->nullable();
             $table->string('identification_type', 250)->nullable();

@@ -64,7 +64,7 @@
                     <div class="col-md-3 form-group">
                         <label for="cfw_n_ue">N° UE</label>
                         <input type="text" class="form-control form-control-sm @error('n_ue') is-invalid @enderror"
-                               wire:model="n_ue" id="cfw_n_ue"
+                               wire:model="n_ue" id="cfw_n_ue" disabled
                         >
                         @error('n_ue')
                         <div class="invalid-feedback">{{ $message }}</div>

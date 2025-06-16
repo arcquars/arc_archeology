@@ -42,7 +42,7 @@
                     <div class="col-md-3 form-group">
                         <label for="sc-i_n_ue">N. UE</label>
                         <input type="text" class="form-control form-control-sm @error('i_n_ue') is-invalid @enderror"
-                               wire:model="i_n_ue" id="sc-i_n_ue"
+                               wire:model="i_n_ue" id="sc-i_n_ue" @if(!$enableUe) disabled @endif
                         >
                         @error('i_n_ue')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -278,11 +278,13 @@
                     @foreach($quotes as $index => $quote)
                         <div class="col-md-3">
                             <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    Cota #{{ $index + 1 }}
-                                    <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Cota #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group mb-2">
@@ -327,11 +329,13 @@
                     @foreach($bricks as $index => $brick)
                         <div class="col-md-3">
                             <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    Ladrillo #{{ $index + 1 }}
-                                    <button type="button" wire:click="removeBrick({{ $index }})" class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Ladrillo #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeBrick({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -385,11 +389,13 @@
                     @foreach($formworks as $index => $formwork)
                         <div class="col-md-3">
                             <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    Encofrado #{{ $index + 1 }}
-                                    <button type="button" wire:click="removeFormwork({{ $index }})" class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>Encofrado #{{ $index + 1 }}</span>
+                                        <button type="button" wire:click="removeFormwork({{ $index }})" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">

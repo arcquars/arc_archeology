@@ -28,7 +28,7 @@ class StoreMuralStratigraphyCardRequest extends FormRequest
             'quadrant' => 'required',
             'acronym' => 'nullable',
             'fact' => 'nullable',
-            'n_ue' => 'nullable',
+            'n_ue' => 'required|integer|min:1',
             'provisional_dating' => 'nullable',
             'preservation' => 'nullable',
             'description' => 'nullable',

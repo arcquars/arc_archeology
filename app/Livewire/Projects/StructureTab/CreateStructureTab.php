@@ -3,6 +3,7 @@
 namespace App\Livewire\Projects\StructureTab;
 
 use App\Http\Requests\StoreStructureTabRequest;
+use App\Models\Project;
 use App\Models\StructureBrick;
 use App\Models\StructureFormworks;
 use App\Models\StructureQuote;
@@ -13,6 +14,8 @@ use Livewire\Component;
 
 class CreateStructureTab extends Component
 {
+    public $enableUe = true;
+
     public $project_id;
     public $i_date, $i_n_ue, $i_location_intervention, $i_acronym, $i_fact;
 
@@ -88,6 +91,11 @@ class CreateStructureTab extends Component
     public function mount(string $projectId)
     {
         $this->project_id = $projectId;
+        $ueNext = Project::find($projectId)->ueNext();
+        if($ueNext){
+            $this->enableUe = false;
+            $this->i_n_ue = $ueNext;
+        }
     }
 
     public function rules(){
@@ -99,7 +107,13 @@ class CreateStructureTab extends Component
 
         $structureTab = new StructureTab();
         $structureTab->i_date = $this->i_date;
-        $structureTab->i_n_ue = $this->i_n_ue;
+        $ueNext = Project::find($this->project_id)->ueNext();
+        if($ueNext > 0){
+            $structureTab->i_n_ue = $ueNext;
+        } else {
+            $structureTab->i_n_ue = $this->i_n_ue;
+        }
+
         $structureTab->i_location_intervention = $this->i_location_intervention;
         $structureTab->i_acronym = $this->i_acronym;
         $structureTab->i_fact = $this->i_fact;

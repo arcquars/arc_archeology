@@ -3,6 +3,7 @@
 namespace App\Livewire\Projects\StratumTab;
 
 use App\Http\Requests\StoreStratumCardRequest;
+use App\Models\Project;
 use App\Models\StratumCard;
 use App\Models\StratumCardMeta;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,8 @@ use Livewire\WithFileUploads;
 class CreateStratumTab extends Component
 {
     use WithFileUploads;
+
+    public $enableUe = true;
 
     public $stratumCard;
 
@@ -69,6 +72,11 @@ class CreateStratumTab extends Component
     public function mount(string $projectId)
     {
         $this->project_id = $projectId;
+        $ueNext = Project::find($projectId)->ueNext();
+        if($ueNext){
+            $this->enableUe = false;
+            $this->i_n_ue = $ueNext;
+        }
     }
 
     public function rules(){
@@ -80,7 +88,13 @@ class CreateStratumTab extends Component
 
         $stratumCard = new StratumCard();
         $stratumCard->i_date = $this->i_date;
-        $stratumCard->i_n_ue = $this->i_n_ue;
+        $ueNext = Project::find($this->project_id)->ueNext();
+        if($ueNext > 0){
+            $stratumCard->i_n_ue = $ueNext;
+        } else {
+            $stratumCard->i_n_ue = $this->i_n_ue;
+        }
+
         $stratumCard->i_location_intervention = $this->i_location_intervention;
         $stratumCard->i_acronym = $this->i_acronym;
         $stratumCard->i_fact = $this->i_fact;

@@ -3,6 +3,8 @@
 namespace App\Livewire\Projects\StructureTab;
 
 use App\Http\Requests\StoreStructureTabRequest;
+use App\Models\StructureBrick;
+use App\Models\StructureFormworks;
 use App\Models\StructureQuote;
 use App\Models\StructureTab;
 use Illuminate\Support\Facades\Log;
@@ -43,6 +45,8 @@ class UpdateStructureTab extends Component
 
     public function load(string $structureTabId){
         $this->quotes = [];
+        $this->bricks = [];
+        $this->formworks = [];
 
         $this->structureTab = StructureTab::find($structureTabId);
 
@@ -79,6 +83,14 @@ class UpdateStructureTab extends Component
         foreach ($quotes as $quote){
             $this->addQuote($quote->id, $quote->surface, $quote->information, );
         }
+        $bricks = $this->structureTab->bricks;
+        foreach ($bricks as $brick){
+            $this->addBrick($brick->id, $brick->long, $brick->width, $brick->thick);
+        }
+        $formWorks = $this->structureTab->formWorks;
+        foreach ($formWorks as $formWork){
+            $this->addFormwork($formWork->id, $formWork->formwork);
+        }
 //        $this-> = $this->structureTab->;
 //        $this-> = $this->structureTab->;
 //        $this-> = $this->structureTab->;
@@ -108,6 +120,58 @@ class UpdateStructureTab extends Component
         } else {
             unset($this->quotes[$index]);
             $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+        }
+    }
+
+    public function addBrick($id, $long, $width, $thick)
+    {
+        if (count($this->bricks) < $this->maxBricks) {
+            $this->bricks[] = [
+                'id' => $id,
+                'long' => $long,
+                'width' => $width,
+                'thick' => $thick,
+                'structure_tab_id' => $this->structureTab->id
+            ];
+        }
+    }
+
+    public function removeBrick($index)
+    {
+        if(isset($this->bricks[$index]['id'])){
+            $deleteRows = StructureBrick::destroy($this->bricks[$index]['id']);
+            if($deleteRows > 0){
+                unset($this->bricks[$index]);
+                $this->bricks = array_values($this->bricks);
+            }
+        } else {
+            unset($this->bricks[$index]);
+            $this->bricks = array_values($this->bricks);
+        }
+    }
+
+    public function addFormwork($id, $formWork)
+    {
+        if (count($this->formworks) < $this->maxFormworks) {
+            $this->formworks[] = [
+                'id' => $id,
+                'formwork' => $formWork,
+                'structure_tab_id' => $this->structureTab->id
+            ];
+        }
+    }
+
+    public function removeFormwork($index)
+    {
+        if(isset($this->formworks[$index]['id'])){
+            $deleteRows = StructureFormworks::destroy($this->formworks[$index]['id']);
+            if($deleteRows > 0){
+                unset($this->formworks[$index]);
+                $this->formworks = array_values($this->formworks);
+            }
+        } else {
+            unset($this->formworks[$index]);
+            $this->formworks = array_values($this->formworks);
         }
     }
 
@@ -162,6 +226,36 @@ class UpdateStructureTab extends Component
                     $q = $sQuote->update([
                         'surface' => $quote['surface'],
                         'information' => $quote['information'],
+                    ]);
+                }
+            }
+            foreach ($this->bricks as $brick){
+                if(!isset($brick['id'])){
+                    $q = StructureBrick::create([
+                        'long' => $brick['long'],
+                        'width' => $brick['width'],
+                        'thick' => $brick['thick'],
+                        'structure_tab_id' => $brick['structure_tab_id'],
+                    ]);
+                } else {
+                    $sBrick = StructureBrick::find($brick['id']);
+                    $q = $sBrick->update([
+                        'long' => $brick['long'],
+                        'width' => $brick['width'],
+                        'thick' => $brick['thick'],
+                    ]);
+                }
+            }
+            foreach ($this->formworks as $formwork){
+                if(!isset($formwork['id'])){
+                    $q = StructureFormworks::create([
+                        'formwork' => $formwork['formwork'],
+                        'structure_tab_id' => $formwork['structure_tab_id'],
+                    ]);
+                } else {
+                    $sFormwork = StructureFormworks::find($formwork['id']);
+                    $q = $sFormwork->update([
+                        'formwork' => $formwork['formwork'],
                     ]);
                 }
             }

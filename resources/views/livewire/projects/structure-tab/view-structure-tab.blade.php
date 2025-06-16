@@ -53,7 +53,206 @@
                         {{ $structureTab->i_fact }}
                     </div>
                 </div>
+                <div class="col-md-3 form-group">
+                    <label>Datación provisional</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->i_provisional_dating }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Fiabilidad estratigráfica</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->i_stratigraphic_reliability }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Tipo</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->i_type }}
+                    </div>
+                </div>
             </div>
+            <div class="form-group">
+                <label>Conservación</label>
+                <div class="form-control bg-light">
+                    {{ $structureTab->conservation }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Descripción e interpretación</label>
+                <div class="form-control bg-light">
+                    {{ $structureTab->interpretation_description }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>Aparejo</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->di_rigging }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Largo</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->di_length }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Anchura</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->di_width }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Alto-Grueso</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->di_thick_height }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="bg-primary p-1 text-center mb-1">Orientación en °</h5>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>1 grado</label>
+                            <div class="form-control bg-light">
+                                {{ $structureTab->di_orientation_degrees_1 }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>2 grado</label>
+                            <div class="form-control bg-light">
+                                {{ $structureTab->di_orientation_degrees_2 }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Igual a</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_equals }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Se le apoya</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_support_provided }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cubierto por</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_covered_by }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Relleno por</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_filling_by }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cortado por</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_cut_by }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Equivale</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_equivale }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Se apoya en</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_supported_by }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cubre o se superpone a</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_overlaps_or_covers }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Rellena a</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_fill_in }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Corta a</label>
+                        <div class="form-control bg-light">
+                            {{ $structureTab->stratigraphy_cut_to }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if(count($structureTab->quotes) > 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="bg-primary p-1 text-center mb-1">Cotas</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($structureTab->quotes as $index => $quote)
+                        <div class="col-md-3">
+                            <h5>Cota #{{ $index + 1 }}</h5>
+                            <dl>
+                                <dt>Superficie</dt>
+                                <dd>{{ $quote->surface }}</dd>
+
+                                <dt>Información</dt>
+                                <dd>{{ $quote->information }}</dd>
+                            </dl>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            @if(count($structureTab->bricks) > 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="bg-primary p-1 text-center mb-1">DIMENSIONES EN CM DE LOS LADRILLOS (DE PARED O PAVIMENTO), TOMAR COMO MÍNIMO 25 EJEMPLOS DE PIEZAS COMPLETAS (si es posible).</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($structureTab->bricks as $index => $brick)
+                        <div class="col-md-3">
+                            <h5>Ladrillo #{{ $index + 1 }}</h5>
+                            <p class="m-1"><b>Largo: </b>{{ $brick->long }}</p>
+                            <p class="m-1"><b>Ancho: </b>{{ $brick->width }}</p>
+                            <p class="m-1"><b>Grueso: </b>{{ $brick->thick }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            @if(count($structureTab->formWorks) > 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="bg-primary p-1 text-center mb-1">Altura de las tapias</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($structureTab->formWorks as $index => $formWork)
+                        <div class="col-md-3">
+                            <h5>Encofrado #{{ $index + 1 }}</h5>
+                            <p class="m-1"><b>Encofrado: </b>{{ $formWork->formwork }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+
         </div>
         <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">
             <button class="btn btn-sm btn-dark" wire:click="$dispatch('close-stratum-card-view')">Cerrar</button>

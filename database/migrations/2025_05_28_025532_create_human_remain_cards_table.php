@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('intervention');
             $table->string('location');
-            $table->string('ue');
+            $table->integer('ue');
             $table->string('fact');
             $table->boolean('type_inhumation')->default(false);
             $table->boolean('type_cremation')->default(false);

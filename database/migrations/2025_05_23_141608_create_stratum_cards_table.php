@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('i_location_intervention', 250);
             $table->string('i_acronym', 250);
             $table->string('i_fact', 250);
-            $table->string('i_n_ue', 250);
+            $table->integer('i_n_ue');
             $table->string('i_provisional_dating', 250)->nullable();
             $table->string('i_stratigraphic_reliability', 250)->nullable();
             $table->string('i_type', 250)->nullable();

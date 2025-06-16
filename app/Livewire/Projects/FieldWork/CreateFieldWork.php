@@ -4,6 +4,7 @@ namespace App\Livewire\Projects\FieldWork;
 
 use App\Http\Requests\StoreMuralStratigraphyCardRequest;
 use App\Models\MuralStratigraphyCard;
+use App\Models\Project;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -13,6 +14,8 @@ use Livewire\WithFileUploads;
 class CreateFieldWork extends Component
 {
     use WithFileUploads;
+
+    public $enableUe = true;
 
     public $projectId;
     public $msc_date;
@@ -59,6 +62,11 @@ class CreateFieldWork extends Component
     public function mount(string $projectId)
     {
         $this->projectId = $projectId;
+        $ueNext = Project::find($projectId)->ueNext();
+        if($ueNext){
+            $this->enableUe = false;
+            $this->n_ue = $ueNext;
+        }
     }
 
     public function rules(){
@@ -76,7 +84,14 @@ class CreateFieldWork extends Component
         $mural->stay = $this->stay;
         $mural->acronym = $this->acronym;
         $mural->fact = $this->fact;
-        $mural->n_ue = $this->n_ue;
+
+        $ueNext = Project::find($this->projectId)->ueNext();
+        if($ueNext > 0){
+            $mural->n_ue = $ueNext;
+        } else {
+            $mural->n_ue = $this->n_ue;
+        }
+
         $mural->provisional_dating = $this->provisional_dating;
         $mural->stratigraphic_reliability = $this->stratigraphic_reliability;
         $mural->identification_type = $this->identification_type;
