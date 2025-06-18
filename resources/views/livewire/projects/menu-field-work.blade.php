@@ -38,7 +38,7 @@
             @if ($componenteActivo === 'muralStratigraphyCard')
                 @livewire('projects.mural-stratigraphy-card', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'listUuEe')
-                @livewire('projects.uuee.list-ue')
+                @livewire('projects.uuee.list-ue', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'listStratumTab')
                 @livewire('projects.stratum-tab.list-stratum-tab', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'structureSheet')

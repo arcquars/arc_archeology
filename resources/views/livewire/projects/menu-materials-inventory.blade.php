@@ -21,8 +21,7 @@
         </div>
         <div class="col-md-10">
             @if ($componenteActivo === 'CatalogArchitecturalElements')
-                1
-{{--                @livewire('projects.mural-stratigraphy-card')--}}
+                @livewire('projects.inventory-material.catalogue-architectural.list-catalogue-architectural', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'inventoryMaterialMuseumable')
                 2
 {{--                @livewire('projects.uuee.list-ue')--}}
@@ -32,4 +31,8 @@
             @endif
         </div>
     </div>
+
+    @if ($showCreateCatalogueArch)
+        @livewire('projects.inventory-material.catalogue-architectural.create-catalogue-architectural', ['projectId' => $projectId])
+    @endif
 </div>

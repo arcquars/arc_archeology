@@ -52,26 +52,30 @@
             <th scope="col" style="cursor: pointer;">
                 Cubre a
             </th>
-            <th scope="col">Acciones</th>
+            <th scope="col" style="cursor: pointer;">
+                Ficha
+            </th>
+{{--            <th scope="col">Acciones</th>--}}
         </tr>
         </thead>
         <tbody>
-        @forelse ($ues as $ue)
+        @forelse ($allTicket as $ticket)
             <tr>
-                <td>{{ $ue->code }}</td>
-                <td>{{ $ue->covered_by }}</td>
-                <td>{{ $ue->covers_to }}</td>
-                <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-view-ue', {ueId: {{$ue->id}} })">
-                        <i class="far fa-eye"></i>
-                    </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-ue-update', {ueId: {{$ue->id}} })">
-                        <i class="far fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteUe', {ueId: {{$ue->id}} })">
-                        <i class="far fa-trash-alt"></i>
-                    </button>
-                </td>
+                <td>{{ $ticket->id . ' || ' . $ticket->ue }}</td>
+                <td>{{ $ticket->covered_by }}</td>
+                <td>{{ $ticket->covers_to }}</td>
+                <td>{{ $ticket->ticketType }}</td>
+{{--                <td class="text-right">--}}
+{{--                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-view-ue', {ueId: {{$ticket->id}} })">--}}
+{{--                        <i class="far fa-eye"></i>--}}
+{{--                    </button>--}}
+{{--                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-ue-update', {ueId: {{$ticket->id}} })">--}}
+{{--                        <i class="far fa-edit"></i>--}}
+{{--                    </button>--}}
+{{--                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteUe', {ueId: {{$ticket->id}} })">--}}
+{{--                        <i class="far fa-trash-alt"></i>--}}
+{{--                    </button>--}}
+{{--                </td>--}}
             </tr>
         @empty
             <tr>
@@ -82,6 +86,6 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $ues->links() }}
+        {{ $allTicket->links() }}
     </div>
 </div>

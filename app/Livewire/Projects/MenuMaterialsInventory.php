@@ -9,6 +9,27 @@ class MenuMaterialsInventory extends Component
     public $projectId;
     public $componenteActivo = 'CatalogArchitecturalElements';
 
+    public bool $showCreateCatalogueArch = false;
+
+    protected $listeners = [
+        'toggleCreateFieldWork' => 'toggleCreateCatArch',
+        'closeCreateFieldWork' => 'closeFormCreateCatArch',
+        ];
+
+    public function toggleCreateCatArch(){
+        $this->showCreateCatalogueArch = !$this->showCreateCatalogueArch;
+        if($this->showCreateCatalogueArch){
+//            $this->closeView();
+//            $this->closeUpdate();
+//            $this->closeUeView();
+        }
+
+    }
+
+    public function closeFormCreateCatArch(){
+        $this->showCreateCatalogueArch = false;
+    }
+
     public function seleccionarComponente($componente)
     {
 //        $this->closeAll();

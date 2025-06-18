@@ -2,13 +2,22 @@
 
 namespace App\Livewire\Projects\Uuee;
 
+use App\Models\HumanRemainCard;
+use App\Models\MuralStratigraphyCard;
+use App\Models\StratumCard;
+use App\Models\StructureTab;
 use App\Models\Ue;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class ListUe extends Component
 {
     use WithPagination;
+
+    public $projectId;
+
+    public $mediaType = '';
 
     public string $f_ue = '';
     public string $f_covered_by = '';
@@ -21,8 +30,9 @@ class ListUe extends Component
 
     protected $listeners = ['lueClearSearch' => 'clearSearch', 'reload-list-ue' => 'applySearch'];
 
-    public function mount()
+    public function mount($projectId)
     {
+        $this->projectId = $projectId;
         $this->s_ue = $this->f_ue;
         $this->s_covered_by = $this->f_covered_by;
     }
@@ -64,21 +74,95 @@ class ListUe extends Component
 
     public function render()
     {
-        $ues = Ue::query()
-        ->where('active', 1)
+        $muralStratigraphyCards = MuralStratigraphyCard::select(
+            'id',
+            'n_ue as ue',
+            'stratigraphy_covered_by as covered_by',
+            'stratigraphy_covers_to as covers_to',
+            DB::raw("'Estratigrafia Mural' as ticketType")
+        )->toBase();
+        $stratumCards = StratumCard::select(
+            'id',
+            'i_n_ue as ue',
+            'stratigraphy_covered_by as covered_by',
+            'stratigraphy_overlaps_or_covers as covers_to',
+            DB::raw("'Estrato' as ticketType")
+        )->toBase();
+        $structureTab = StructureTab::select(
+            'id',
+            'i_n_ue as ue',
+            'stratigraphy_covered_by as covered_by',
+            'stratigraphy_overlaps_or_covers as covers_to',
+            DB::raw("'Restos Humanos' as ticketType")
+        )->toBase();
+        $humanRemainCard = HumanRemainCard::select(
+            'id',
+            'ue',
+            'relationship_covered_by as covered_by',
+            'relationship_covers_to as covers_to',
+            DB::raw("'Estructura' as ticketType")
+        )->toBase();
+
+        $muralStratigraphyCards->where('active', 1)->where('project_id', $this->projectId)
         ->when($this->s_ue || $this->s_covered_by, function ($query) {
             if ($this->s_ue && $this->s_covered_by) {
-                $query->where('code', '=', $this->s_ue)
-                    ->where('covered_by', 'like', '%' . $this->s_covered_by . '%');
+                $query->where('n_ue', '=', $this->s_ue)
+                    ->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
             } elseif ($this->s_ue) {
-                $query->where('code', '=', $this->s_ue);
+                $query->where('n_ue', '=', $this->s_ue);
             } elseif ($this->s_covered_by) {
-                $query->where('covered_by', 'like', '%' . $this->s_covered_by . '%');
+                $query->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
             }
-        })
-        ->orderBy($this->sortBy, $this->sortDirection)
-        ->paginate(env('PAGINATE', 10))->withQueryString();
+        });
 
-        return view('livewire.projects.uuee.list-ue', compact('ues'));
+        $stratumCards->where('active', 1)->where('project_id', $this->projectId)
+            ->when($this->s_ue || $this->s_covered_by, function ($query) {
+                if ($this->s_ue && $this->s_covered_by) {
+                    $query->where('i_n_ue', '=', $this->s_ue)
+                        ->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                } elseif ($this->s_ue) {
+                    $query->where('i_n_ue', '=', $this->s_ue);
+                } elseif ($this->s_covered_by) {
+                    $query->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                }
+            });
+
+        $structureTab->where('active', 1)->where('project_id', $this->projectId)
+            ->when($this->s_ue || $this->s_covered_by, function ($query) {
+                if ($this->s_ue && $this->s_covered_by) {
+                    $query->where('i_n_ue', '=', $this->s_ue)
+                        ->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                } elseif ($this->s_ue) {
+                    $query->where('i_n_ue', '=', $this->s_ue);
+                } elseif ($this->s_covered_by) {
+                    $query->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                }
+            });
+        $humanRemainCard->where('active', 1)->where('project_id', $this->projectId)
+            ->when($this->s_ue || $this->s_covered_by, function ($query) {
+                if ($this->s_ue && $this->s_covered_by) {
+                    $query->where('ue', '=', $this->s_ue)
+                        ->where('relationship_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                } elseif ($this->s_ue) {
+                    $query->where('ue', '=', $this->s_ue);
+                } elseif ($this->s_covered_by) {
+                    $query->where('relationship_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                }
+            });
+
+        $unionQuery = $muralStratigraphyCards;
+        $unionQuery->unionAll($stratumCards);
+        $unionQuery->unionAll($structureTab);
+        $unionQuery->unionAll($humanRemainCard);
+
+        if (is_null($unionQuery)) {
+            $allTicket = collect([])->paginate(10);
+        } else {
+            $allTicket = $unionQuery
+                ->orderBy('ue', 'desc') // Ordena el resultado final
+                ->paginate(env('PAGINATE', 10)); // Paginar 10 resultados por página
+        }
+
+        return view('livewire.projects.uuee.list-ue', compact('allTicket'));
     }
 }
