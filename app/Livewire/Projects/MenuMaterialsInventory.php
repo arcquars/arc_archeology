@@ -8,12 +8,17 @@ class MenuMaterialsInventory extends Component
 {
     public $projectId;
     public $componenteActivo = 'CatalogArchitecturalElements';
+    public $catalogueArchitecturalId = 0;
 
     public bool $showCreateCatalogueArch = false;
+    public bool $showUpdateCatalogueArch = false;
 
     protected $listeners = [
         'toggleCreateFieldWork' => 'toggleCreateCatArch',
         'closeCreateFieldWork' => 'closeFormCreateCatArch',
+
+        'toggleUpdateCatArch' => 'toggleUpdateCatArch',
+        'closeUpdateCatArch' => 'closeFormUpdateCatArch',
         ];
 
     public function toggleCreateCatArch(){
@@ -28,6 +33,24 @@ class MenuMaterialsInventory extends Component
 
     public function closeFormCreateCatArch(){
         $this->showCreateCatalogueArch = false;
+    }
+
+    public function toggleUpdateCatArch($catalogueArchitecturalId){
+        $this->catalogueArchitecturalId = $catalogueArchitecturalId;
+
+        if(!$this->showUpdateCatalogueArch){
+            $this->showUpdateCatalogueArch = !$this->showUpdateCatalogueArch;
+        }
+
+        if($this->showUpdateCatalogueArch){
+            $newId = $catalogueArchitecturalId;
+            $this->dispatch('updateCatalogueArchitecturalId', $newId);
+        }
+
+    }
+
+    public function closeFormUpdateCatArch(){
+        $this->showUpdateCatalogueArch = false;
     }
 
     public function seleccionarComponente($componente)

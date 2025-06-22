@@ -21,7 +21,7 @@ class ListCatalogueArchitectural extends Component
     public string $sortBy = 'proceed_ue';
     public string $sortDirection = 'asc';
 
-    protected $listeners = ['catalogue-architectural-clear-search' => 'clearSearch', 'reload-list-human-remain' => 'applySearch'];
+    protected $listeners = ['catalogue-architectural-clear-search' => 'clearSearch', 'reload-list-catalogue-archi' => 'applySearch'];
 
     public function mount($projectId)
     {

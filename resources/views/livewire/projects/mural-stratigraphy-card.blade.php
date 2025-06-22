@@ -58,6 +58,9 @@
                 <td>{{ $mural->msc_date }}</td>
                 <td>{{ $mural->floor }}</td>
                 <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$mural->id}})">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-eye"></i>
                     </button>

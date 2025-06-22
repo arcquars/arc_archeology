@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Projects;
 
+use Illuminate\Support\Facades\Response;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MuralStratigraphyCard extends Component
 {
@@ -65,6 +67,19 @@ class MuralStratigraphyCard extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function exportPdf($id){
+        $muralStratigraphy = \App\Models\MuralStratigraphyCard::find($id);
+        $title = 'ESTRATIGRAFÍA MURARIA';
+        $pdf = Pdf::loadView('projects.export-pdf.field_work_export', compact('title', 'muralStratigraphy'));
+        $pdf->setPaper('letter', 'portrait');
+        $filename = 'reporte_mural_stratigraphy_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function render()

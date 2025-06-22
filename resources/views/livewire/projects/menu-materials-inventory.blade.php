@@ -1,4 +1,5 @@
 <div>
+    <livewire:projects.inventory-material.catalogue-architectural.delete-catalogue-architectural />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -34,5 +35,7 @@
 
     @if ($showCreateCatalogueArch)
         @livewire('projects.inventory-material.catalogue-architectural.create-catalogue-architectural', ['projectId' => $projectId])
+    @elseif($showUpdateCatalogueArch)
+        @livewire('projects.inventory-material.catalogue-architectural.update-catalogue-architectural', ['catalogueArchitecturalId' => $catalogueArchitecturalId])
     @endif
 </div>

@@ -1,0 +1,197 @@
+<style>
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin-top: 20px;
+        color: #333;
+    }
+
+    @page {
+        margin-top: 80px;    /* Espacio reservado para el encabezado en CADA PÁGINA */
+        margin-bottom: 60px; /* Espacio reservado para el pie de página (si lo usas) */
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    /* Opcional: Estilos para la numeración de página (si usas footer) */
+    .pagenum:before { content: counter(page); }
+    .pagecount:before { content: counter(pages); }
+
+    .h-seccion{
+        margin: 4px 2px 0 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background: gray;
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        font-size: 12px;
+    }
+
+    .table-input-4{
+        width: 100%;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-4 thead tr th, .table-input-4 tbody tr td {
+        /*border: 1px solid #ccc;*/
+        padding: 2px;
+        text-align: left;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-4 tbody tr td{
+        width: 25%;
+        vertical-align: top;
+    }
+
+    .table-input-2 tbody tr td label, .table-input-4 tbody tr td label{
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .table-input-2 tbody tr td p, .table-input-4 tbody tr td p, .table-input-6 tbody tr td p, .table-input-7 tbody tr td p{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+    }
+
+    .table-input-7{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .table-input-7 tbody tr td:first-child{
+        width: 20%;
+        background: grey;
+        color: #fff;
+        text-align: left;
+    }
+
+    .table-input-7 tbody tr td{
+        width: 13.3%;
+        vertical-align: top;
+        text-align: right;
+    }
+
+    .d-textarea{
+        width: 100%;
+    }
+
+    .d-textarea label {
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+
+    .d-textarea p{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+        text-align: justify;
+    }
+
+    .d-hr{
+        /*background: grey;*/
+        margin: 4px 0;
+        padding: 0;
+        border: solid 1px grey;
+    }
+
+    .table-input-6{
+        width: 100%;
+        margin: 2px;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-6 thead tr th, .table-input-6 tbody tr td {
+        width: 16.5%;
+        padding: 2px;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-6 tbody tr td{
+        vertical-align: top;
+        text-align: center;
+        border: solid 1px #808080;
+    }
+
+    .table-input-6 tbody tr td label{
+        font-size: 10px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .d-col-3{
+        border-right: solid 1px #808080;
+        text-align: center !important;
+        background: #808080;
+    }
+    .d-sub-title{
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .table-input-2{
+        width: 100%;
+        margin: 2px 2px 0 2px;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-2 thead tr th, .table-input-2 tbody tr td {
+        width: 50%;
+        padding: 2px;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-2 tbody tr td{
+        vertical-align: top;
+        text-align: justify;
+        border: solid 1px #808080;
+    }
+
+    header {
+        position: fixed;
+        top: -60px;
+        left: 0;
+        right: 0;
+        height: 60px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 14px;
+        border-bottom: 1px solid #000;
+    }
+
+    footer {
+        position: fixed;
+        bottom: -40px;
+        left: 0;
+        right: 0;
+        height: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+    }
+
+    .page-number:before {
+        content: "Página " counter(page);
+    }
+</style>

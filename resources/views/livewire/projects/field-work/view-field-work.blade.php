@@ -97,7 +97,7 @@
                 </div>
             </div>
             <h6 class="bg-primary p-1 text-uppercase">Descripción e interpretación</h6>
-            <div class="form-control bg-light">
+            <div class="bg-light border p-2 mt-2 mb-2 text-justify rounded">
                 {{ $muralStratigraphy->description }}
             </div>
             <h6 class="bg-primary p-1 text-uppercase">Componentes</h6>
@@ -267,7 +267,7 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Comentario</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light border p-2 mt-2 mb-2 text-justify rounded">
                         {{ $muralStratigraphy->comments }}
                     </div>
                 </div>
