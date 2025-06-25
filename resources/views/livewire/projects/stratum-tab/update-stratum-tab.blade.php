@@ -169,12 +169,6 @@
                             <label>Fracción fina</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-porcentaje" value="Porcentaje"
-                                           wire:model="fine_fraction"
-                                    >
-                                    <label class="form-check-label" for="ff-porcentaje">Muy deficiente</label>
-                                </div>
-                                <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="fine_fraction" id="ff-arena" value="Arena"
                                            wire:model="fine_fraction"
                                     >
@@ -197,6 +191,12 @@
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-limo-arenoso">Limo-Arenoso</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-limo-arcilloso" value="Limo-Arcilloso"
+                                           wire:model="fine_fraction"
+                                    >
+                                    <label class="form-check-label" for="ff-limo-arcilloso">Limo-Arcilloso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="fine_fraction" id="ff-limo" value="Limo"

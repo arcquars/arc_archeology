@@ -17,7 +17,7 @@
     .pagecount:before { content: counter(pages); }
 
     .h-seccion{
-        margin: 4px 2px 0 2px;
+        margin: 4px 0 2px 0;
         padding-top: 4px;
         padding-bottom: 4px;
         background: gray;
@@ -47,15 +47,16 @@
         vertical-align: top;
     }
 
-    .table-input-2 tbody tr td label, .table-input-4 tbody tr td label{
+    .table-input-2 tbody tr td label, .table-input-4 tbody tr td label, .table-input-25-75 tbody tr td label {
         font-size: 12px;
         font-weight: 700;
-        margin: 0;
+        margin: 4px;
         padding: 0;
         white-space: normal;
     }
 
-    .table-input-2 tbody tr td p, .table-input-4 tbody tr td p, .table-input-6 tbody tr td p, .table-input-7 tbody tr td p{
+    .table-input-2 tbody tr td p, .table-input-4 tbody tr td p, .table-input-6 tbody tr td p, .table-input-7 tbody tr td p,
+    .table-input-8 tbody tr td p, .table-input-25-75 tbody tr td p{
         font-size: 11px;
         margin: 0;
         padding: 2px 4px;
@@ -80,6 +81,89 @@
         vertical-align: top;
         text-align: right;
     }
+
+    .table-input-8{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .table-input-8 tbody tr td:first-child{
+        width: 20% !important;
+        background: grey;
+        color: #fff;
+        text-align: left;
+    }
+
+    .table-input-8 tbody tr td{
+        width: 12.5%;
+        vertical-align: top;
+        text-align: right;
+    }
+
+    .table-input-25-75{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .table-input-25-75 tbody tr{
+        border-bottom: solid 1px #fff;
+    }
+
+    .table-input-25-75 tbody tr td{
+        width: 75%;
+        vertical-align: top;
+        text-align: right;
+    }
+
+    .table-input-25-75 tbody tr td:first-child{
+        width: 25% !important;
+        background: grey;
+        color: #fff;
+        text-align: left;
+    }
+
+    .table-input-3 {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    /*.table-input-8 tbody tr td:first-child{*/
+    /*    width: 33.33% !important;*/
+    /*    background: grey;*/
+    /*    color: #fff;*/
+    /*    text-align: left;*/
+    /*}*/
+
+    .table-input-3 tbody tr td{
+        width: 33.33%;
+        vertical-align: top;
+        text-align: right;
+    }
+
+    .table-input-3 thead tr th {
+        margin: 2px;
+        background: #808080;
+        border: solid 1px #fff;
+    }
+
+    .table-input-3 thead tr th label{
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+
+    .table-input-3 tbody tr td p{
+        font-size: 11px;
+        margin: 0;
+        padding: 0;
+        /*color: #fff;*/
+    }
+
 
     .d-textarea{
         width: 100%;
@@ -166,6 +250,21 @@
         vertical-align: top;
         text-align: justify;
         border: solid 1px #808080;
+    }
+
+    .cm-control label{
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .cm-control p{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
     }
 
     header {

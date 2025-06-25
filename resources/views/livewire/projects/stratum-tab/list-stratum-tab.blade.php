@@ -62,6 +62,9 @@
                 <td>{{ $stratumCard->i_n_ue }}</td>
                 <td>{{ $stratumCard->i_acronym }}</td>
                 <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$stratumCard->id}})">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-stratum-card-view', {stratumCardId: {{$stratumCard->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
