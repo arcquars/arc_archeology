@@ -2,7 +2,10 @@
 
 namespace App\Livewire\Projects\StructureTab;
 
+use App\Models\StratumCard;
 use App\Models\StructureTab;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -58,6 +61,19 @@ class ListStructureTab extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function exportPdf($id){
+        $structureCard = StructureTab::find($id);
+        $title = 'Ficha de estructura';
+        $pdf = Pdf::loadView('projects.export-pdf.structure_card_export', compact('title', 'structureCard'));
+        $pdf->setPaper('letter', 'portrait');
+        $filename = 'reporte_stratum_card_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function render()

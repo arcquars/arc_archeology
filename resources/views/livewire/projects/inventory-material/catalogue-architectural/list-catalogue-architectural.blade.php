@@ -62,9 +62,9 @@
                 <td>{{ $catalogueArchitectural->proceed_ue }}</td>
                 <td>{{ $catalogueArchitectural->proceed_acronym }}</td>
                 <td class="text-right">
-{{--                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-human-remain-card-view', {humanRemainCardId: {{$catalogueArchitectural->id}} })">--}}
-{{--                        <i class="far fa-eye"></i>--}}
-{{--                    </button>--}}
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
+                        <i class="far fa-eye"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
                         <i class="far fa-edit"></i>
                     </button>

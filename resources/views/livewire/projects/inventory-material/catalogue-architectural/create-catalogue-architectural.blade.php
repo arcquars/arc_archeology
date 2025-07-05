@@ -52,7 +52,7 @@
                         <div class="col-md-6 form-group">
                             <label for="ea-proceed_ue">UE</label>
                             <input type="text" class="form-control form-control-sm @error('proceed_ue') is-invalid @enderror"
-                                   wire:model="proceed_ue" id="ea-proceed_ue"
+                                   wire:model="proceed_ue" id="ea-proceed_ue" @if(!$enableUe) disabled @endif
                             />
                             @error('proceed_ue')
                             <div class="invalid-feedback">{{ $message }}</div>

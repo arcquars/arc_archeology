@@ -184,6 +184,14 @@
         text-align: justify;
     }
 
+    .semar-p {
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+        /*text-align: justify;*/
+    }
+
     .d-hr{
         /*background: grey;*/
         margin: 4px 0;
@@ -220,6 +228,40 @@
         white-space: normal;
     }
 
+    .table-input-6-1{
+        width: 100%;
+        margin: 2px;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-6-1 thead tr th, .table-input-6-1 tbody tr td {
+        width: 16.5%;
+        padding: 2px;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-6-1 tbody tr td{
+        vertical-align: top;
+    }
+
+    .table-input-6-1 tbody tr td label{
+        font-size: 10px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .table-input-6-1 tbody tr td p{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+        text-align: justify;
+    }
     .d-col-3{
         border-right: solid 1px #808080;
         text-align: center !important;

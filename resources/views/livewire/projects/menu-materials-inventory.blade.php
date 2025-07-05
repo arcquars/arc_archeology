@@ -1,5 +1,6 @@
 <div>
     <livewire:projects.inventory-material.catalogue-architectural.delete-catalogue-architectural />
+    <livewire:projects.inventory-material.museable.delete-museable />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -24,8 +25,7 @@
             @if ($componenteActivo === 'CatalogArchitecturalElements')
                 @livewire('projects.inventory-material.catalogue-architectural.list-catalogue-architectural', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'inventoryMaterialMuseumable')
-                2
-{{--                @livewire('projects.uuee.list-ue')--}}
+                @livewire('projects.inventory-material.museable.list-museable', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'inventoryMaterialCount')
                 3
 {{--                @livewire('projects.stratum-tab.list-stratum-tab')--}}
@@ -37,5 +37,14 @@
         @livewire('projects.inventory-material.catalogue-architectural.create-catalogue-architectural', ['projectId' => $projectId])
     @elseif($showUpdateCatalogueArch)
         @livewire('projects.inventory-material.catalogue-architectural.update-catalogue-architectural', ['catalogueArchitecturalId' => $catalogueArchitecturalId])
+    @elseif($showViewCatalogueArch)
+        @livewire('projects.inventory-material.catalogue-architectural.view-catalogue-architectural', ['catalogueArchitectualId' => $catalogueArchitecturalId])
+    @elseif($showCreateMaterialMuseable)
+        @livewire('projects.inventory-material.museable.create-museable', ['projectId' => $projectId])
+    @elseif($showUpdateMaterialMuseable)
+        @livewire('projects.inventory-material.museable.update-museable', ['materialId' => $materialMuseableId])
+    @elseif($showViewMaterialMuseable)
+        @livewire('projects.inventory-material.museable.view-museable', ['materialId' => $materialMuseableId])
+
     @endif
 </div>

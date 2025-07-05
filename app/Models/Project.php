@@ -72,9 +72,17 @@ class Project extends Model
             $ueNext = $stMaxUe;
         }
         $hrcMaxUe = HumanRemainCard::where('project_id', $this->id)->max('ue');
-        Log::info("cccc:: " . $hrcMaxUe);
         if($hrcMaxUe > $ueNext ){
             $ueNext = $hrcMaxUe;
+        }
+        $catalogueArchitectualMaxUe = CatalogueArchitectual::where('project_id', $this->id)->max('proceed_ue');
+        if($catalogueArchitectualMaxUe > $ueNext ){
+            $ueNext = $catalogueArchitectualMaxUe;
+        }
+
+        $materialMaxUe = Material::where('project_id', $this->id)->max('ue');
+        if($materialMaxUe > $ueNext ){
+            $ueNext = $materialMaxUe;
         }
 
         $ueNext = intval($ueNext);

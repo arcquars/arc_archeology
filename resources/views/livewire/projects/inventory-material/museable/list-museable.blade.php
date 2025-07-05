@@ -1,16 +1,16 @@
 <div>
-    <h4>Fichas de estructura</h4>
+    <h4>Inventario de inventario Mouseable</h4>
     <div class="row">
         <div class="col-md-3 form-group">
-            <label for="iDate">Fecha</label>
-            <input type="date" class="form-control form-control-sm" id="pUe" name="iDate"
-                   wire:model.defer="f_date"
+            <label for="imm-object">Objecto</label>
+            <input type="text" class="form-control form-control-sm" id="imm-object"
+                   wire:model.defer="f_object"
             >
         </div>
         <div class="col-md-3 form-group">
-            <label for="pInue">N. UE</label>
-            <input type="text" class="form-control form-control-sm" id="pInue"
-                   wire:model.defer="f_n_ue"
+            <label for="imm-ue">N. UE</label>
+            <input type="text" class="form-control form-control-sm" id="imm-ue"
+                   wire:model.defer="f_ue"
             >
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
@@ -26,7 +26,7 @@
                     <i class="fas fa-eraser"></i>
                 </button>
                 <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
-                        wire:click="$dispatch('toggle-structure-tab-create')"
+                        wire:click="$dispatch('toggleCreateMuseable')"
                 >
                     <i class="far fa-plus-square"></i>
                 </button>
@@ -37,41 +37,42 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('i_date')">
-                Fecha
-                @if ($sortBy === 'i_date')
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('object')">
+                Objeto
+                @if ($sortBy === 'object')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
             </th>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('i_n_ue')">
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('ue')">
                 N. UE
-                @if ($sortBy === 'i_n_ue')
+                @if ($sortBy === 'ue')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
             </th>
             <th scope="col">
-                Acronimo
+                Siglo
+            </th>
+            <th scope="col">
+                Tipo
             </th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
-        @forelse ($structureTabs as $structureTab)
+        @forelse ($materials as $material)
             <tr>
-                <td>{{ $structureTab->i_date }}</td>
-                <td>{{ $structureTab->i_n_ue }}</td>
-                <td>{{ $structureTab->i_acronym }}</td>
+                <td>{{ $material->object }}</td>
+                <td>{{ $material->ue }}</td>
+                <td>{{ $material->century }}</td>
+                <td>{{ $material->material_type }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$structureTab->id}})">
-                        <i class="fas fa-file-pdf"></i>
-                    </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-structure-tab-view', {structureTabId: {{$structureTab->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMuseable', {materialId: {{$material->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-structure-tab-update', {structureTabId: {{$structureTab->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateMuseable', {materialId: {{$material->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteStructureTab', {structureTabId: {{$structureTab->id}} })">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteMaterial', {materialId: {{$material->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>
@@ -85,6 +86,6 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $structureTabs->links() }}
+        {{ $materials->links() }}
     </div>
 </div>

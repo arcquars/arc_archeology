@@ -16,6 +16,7 @@ class CreateCatalogueArchitectural extends Component
 {
     use WithFileUploads;
 
+    public $enableUe = true;
     public $project_id;
 
     public $proceed_date_admission, $proceed_source_admission, $proceed_origin, $proceed_acronym, $proceed_ue;
@@ -28,6 +29,11 @@ class CreateCatalogueArchitectural extends Component
     public function mount(string $projectId)
     {
         $this->project_id = $projectId;
+        $ueNext = Project::find($projectId)->ueNext();
+        if($ueNext){
+            $this->enableUe = false;
+            $this->proceed_ue = $ueNext;
+        }
     }
 
     public function rules(){
@@ -37,6 +43,10 @@ class CreateCatalogueArchitectural extends Component
     public function saveCatalogueArchitectural(){
         $validateData = $this->validate();
 
+        $ueNext = Project::find($this->project_id)->ueNext();
+        if($ueNext > 0){
+            $validateData['proceed_ue'] = $ueNext;
+        }
         /** @var CatalogueArchitectual $catalogueArchitectural */
         $catalogueArchitectural = CatalogueArchitectual::create(array_merge($validateData, [
             'project_id' => $this->project_id,
