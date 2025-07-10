@@ -17,6 +17,13 @@ class ProjectController extends Controller
     {
 //        $projects = Project::active()->paginate(config('app.paginate'));
         $query = Project::active();
+
+        if(!auth()->user()->hasRole('admin')){
+            $query->whereHas('users', function ($q) {
+                $q->where('users.id', Auth::id());
+            });
+        }
+
         if ($request->has('name')) {
             $query->where('name', 'like', '%' . $request->input('name') . '%');
         }

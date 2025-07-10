@@ -31,6 +31,7 @@
                     <i class="far fa-eye"></i>
                 </a>
 
+                @if(auth()->user()->hasRole('admin'))
                 <a href="#" class="btn btn-sm btn-link" title="Asignar usuarios" onclick="refreshProjectEditors({{$project->id}})">
                     <i class="fas fa-user-friends"></i>
                 </a>
@@ -38,6 +39,7 @@
                    onclick="Livewire.dispatch('openModalDelete', { project_id: '{{$project->id}}' });" >
                     <i class="far fa-trash-alt"></i>
                 </a>
+                @endif
             </td>
         </tr>
     @endforeach

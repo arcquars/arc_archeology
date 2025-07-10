@@ -85,6 +85,11 @@ class Project extends Model
             $ueNext = $materialMaxUe;
         }
 
+        $materialRecountMaxUe = MaterialRecount::where('project_id', $this->id)->max('ue');
+        if($materialRecountMaxUe > $ueNext ){
+            $ueNext = $materialRecountMaxUe;
+        }
+
         $ueNext = intval($ueNext);
         return $ueNext>0? $ueNext + 1 : 0;
     }

@@ -301,11 +301,18 @@ return [
 
     'menu' => [
         // Navbar items:
-//        [
-//            'type' => 'navbar-search',
-//            'text' => 'search',
-//            'topnav_right' => true,
-//        ],
+        [
+            'url' => '#',
+            'text' => 'Perfil',
+            'icon' => 'fas fa-fw fa-user',
+            'topnav_user' => true,
+        ],
+        [
+            'text' => 'change_password',
+            'route' => 'password.change',
+            'icon' => 'fas fa-fw fa-lock',
+            'topnav_user' => true,
+        ],
 //        [
 //            'type' => 'fullscreen-widget',
 //            'topnav_right' => true,
@@ -379,11 +386,11 @@ return [
 //            ],
 //        ],
         ['header' => 'ADMINISTRACION'],
-        [
-            'text' => 'Administrar cuenta',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-cog',
-        ],
+//        [
+//            'text' => 'Administrar cuenta',
+//            'url' => 'admin/settings',
+//            'icon' => 'fas fa-cog',
+//        ],
         [
             'text' => 'Usuarios',
             'url' => 'users',

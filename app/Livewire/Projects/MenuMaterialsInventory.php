@@ -10,6 +10,7 @@ class MenuMaterialsInventory extends Component
     public $componenteActivo = 'CatalogArchitecturalElements';
     public $catalogueArchitecturalId = 0;
     public $materialMuseableId = 0;
+    public $materialRecountId = 0;
 
     public bool $showCreateCatalogueArch = false;
     public bool $showUpdateCatalogueArch = false;
@@ -18,6 +19,10 @@ class MenuMaterialsInventory extends Component
     public bool $showCreateMaterialMuseable = false;
     public bool $showUpdateMaterialMuseable = false;
     public bool $showViewMaterialMuseable = false;
+
+    public bool $showCreateMaterialRecount = false;
+    public bool $showUpdateMaterialRecount = false;
+    public bool $showViewMaterialRecount = false;
 
     protected $listeners = [
         'toggleCreateFieldWork' => 'toggleCreateCatArch',
@@ -37,6 +42,15 @@ class MenuMaterialsInventory extends Component
 
         'toggleViewMuseable' => 'toggleViewMuseable',
         'closeViewMuseable' => 'closeViewMuseable',
+
+        'toggleCreateMaterialRecount' => 'toggleCreateMaterialRecount',
+        'closeCreateMaterialRecount' => 'closeCreateMaterialRecount',
+
+        'toggleUpdateMaterialRecount' => 'toggleUpdateMaterialRecount',
+        'closeUpdateMaterialRecount' => 'closeUpdateMaterialRecount',
+
+        'toggleViewMaterialRecount' => 'toggleViewMaterialRecount',
+        'closeViewMaterialRecount' => 'closeViewMaterialRecount',
         ];
 
     public function toggleCreateCatArch(){
@@ -86,6 +100,7 @@ class MenuMaterialsInventory extends Component
             $this->closeFormCreateCatArch();
             $this->closeFormUpdateCatArch();
             $this->closeCreateMuseable();
+            $this->closeViewMaterialRecount();
         }
     }
 
@@ -99,6 +114,7 @@ class MenuMaterialsInventory extends Component
             $this->closeFormCreateCatArch();
             $this->closeFormUpdateCatArch();
             $this->closeViewCatArch();
+            $this->closeViewMaterialRecount();
         }
 
     }
@@ -121,6 +137,7 @@ class MenuMaterialsInventory extends Component
             $this->closeFormUpdateCatArch();
             $this->closeViewCatArch();
             $this->closeCreateMuseable();
+            $this->closeViewMaterialRecount();
         }
 
     }
@@ -142,6 +159,7 @@ class MenuMaterialsInventory extends Component
             $this->closeFormUpdateCatArch();
             $this->closeCreateMuseable();
             $this->closeFormUpdateMuseable();
+            $this->closeViewMaterialRecount();
         }
     }
 
@@ -149,6 +167,69 @@ class MenuMaterialsInventory extends Component
         $this->showViewMaterialMuseable = false;
     }
 
+    public function toggleCreateMaterialRecount(){
+        $this->showCreateMaterialRecount = !$this->showCreateMaterialRecount;
+        if($this->showCreateMaterialRecount){
+            $this->closeFormCreateCatArch();
+            $this->closeFormUpdateCatArch();
+            $this->closeViewCatArch();
+
+            $this->closeCreateMuseable();
+            $this->closeFormUpdateMuseable();
+            $this->closeViewMuseable();
+            $this->closeViewMaterialRecount();
+        }
+
+    }
+
+    public function closeCreateMaterialRecount(){
+        $this->showCreateMaterialRecount = false;
+    }
+
+    public function toggleUpdateMaterialRecount($materialRecountId){
+        $this->materialRecountId = $materialRecountId;
+
+        if(!$this->showUpdateMaterialRecount){
+            $this->showUpdateMaterialRecount = !$this->showUpdateMaterialRecount;
+        }
+
+        if($this->showUpdateMaterialRecount){
+            $newId = $materialRecountId;
+            $this->dispatch('updateMaterialRecountId', $newId);
+            $this->closeFormCreateCatArch();
+            $this->closeFormUpdateCatArch();
+            $this->closeViewCatArch();
+            $this->closeCreateMuseable();
+            $this->closeCreateMaterialRecount();
+            $this->closeViewMaterialRecount();
+        }
+
+    }
+
+    public function closeUpdateMaterialRecount(){
+        $this->showUpdateMaterialRecount = false;
+    }
+
+    public function toggleViewMaterialRecount($materialRecountId){
+        $this->materialRecountId = $materialRecountId;
+        if(!$this->showViewMaterialRecount){
+            $this->showViewMaterialRecount = !$this->showViewMaterialRecount;
+        }
+
+        if($this->showViewMaterialRecount){
+            $newId = $materialRecountId;
+            $this->dispatch('viewMaterialRecountId', $newId);
+            $this->closeFormCreateCatArch();
+            $this->closeFormUpdateCatArch();
+            $this->closeCreateMuseable();
+            $this->closeFormUpdateMuseable();
+            $this->closeUpdateMaterialRecount();
+        }
+    }
+
+    public function closeViewMaterialRecount(){
+        $this->showViewMaterialRecount = false;
+    }
     public function seleccionarComponente($componente)
     {
         $this->closeAll();
@@ -163,6 +244,10 @@ class MenuMaterialsInventory extends Component
         $this->closeFormUpdateMuseable();
         $this->closeCreateMuseable();
         $this->closeViewMuseable();
+
+        $this->closeCreateMaterialRecount();
+        $this->closeUpdateMaterialRecount();
+        $this->closeViewMaterialRecount();
 //        $this->closeUeCreate();
 
     }

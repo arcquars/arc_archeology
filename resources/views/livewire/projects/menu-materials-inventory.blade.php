@@ -1,6 +1,7 @@
 <div>
     <livewire:projects.inventory-material.catalogue-architectural.delete-catalogue-architectural />
     <livewire:projects.inventory-material.museable.delete-museable />
+    <livewire:projects.inventory-material.material-recount.delete-material-recount />
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
@@ -27,8 +28,7 @@
             @elseif ($componenteActivo === 'inventoryMaterialMuseumable')
                 @livewire('projects.inventory-material.museable.list-museable', ['projectId' => $projectId])
             @elseif ($componenteActivo === 'inventoryMaterialCount')
-                3
-{{--                @livewire('projects.stratum-tab.list-stratum-tab')--}}
+                @livewire('projects.inventory-material.material-recount.list-material-recount', ['projectId' => $projectId])
             @endif
         </div>
     </div>
@@ -45,6 +45,11 @@
         @livewire('projects.inventory-material.museable.update-museable', ['materialId' => $materialMuseableId])
     @elseif($showViewMaterialMuseable)
         @livewire('projects.inventory-material.museable.view-museable', ['materialId' => $materialMuseableId])
-
+    @elseif($showCreateMaterialRecount)
+        @livewire('projects.inventory-material.material-recount.create-material-recount', ['projectId' => $projectId])
+    @elseif($showUpdateMaterialRecount)
+        @livewire('projects.inventory-material.material-recount.update-material-recount', ['materialRecountId' => $materialRecountId])
+    @elseif($showViewMaterialRecount)
+        @livewire('projects.inventory-material.material-recount.view-material-recount', ['materialRecountId' => $materialRecountId])
     @endif
 </div>

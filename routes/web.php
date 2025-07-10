@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProjectController;
 use \App\Http\Controllers\UeController;
 use \App\Http\Controllers\UserController;
+use App\Livewire\ChangePassword; // Importa tu componente Livewire
 
 Route::get('/', function () {
     return view('auth.login');
@@ -27,6 +28,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Otras rutas protegidas relacionadas con proyectos podrían ir aquí
     // Route::get('/projects/reports', [ProjectController::class, 'reports'])->name('projects.reports');
+
+    Route::get('/change-password', function () {
+        return view('auth.change-password-page'); // Apunta a la vista que incluye el componente
+    })->name('password.change');
 });
 
 Route::group(['middleware' => ['role:system-owner']], function () { // Solo usuarios con rol 'admin'

@@ -1,3 +1,25 @@
 <div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
+    <div class="modal fade @if($show) show @endif" id="materialRecountDeleteModal" tabindex="-1" role="dialog" aria-labelledby="materialRecountDeleteModalLabel" aria-hidden="@if(!$show) true @else false @endif" style="@if($show) display: block; @endif">
+        <div class="modal-dialog" role="document">
+            <form wire:submit.prevent="deleteMaterialRecount">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="materialRecountDeleteModalLabel">Eliminar material recuento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" wire:click="closeModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="callout callout-danger">
+                            <p>Esta seguro que quiere eliminar el material: <b>{{ $materialRecount? $materialRecount->ue : "--" }}</b></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" wire:click="closeModal">Cancelar</button>
+                        <button type="submit" class="btn btn-sm btn-danger" >Confirmar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

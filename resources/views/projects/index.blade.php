@@ -33,11 +33,12 @@
                     <a href="{{ route('projects.index') }}" class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda">
                         <i class="fas fa-eraser"></i>
                     </a>
-                    <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
-{{--                            onclick="Livewire.dispatch('openModal', { title: 'Título Modal', content: 'Este es el contenido del modal111.' });">--}}
-                            onclick="Livewire.dispatch('openModal');">
-                        <i class="far fa-plus-square"></i>
-                    </button>
+                    @if(auth()->user()->hasRole('admin'))
+                        <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
+                                onclick="Livewire.dispatch('openModal');">
+                            <i class="far fa-plus-square"></i>
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>

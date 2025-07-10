@@ -20,7 +20,7 @@
                     <i class="fas fa-eraser"></i>
                 </button>
                 <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
-                        wire:click="$dispatch('toggleCreateMuseable')"
+                        wire:click="$dispatch('toggleCreateMaterialRecount')"
                 >
                     <i class="far fa-plus-square"></i>
                 </button>
@@ -49,26 +49,26 @@
                 <td>{{ $material->ue }}</td>
                 <td>{{ $material->chronology }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMuseable', {materialId: {{$material->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMaterialRecount', {materialRecountId: {{$material->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateMuseable', {materialId: {{$material->id}} })">
+                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateMaterialRecount', {materialRecountId: {{$material->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteMaterial', {materialId: {{$material->id}} })">
+                    <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteMaterialRecount', {materialRecountId: {{$material->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </td>
             </tr>
         @empty
             <tr>
-                <td colspan="4" class="text-center">No se encontraron registros.</td>
+                <td colspan="3" class="text-center">No se encontraron registros.</td>
             </tr>
         @endforelse
         </tbody>
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $materials->links() }}
+        {{ $materialRecounts->links() }}
     </div>
 </div>

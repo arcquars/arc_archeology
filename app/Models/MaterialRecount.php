@@ -12,6 +12,8 @@ class MaterialRecount extends Model
     protected $fillable = [
         'ue',
         'chronology',
+        'project_id',
+        'user_id',
     ];
 
     public function project(){
