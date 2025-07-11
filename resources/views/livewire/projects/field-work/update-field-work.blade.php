@@ -374,21 +374,29 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-4 form-group">
                         <label for="cfw_sketches">Croquis, planta, alzado, y seccion</label>
-                        <input type="file" class="form-control form-control-sm @error('sketches.*') is-invalid @enderror"
-                               wire:model="sketches" id="cfw_sketches" multiple
+                        <input type="file" class="form-control form-control-sm @error('sketches') is-invalid @enderror"
+                               wire:model="sketches" id="cfw_sketches"
                         />
                         @error('sketches')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        <hr class="bg-info">
+                        @foreach($croquisUrls as $url)
+{{--                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail" />--}}
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
 
-                        @error('sketches.*')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-
+                                <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                        wire:click="removeSketch()"
+                                >
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-8 form-group">
                         <label for="cfw_photos">Fotografias</label>
                         <input type="file" class="form-control form-control-sm @error('photos.*') is-invalid @enderror"
                                wire:model="photos" id="cfw_photos" multiple
@@ -400,6 +408,23 @@
                         @error('photos.*')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+
+                        <hr class="bg-info">
+                        <div class="row">
+                            @foreach($photoUrls as $index => $pUrl)
+                                <div class="col-md-4">
+                                    <div class="position-relative d-inline-block">
+                                        <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                                wire:click="removePhoto('{{$index}}')"
+                                        >
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="row">

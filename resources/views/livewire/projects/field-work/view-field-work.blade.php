@@ -267,7 +267,7 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Comentario</label>
-                    <div class="bg-light border p-2 mt-2 mb-2 text-justify rounded">
+                    <div class="form-control bg-light">
                         {{ $muralStratigraphy->comments }}
                     </div>
                 </div>
@@ -284,9 +284,28 @@
                     </div>
                 </div>
             </div>
-            @foreach($croquisUrls as $url)
-                <img src="{{ $url }}" alt="Imagen desde Wasabi" />
-            @endforeach
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Croquis</h5>
+                    <hr class="bg-primary">
+                    @foreach($croquisUrls as $url)
+                        <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                    @endforeach
+                </div>
+                <div class="col-md-10">
+                    <h5>Fotografias</h5>
+                    <hr class="bg-primary">
+                    <div class="row">
+                        @foreach($photoUrls as $pUrl)
+                            <div class="col-md-4">
+                                <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">

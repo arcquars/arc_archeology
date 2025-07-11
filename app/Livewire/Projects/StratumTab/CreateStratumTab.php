@@ -6,6 +6,8 @@ use App\Http\Requests\StoreStratumCardRequest;
 use App\Models\Project;
 use App\Models\StratumCard;
 use App\Models\StratumCardMeta;
+use App\Models\StratumQuotes;
+use App\Models\StructureQuote;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -67,7 +69,28 @@ class CreateStratumTab extends Component
     public $stratum_modern_ceramica_azul, $stratum_modern_ceramica_alcora, $stratum_modern_ceramica_dorada, $stratum_modern_ceramica_cocina,
         $stratum_modern_ceramica_comun, $stratum_modern_azulejos_alica;
 
+    public $sketch;
+    public $quotes = [];
+    public $maxQuotes = 5;
     public array $photos = [];
+
+    public function addQuote()
+    {
+        if (count($this->quotes) < $this->maxQuotes) {
+            $this->quotes[] = [
+                'surface' => '',
+                'information' => '',
+            ];
+        } else {
+            session()->flash('error', 'Se ha alcanzado el límite máximo de ' . $this->maxQuotes . ' quotes.');
+        }
+    }
+
+    public function removeQuote($index)
+    {
+        unset($this->quotes[$index]);
+        $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+    }
 
     public function mount(string $projectId)
     {
@@ -128,6 +151,31 @@ class CreateStratumTab extends Component
 
         if($stratumCard->save()){
             $this->createMeta($stratumCard);
+
+            foreach ($this->quotes as $quote){
+                $q = StratumQuotes::create([
+                    'surface' => $quote['surface'],
+                    'information' => $quote['information'],
+                    'stratum_card_id' => $stratumCard->id,
+                ]);
+            }
+
+            if($this->sketch){
+                $dirCroquis = $stratumCard->urlCroquisAttribute();
+                $sketcheExists = Storage::disk("wasabi")->exists($dirCroquis);
+                if (!$sketcheExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                }
+
+                $nombreOriginal = $this->sketch->getClientOriginalName();
+                $extension = $this->sketch->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketch->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido croquis::: ' . $path);
+            }
 
             $dirPhotos = $stratumCard->urlPhotosAttribute();
             $exists = Storage::disk("wasabi")->exists($dirPhotos);

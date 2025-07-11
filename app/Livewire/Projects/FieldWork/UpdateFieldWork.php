@@ -54,7 +54,7 @@ class UpdateFieldWork extends Component
     public $num_flat;
     public $num_photography;
 
-    public array $sketches = [];
+    public $sketches;
     public array $photos = [];
 
 
@@ -111,6 +111,16 @@ class UpdateFieldWork extends Component
         $this->num_photography =$this->muralStratigraphyCard->num_photography;
     }
 
+    public function removeSketch(){
+        $dirCroquis = $this->muralStratigraphyCard->urlCroquisAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+    }
+
+    public function removePhoto($url){
+        Storage::disk('wasabi')->delete($url);
+        $this->photoUrls = $this->muralStratigraphyCard->urlPhotosPublicAttribute();
+    }
+
     public function mount(string $muralId)
     {
         $this->load($muralId);
@@ -160,23 +170,23 @@ class UpdateFieldWork extends Component
         if($this->muralStratigraphyCard->save()){
             Log::info('Mural id::: ' . $this->muralStratigraphyCard->id);
 
-            $dirCroquis = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/croquis";
-            $exists = Storage::disk("wasabi")->exists($dirCroquis);
-            if (!$exists) {
-                Storage::disk('wasabi')->makeDirectory($dirCroquis);
-            }
-
-            foreach ($this->sketches as $file) {
-                if ($file) {
-                    $nombreOriginal = $file->getClientOriginalName();
-                    $extension = $file->getClientOriginalExtension();
-                    $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
-                    $path = $file->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
-                    Log::info('Wasabi archivo subido croquis::: ' . $path);
+            if($this->sketches){
+                $dirCroquis = $this->muralStratigraphyCard->urlCroquisAttribute();
+                $sketcheExists = Storage::disk("wasabi")->exists($dirCroquis);
+                if (!$sketcheExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
                 }
+
+                $nombreOriginal = $this->sketches->getClientOriginalName();
+                $extension = $this->sketches->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketches->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido croquis::: ' . $path);
             }
 
-//            $dirPhotos = "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-estratigrafia-mural/".$this->muralStratigraphyCard->id."/fotografias";
             $dirPhotos = $this->muralStratigraphyCard->urlPhotosAttribute();
             $exists = Storage::disk("wasabi")->exists($dirPhotos);
             if (!$exists) {
@@ -201,6 +211,8 @@ class UpdateFieldWork extends Component
 
     public function render()
     {
-        return view('livewire.projects.field-work.update-field-work');
+        $croquisUrls = $this->muralStratigraphyCard->urlCroquisPublicAttribute();
+        $photoUrls = $this->muralStratigraphyCard->urlPhotosPublicAttribute();
+        return view('livewire.projects.field-work.update-field-work', compact('croquisUrls', 'photoUrls'));
     }
 }

@@ -26,7 +26,7 @@ class StoreStructureTabRequest extends FormRequest
             'i_n_ue' => 'required|integer|min:1',
             'i_location_intervention' => 'required',
             'i_acronym' => 'required',
-            'i_fact' => 'required',
+            'i_fact' => 'nullable|string|max:250',
             'i_provisional_dating' => 'nullable|string|max:200',
             'i_stratigraphic_reliability' => 'nullable|string|max:200',
             'i_type' => 'nullable|string|max:200',

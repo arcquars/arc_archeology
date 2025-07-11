@@ -55,7 +55,7 @@ class CreateFieldWork extends Component
     public $num_flat;
     public $num_photography;
 
-    public array $sketches = [];
+    public $sketches;
     public array $photos = [];
 
 
@@ -123,23 +123,17 @@ class CreateFieldWork extends Component
         $mural->num_photography = $this->num_photography;
 
         if($mural->save()){
-            Log::info('Mural id::: ' . $mural->id);
-
-//            $dirCroquis = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/croquis";
-            $dirCroquis = $mural->urlCroquisAttribute();
-            $exists = Storage::disk("wasabi")->exists($dirCroquis);
-            if (!$exists) {
-                Storage::disk('wasabi')->makeDirectory($dirCroquis);
-            }
-
-            foreach ($this->sketches as $file) {
-                if ($file) {
-                    $nombreOriginal = $file->getClientOriginalName();
-                    $extension = $file->getClientOriginalExtension();
-                    $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
-                    $path = $file->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
-                    Log::info('Wasabi archivo subido croquis::: ' . $path);
+            if($this->sketches){
+                $dirCroquis = $mural->urlCroquisAttribute();
+                $exists = Storage::disk("wasabi")->exists($dirCroquis);
+                if (!$exists) {
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
                 }
+
+                $nombreOriginal = $this->sketches->getClientOriginalName();
+                $extension = $this->sketches->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketches->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
             }
 
 //            $dirPhotos = "/proyectos/".$this->projectId."/trabajo-de-campo/ficha-estratigrafia-mural/".$mural->id."/fotografias";

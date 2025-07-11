@@ -30,12 +30,25 @@ class ViewFieldWork extends Component
         $croquisUrls = [];
         if (!empty($files)) {
             foreach ($files as $file) {
-                $croquisUrls[] = Storage::disk('wasabi')->url($file);
+//                $croquisUrls[] = Storage::disk('wasabi')->url($file);
+                $croquisUrls[] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
             }
         }
-        Log::info("eeee:: " . $dirCroquis);
-        Log::info("eeee:: " . json_encode($files));
+
+        $dirPhotos = $this->muralStratigraphy->urlPhotosAttribute();
+        $photoFiles = Storage::disk('wasabi')->allFiles($dirPhotos);
+        $photoUrls = [];
+        if (!empty($photoFiles)) {
+            foreach ($photoFiles as $photoFile) {
+//                $photoUrls[] = Storage::disk('wasabi')->url($photoFile);
+                $photoUrls[] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile;
+
+            }
+        }
+        Log::info("eeee dirCroquis:: " . $dirCroquis);
+        Log::info("eeee dirPhotos:: " . $dirPhotos);
         Log::info("eeee:: " . json_encode($croquisUrls));
-        return view('livewire.projects.field-work.view-field-work', compact('croquisUrls'));
+        Log::info("eeee:: " . json_encode($photoUrls));
+        return view('livewire.projects.field-work.view-field-work', compact('croquisUrls', 'photoUrls'));
     }
 }

@@ -9,15 +9,25 @@ class ViewStratumTab extends Component
 {
     public $stratumCard;
 
+    public $croquisUrls = [];
+    public $photoUrls = [];
+    public $quotes = [];
+
     protected $listeners = ['viewStratumCardId'];
 
     public function viewStratumCardId($newId){
         $this->stratumCard = StratumCard::find($newId);
+        $this->croquisUrls = $this->stratumCard->urlCroquisPublicAttribute();
+        $this->photoUrls = $this->stratumCard->urlPhotosPublicAttribute();
+        $this->quotes = $this->stratumCard->quotes;
     }
 
     public function mount(string $stratumCardId)
     {
         $this->stratumCard = StratumCard::find($stratumCardId);
+        $this->croquisUrls = $this->stratumCard->urlCroquisPublicAttribute();
+        $this->photoUrls = $this->stratumCard->urlPhotosPublicAttribute();
+        $this->quotes = $this->stratumCard->quotes;
 
     }
 

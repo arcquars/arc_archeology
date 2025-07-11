@@ -57,8 +57,9 @@ class StoreMuralStratigraphyCardRequest extends FormRequest
             'num_flat' => 'nullable',
             'num_photography' => 'nullable',
 
-            'sketches' => 'nullable|array|max:4',
-            'sketches.*' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
+//            'sketches' => 'nullable|array|max:4',
+//            'sketches.*' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
+            'sketches' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:4096',
 
             'photos' => 'nullable|array|max:4',
             'photos.*' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',

@@ -91,10 +91,6 @@ class UpdateStructureTab extends Component
         foreach ($formWorks as $formWork){
             $this->addFormwork($formWork->id, $formWork->formwork);
         }
-//        $this-> = $this->structureTab->;
-//        $this-> = $this->structureTab->;
-//        $this-> = $this->structureTab->;
-//        $this-> = $this->structureTab->;
     }
 
     public function addQuote($id, $surface, $information)

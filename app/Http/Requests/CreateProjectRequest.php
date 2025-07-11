@@ -26,7 +26,7 @@ class CreateProjectRequest extends FormRequest
             'acronym' => 'required|string|min:3|max:120|unique:projects,acronym',
             'expedient' => 'required|string|min:3|max:120',
             'initial_quota' => 'required|numeric',
-            'final_quota' => 'required|numeric|gt:initial_quota',
+            'final_quota' => 'required|numeric',
             'utm' => 'required|string|min:3|max:250',
             'initial_date' => 'required|date'
         ];

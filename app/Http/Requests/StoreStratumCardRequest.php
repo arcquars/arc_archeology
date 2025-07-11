@@ -26,7 +26,7 @@ class StoreStratumCardRequest extends FormRequest
             'i_n_ue' => 'required|integer|min:1',
             'i_location_intervention' => 'required|string|max:250',
             'i_acronym' => 'required|string|max:250',
-            'i_fact' => 'required|string|max:250',
+            'i_fact' => 'nullable|string|max:250',
             'i_provisional_dating' => 'nullable|string|max:250',
             'i_stratigraphic_reliability' => 'nullable|string|max:250',
             'i_type' => 'nullable|string|max:250',
@@ -49,6 +49,9 @@ class StoreStratumCardRequest extends FormRequest
             'comment' => 'nullable|string|max:1500',
             'description' => 'nullable|string|max:1500',
             'volume_material' => 'nullable|string|max:250',
+
+            'quotes.*.surface' => 'required|numeric|min:0|max:2500',
+            'quotes.*.information' => 'nullable|string|max:200',
 
             'photos' => 'nullable|array|max:4',
             'photos.*' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',

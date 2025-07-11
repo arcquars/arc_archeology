@@ -198,6 +198,46 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <h5 class="bg-primary p-1 text-center">COTAS</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @foreach($croquisUrls as $url)
+                        <div class="position-relative d-inline-block">
+                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                            <tr>
+                                <th colspan="3" class="text-center">Cotas</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Sup.</th>
+                                <th>Inf.</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($quotes as $index => $quote)
+                                <tr>
+                                    <td class="text-center">{{$index}}</td>
+                                    <td>{{ $quote->surface }}</td>
+                                    <td>{{ $quote->information }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
             <hr class="bg-primary">
             <div class="form-group">
                 <label>Comentario</label>
@@ -224,6 +264,18 @@
                     {{ $stratumCard->description }}
                 </div>
             </div>
+            <hr class="bg-primary">
+            <label for="cfw_photos">Fotografías</label>
+            <div class="row">
+                @foreach($photoUrls as $index => $pUrl)
+                    <div class="col-md-3">
+                        <div class="position-relative d-inline-block">
+                            <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
         <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">
             <button class="btn btn-sm btn-dark" wire:click="$dispatch('close-stratum-card-view')">Cerrar</button>

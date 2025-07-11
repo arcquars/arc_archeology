@@ -4,6 +4,8 @@ namespace App\Livewire\Projects\StratumTab;
 
 use App\Http\Requests\StoreStratumCardRequest;
 use App\Models\StratumCard;
+use App\Models\StratumQuotes;
+use App\Models\StructureQuote;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -15,6 +17,9 @@ class UpdateStratumTab extends Component
     use WithFileUploads;
 
     public $stratumCard;
+
+    public $croquisUrls = [];
+    public $photoUrls = [];
 
     public $project_id;
     public $i_date, $i_n_ue, $i_location_intervention, $i_acronym, $i_fact;
@@ -62,6 +67,9 @@ class UpdateStratumTab extends Component
     public $stratum_modern_ceramica_azul, $stratum_modern_ceramica_alcora, $stratum_modern_ceramica_dorada, $stratum_modern_ceramica_cocina,
         $stratum_modern_ceramica_comun, $stratum_modern_azulejos_alica;
 
+    public $sketch;
+    public $quotes = [];
+    public $maxQuotes = 5;
     public array $photos = [];
 
     protected $listeners = ['updateStratumCardId'];
@@ -106,6 +114,11 @@ class UpdateStratumTab extends Component
         $this->comment = $this->stratumCard->comment;
         $this->volume_material = $this->stratumCard->volume_material;
         $this->description = $this->stratumCard->description;
+
+        $quotes = $this->stratumCard->quotes;
+        foreach ($quotes as $quote){
+            $this->addQuote($quote->id, $quote->surface, $quote->information, );
+        }
 
         if($this->stratumCard->meta){
             $this->material_romano_iberico = $this->stratumCard->meta->material_romano_iberico;
@@ -198,6 +211,42 @@ class UpdateStratumTab extends Component
             $this->stratum_modern_ceramica_comun = $this->stratumCard->meta->stratum_modern_ceramica_comun;
             $this->stratum_modern_azulejos_alica = $this->stratumCard->meta->stratum_modern_azulejos_alica;
         }
+    }
+
+    public function addQuote($id, $surface, $information)
+    {
+        if (count($this->quotes) < $this->maxQuotes) {
+            $this->quotes[] = [
+                'id' => $id,
+                'surface' => $surface,
+                'information' => $information,
+                'stratum_card_id' => $this->stratumCard->id
+            ];
+        }
+    }
+
+    public function removeQuote($index)
+    {
+        if(isset($this->quotes[$index]['id'])){
+            $deleteRows = StratumQuotes::destroy($this->quotes[$index]['id']);
+            if($deleteRows > 0){
+                unset($this->quotes[$index]);
+                $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+            }
+        } else {
+            unset($this->quotes[$index]);
+            $this->quotes = array_values($this->quotes); // Reindexar el array para evitar problemas con Livewire
+        }
+    }
+
+    public function removeSketch(){
+        $dirCroquis = $this->stratumCard->urlCroquisAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+    }
+
+    public function removePhoto($url){
+        Storage::disk('wasabi')->delete($url);
+        $this->photoUrls = $this->stratumCard->urlPhotosPublicAttribute();
     }
 
     public function saveStratumCard(){
@@ -337,6 +386,39 @@ class UpdateStratumTab extends Component
         if($this->stratumCard->save()){
             $this->saveStratumCard();
 
+            if($this->sketch){
+                $dirCroquis = $this->stratumCard->urlCroquisAttribute();
+                $sketcheExists = Storage::disk("wasabi")->exists($dirCroquis);
+                if (!$sketcheExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                }
+
+                $nombreOriginal = $this->sketch->getClientOriginalName();
+                $extension = $this->sketch->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketch->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido croquis::: ' . $path);
+            }
+
+            foreach ($this->quotes as $quote){
+                if(!isset($quote['id'])){
+                    $q = StratumQuotes::create([
+                        'surface' => $quote['surface'],
+                        'information' => $quote['information'],
+                        'stratum_card_id' => $quote['stratum_card_id'],
+                    ]);
+                } else {
+                    $sQuote = StratumQuotes::find($quote['id']);
+                    $q = $sQuote->update([
+                        'surface' => $quote['surface'],
+                        'information' => $quote['information'],
+                    ]);
+                }
+            }
+
             $dirPhotos = $this->stratumCard->urlPhotosAttribute();
             $exists = Storage::disk("wasabi")->exists($dirPhotos);
             if (!$exists) {
@@ -361,14 +443,8 @@ class UpdateStratumTab extends Component
 
     public function render()
     {
-        $dirPhotos = $this->stratumCard->urlPhotosAttribute();
-        $files = Storage::disk('wasabi')->allFiles($dirPhotos);
-        $photoUrls = [];
-        if (!empty($files)) {
-            foreach ($files as $file) {
-                $photoUrls[] = Storage::disk('wasabi')->url($file);
-            }
-        }
+        $this->croquisUrls = $this->stratumCard->urlCroquisPublicAttribute();
+        $this->photoUrls = $this->stratumCard->urlPhotosPublicAttribute();
         return view('livewire.projects.stratum-tab.update-stratum-tab');
     }
 }
