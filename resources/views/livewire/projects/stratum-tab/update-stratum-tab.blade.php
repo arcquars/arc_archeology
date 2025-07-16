@@ -350,106 +350,85 @@
                         <h5 class="bg-info p-1 text-center">ESTRATIGRAFÍA</h5>
                     </div>
                 </div>
+
+
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group row align-items-center">
-                            <label for="e-equals" class="col-auto mb-0">Igual a</label>
-                            <div class="col">
-                                <input type="text" id="e-equals" class="form-control form-control-sm @error('stratigraphy_equals') is-invalid @enderror" wire:model="stratigraphy_equals">
-                                @error('stratigraphy_equals')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-support_provided" class="col-auto mb-0">Se le apoya</label>
-                            <div class="col">
-                                <input type="text" id="e-support_provided" class="form-control form-control-sm @error('stratigraphy_support_provided') is-invalid @enderror" wire:model="stratigraphy_support_provided">
-                                @error('stratigraphy_support_provided')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-covered_by" class="col-auto mb-0">Cubierto por</label>
-                            <div class="col">
-                                <input type="text" id="e-covered_by" class="form-control form-control-sm @error('stratigraphy_covered_by') is-invalid @enderror" wire:model="stratigraphy_covered_by">
-                                @error('stratigraphy_covered_by')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-filling_by" class="col-auto mb-0">Relleno por</label>
-                            <div class="col">
-                                <input type="text" id="e-filling_by" class="form-control form-control-sm @error('stratigraphy_filling_by') is-invalid @enderror" wire:model="stratigraphy_filling_by">
-                                @error('stratigraphy_filling_by')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-cut_by" class="col-auto mb-0">Cortado por</label>
-                            <div class="col">
-                                <input type="text" id="e-cut_by" class="form-control form-control-sm @error('stratigraphy_cut_by') is-invalid @enderror" wire:model="stratigraphy_cut_by">
-                                @error('stratigraphy_cut_by')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="col-md-3">
+                        <label for="e-equals">Igual a</label>
+                        <input type="text" id="e-equals" class="form-control form-control-sm @error('stratigraphy_equals') is-invalid @enderror" wire:model="stratigraphy_equals">
+                        @error('stratigraphy_equals')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group row align-items-center">
-                            <label for="e-equivale" class="col-auto mb-0">Equivale</label>
-                            <div class="col">
-                                <input type="text" id="e-equivale" class="form-control form-control-sm @error('stratigraphy_equivale') is-invalid @enderror" wire:model="stratigraphy_equivale">
-                                @error('stratigraphy_equivale')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-supported_by" class="col-auto mb-0">Se apoya en</label>
-                            <div class="col">
-                                <input type="text" id="e-supported_by" class="form-control form-control-sm @error('stratigraphy_supported_by') is-invalid @enderror" wire:model="stratigraphy_supported_by">
-                                @error('stratigraphy_supported_by')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-overlaps_or_covers" class="col-auto mb-0">Cubre o se superpone a</label>
-                            <div class="col">
-                                <input type="text" id="e-overlaps_or_covers" class="form-control form-control-sm @error('stratigraphy_overlaps_or_covers') is-invalid @enderror" wire:model="stratigraphy_overlaps_or_covers">
-                                @error('stratigraphy_overlaps_or_covers')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-fill_in" class="col-auto mb-0">Rellena a</label>
-                            <div class="col">
-                                <input type="text" id="e-fill_in" class="form-control form-control-sm @error('stratigraphy_fill_in') is-invalid @enderror" wire:model="stratigraphy_fill_in">
-                                @error('stratigraphy_fill_in')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                            <label for="e-cut_to" class="col-auto mb-0">Corta a</label>
-                            <div class="col">
-                                <input type="text" id="e-cut_to" class="form-control form-control-sm @error('stratigraphy_cut_to') is-invalid @enderror" wire:model="stratigraphy_cut_to">
-                                @error('stratigraphy_cut_to')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="col-md-3">
+                        <label for="e-support_provided">Se le apoya</label>
+                        <input type="text" id="e-support_provided" class="form-control form-control-sm @error('stratigraphy_support_provided') is-invalid @enderror" wire:model="stratigraphy_support_provided">
+                        @error('stratigraphy_support_provided')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="e-covered_by">Cubierto por</label>
+                        <input type="text" id="e-covered_by" class="form-control form-control-sm @error('stratigraphy_covered_by') is-invalid @enderror" wire:model="stratigraphy_covered_by">
+                        @error('stratigraphy_covered_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="e-filling_by">Relleno por</label>
+                        <input type="text" id="e-filling_by" class="form-control form-control-sm @error('stratigraphy_filling_by') is-invalid @enderror" wire:model="stratigraphy_filling_by">
+                        @error('stratigraphy_filling_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <h5 class="bg-info p-1 text-center">COTAS</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="e-cut_by">Cortado por</label>
+                        <input type="text" id="e-cut_by" class="form-control form-control-sm @error('stratigraphy_cut_by') is-invalid @enderror" wire:model="stratigraphy_cut_by">
+                        @error('stratigraphy_cut_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
+                    <div class="col-md-3">
+                        <label for="e-equivale">Equivale</label>
+                        <input type="text" id="e-equivale" class="form-control form-control-sm @error('stratigraphy_equivale') is-invalid @enderror" wire:model="stratigraphy_equivale">
+                        @error('stratigraphy_equivale')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="e-supported_by">Se apoya en</label>
+                        <input type="text" id="e-supported_by" class="form-control form-control-sm @error('stratigraphy_supported_by') is-invalid @enderror" wire:model="stratigraphy_supported_by">
+                        @error('stratigraphy_supported_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="e-overlaps_or_covers">Cubre o se superpone a</label>
+                        <input type="text" id="e-overlaps_or_covers" class="form-control form-control-sm @error('stratigraphy_overlaps_or_covers') is-invalid @enderror" wire:model="stratigraphy_overlaps_or_covers">
+                        @error('stratigraphy_overlaps_or_covers')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="e-fill_in">Rellena a</label>
+                        <input type="text" id="e-fill_in" class="form-control form-control-sm @error('stratigraphy_fill_in') is-invalid @enderror" wire:model="stratigraphy_fill_in">
+                        @error('stratigraphy_fill_in')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="e-cut_to">Corta a</label>
+                        <input type="text" id="e-cut_to" class="form-control form-control-sm @error('stratigraphy_cut_to') is-invalid @enderror" wire:model="stratigraphy_cut_to">
+                        @error('stratigraphy_cut_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

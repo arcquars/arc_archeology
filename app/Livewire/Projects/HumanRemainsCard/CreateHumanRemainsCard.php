@@ -5,6 +5,8 @@ namespace App\Livewire\Projects\HumanRemainsCard;
 use App\Http\Requests\StoreHumanRemainRequest;
 use App\Models\HumanRemainCard;
 use App\Models\Project;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +40,9 @@ class CreateHumanRemainsCard extends Component
     public $deposito_adorno_per = false, $deposito_ceramica = false, $deposito_fauna = false, $deposito_semillas = false, $deposito_armamento = false;
     public $obs_antropologicas, $specify, $observations;
 
-    public array $photos = [];
+
+    public ?UploadedFile $file_topographic = null, $file_photographic = null, $sketch = null, $preserved_part = null;
+
 
     public function mount(string $projectId)
     {
@@ -65,25 +69,62 @@ class CreateHumanRemainsCard extends Component
             $validateData['ue'] = $ueNext;
         }
 
+        /** @var HumanRemainCard $humanRemainCard */
         $humanRemainCard = HumanRemainCard::create(array_merge($validateData, [
             'project_id' => $this->project_id,
             'user_id' => Auth::id()
         ]));
 
-        $dirPhotos = $humanRemainCard->urlPhotosAttribute();
-        $exists = Storage::disk("wasabi")->exists($dirPhotos);
+        $dirTopographic = $humanRemainCard->urlFileTopographicAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirTopographic);
         if (!$exists) {
-            Storage::disk('wasabi')->makeDirectory($dirPhotos);
+            Storage::disk('wasabi')->makeDirectory($dirTopographic);
+        }
+        if ($this->file_topographic) {
+            $nombreOriginal = $this->file_topographic->getClientOriginalName();
+            $extension = $this->file_topographic->getClientOriginalExtension();
+            $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+            $path = $this->file_topographic->storeAs($dirTopographic, $nombreSanitizado, 'wasabi');
+            Log::info('Wasabi archivo subido fotografia::: ' . $path);
         }
 
-        foreach ($this->photos as $file) {
-            if ($file) {
-                $nombreOriginal = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
-                $path = $file->storeAs($dirPhotos, $nombreSanitizado, 'wasabi');
-                Log::info('Wasabi archivo subido fotografia::: ' . $path);
-            }
+        $dirPhotographic = $humanRemainCard->urlFilePhotographicAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirPhotographic);
+        if (!$exists) {
+            Storage::disk('wasabi')->makeDirectory($dirPhotographic);
+        }
+        if ($this->file_photographic) {
+            $nombreOriginal = $this->file_photographic->getClientOriginalName();
+            $extension = $this->file_photographic->getClientOriginalExtension();
+            $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+            $path = $this->file_photographic->storeAs($dirPhotographic, $nombreSanitizado, 'wasabi');
+            Log::info('Wasabi archivo subido fotografia::: ' . $path);
+        }
+
+        $dirSketch = $humanRemainCard->urlSketchAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirSketch);
+        if (!$exists) {
+            Storage::disk('wasabi')->makeDirectory($dirSketch);
+        }
+        if ($this->sketch) {
+            $nombreOriginal = $this->sketch->getClientOriginalName();
+            $extension = $this->sketch->getClientOriginalExtension();
+            $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+            $path = $this->sketch->storeAs($dirSketch, $nombreSanitizado, 'wasabi');
+            Log::info('Wasabi archivo subido fotografia::: ' . $path);
+        }
+
+        $dirPreservedPart = $humanRemainCard->urlPreservedPartAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirPreservedPart);
+        if (!$exists) {
+            Storage::disk('wasabi')->makeDirectory($dirPreservedPart);
+        }
+        if ($this->preserved_part) {
+            $nombreOriginal = $this->preserved_part->getClientOriginalName();
+            $extension = $this->preserved_part->getClientOriginalExtension();
+            $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+            $path = $this->preserved_part->storeAs($dirPreservedPart, $nombreSanitizado, 'wasabi');
+            Log::info('Wasabi archivo subido fotografia::: ' . $path);
         }
 
         $this->dispatch('human-remain-clear-search');

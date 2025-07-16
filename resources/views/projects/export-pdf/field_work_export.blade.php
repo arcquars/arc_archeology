@@ -243,6 +243,26 @@
     </tbody>
 </table>
 
+<table class="table-input">
+    <tbody>
+    <tr>
+        <td style="width: 60%; vertical-align: top;">
+            <h5 class="h-seccion">CROQUIS</h5>
+            @foreach($muralStratigraphy->urlCroquisPublicAttribute() as $croquis)
+                <img src="{{ $croquis }}" class="imagen-pdf" alt="">
+
+            @endforeach
+        </td>
+        <td style="width: 40%; vertical-align: top;">
+            <h5 class="h-seccion">FOTOGRAFÍAS</h5>
+            @foreach($muralStratigraphy->urlPhotosPublicAttribute() as $photo)
+                <img src="{{ $photo }}" class="imagen-pdf" alt="" style="margin-bottom: 2px;">
+            @endforeach
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 <table class="table-input-6">
     <tbody>
     <tr>

@@ -62,6 +62,9 @@
                 <td>{{ $humanRemainCard->ue }}</td>
                 <td>{{ $humanRemainCard->fact }}</td>
                 <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$humanRemainCard->id}})">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-human-remain-card-view', {humanRemainCardId: {{$humanRemainCard->id}} })">
                         <i class="far fa-eye"></i>
                     </button>

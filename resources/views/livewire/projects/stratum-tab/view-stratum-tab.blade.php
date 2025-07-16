@@ -133,71 +133,75 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Igual a</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_equals }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Se le apoya</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_support_provided }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cubierto por</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_covered_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Relleno por</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_filling_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cortado por</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_cut_by }}
-                        </div>
+                <div class="col-md-3">
+                    <label>Igual a</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_equals }}
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Equivale</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_equivale }}
-                        </div>
+                <div class="col-md-3">
+                    <label>Se le apoya</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_support_provided }}
                     </div>
-                    <div class="form-group">
-                        <label>Se apoya en</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_supported_by }}
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Cubierto por</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_covered_by }}
                     </div>
-                    <div class="form-group">
-                        <label>Cubre o se superpone a</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_overlaps_or_covers }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Rellena a</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_fill_in }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Corta a</label>
-                        <div class="form-control bg-light">
-                            {{ $stratumCard->stratigraphy_cut_to }}
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Relleno por</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_filling_by }}
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Cortado por</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_cut_by }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Equivale</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_equivale }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Se apoya en</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_supported_by }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Cubre o se superpone a</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_overlaps_or_covers }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Rellena a</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_fill_in }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Corta a</label>
+                    <div class="form-control bg-light">
+                        {{ $stratumCard->stratigraphy_cut_to }}
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+            </div>
+
+
             <div class="row mt-2">
                 <div class="col-md-12">
                     <h5 class="bg-primary p-1 text-center">COTAS</h5>

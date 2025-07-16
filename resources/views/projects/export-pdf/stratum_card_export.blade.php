@@ -11,38 +11,46 @@
 
 <h5 class="h-seccion">IDENTIFICACIÓN</h5>
 
-<table class="table-input-4">
+<table class="table-input">
     <tbody>
     <tr>
-        <td>
-            <label>Fecha</label>
-            <p>{{ $stratumCard->i_date }}</p>
+        <td style="width: 17% !important;">
+            <label class="label-5">Fecha</label>
+            <p class="p-5">{{ $stratumCard->i_date }}</p>
         </td>
-        <td>
-            <label>Localización en la intervención</label>
-            <p>{{ $stratumCard->i_location_intervention }}</p>
+        <td style="width: 32% !important;">
+            <label class="label-5">Localización en la intervención</label>
+            <p class="p-5">{{ $stratumCard->i_location_intervention }}</p>
         </td>
-        <td>
-            <label>Acrónimo:</label>
-            <p>{{ $stratumCard->i_acronym }}</p>
+        <td style="width: 17% !important;">
+            <label class="label-5">Acrónimo:</label>
+            <p class="p-5">{{ $stratumCard->i_acronym }}</p>
         </td>
-        <td>
-            <label>Hecho</label>
-            <p>{{ $stratumCard->i_fact }}</p>
+        <td style="width: 17% !important;">
+            <label class="label-5">Hecho</label>
+            <p class="p-5">{{ $stratumCard->i_fact }}</p>
+        </td>
+        <td style="width: 17% !important;">
+            <label class="label-5">Nº UE</label>
+            <p class="p-5">{{ $stratumCard->i_n_ue }}</p>
         </td>
     </tr>
+    </tbody>
+</table>
+<table class="table-input">
+    <tbody>
     <tr>
-        <td>
-            <label>Nº UE</label>
-            <p>{{ $stratumCard->i_n_ue }}</p>
+        <td style="width: 33.33%;">
+            <label class="label-5">Datación provisional</label>
+            <p class="p-5">{{ $stratumCard->i_provisional_dating }}</p>
         </td>
-        <td>
-            <label>Datación provisional</label>
-            <p>{{ $stratumCard->i_provisional_dating }}</p>
+        <td style="width: 33.33%;">
+            <label class="label-5">Fiabilidad estratigráfica</label>
+            <p class="p-5">{{ $stratumCard->i_stratigraphic_reliability }}</p>
         </td>
-        <td colspan="6">
-            <label>Fiabilidad estratigráfica</label>
-            <p>{{ $stratumCard->i_stratigraphic_reliability }}</p>
+        <td style="width: 33.33%;">
+            <label class="label-5">Tipo</label>
+            <p class="p-5">{{ $stratumCard->i_type }}</p>
         </td>
     </tr>
     </tbody>
@@ -99,48 +107,15 @@
 </table>
 <hr class="d-hr">
 <h5 class="h-seccion" style="margin-bottom: 2px;">IDENTIFICACIÓN</h5>
-
-
 <table class="table-input-25-75">
     <tbody>
-    <tr>
-        <td>
-            <label>Interpretación</label>
-        </td>
-        <td style="text-align: left">
-            <p>
-                @if(strcmp($stratumCard->interpretation, 'Natural') == 0)
-                    <b>X Natural</b>
-                @else
-                    Natural
-                @endif
-                |
-                @if(strcmp($stratumCard->interpretation, 'Construcción') == 0)
-                    <b>X Construcción</b>
-                @else
-                    Construcción
-                @endif
-                |
-                @if(strcmp($stratumCard->interpretation, 'Ocupación') == 0)
-                    <b>X Ocupación</b>
-                @else
-                    Ocupación
-                @endif
-                |
-                @if(strcmp($stratumCard->interpretation, 'Destrucción') == 0)
-                    <b>X Destrucción</b>
-                @else
-                    Destrucción
-                @endif
-            </p>
-        </td>
-    </tr>
     <tr style="margin-bottom: 2px;">
         <td>
             <label>Fracción fina</label>
         </td>
         <td style="text-align: left">
             <p>
+                <span style="font-size: 13px;">Porcentaje</span> |
             @if(strcmp($stratumCard->fine_fraction, 'Arena') == 0)
                 <b>X Arena</b>
             @else
@@ -192,6 +167,7 @@
         </td>
         <td style="text-align: left">
             <p>
+                <span style="font-size: 13px;">Porcentaje</span> |
             @if(strcmp($stratumCard->coarse_fraction, 'Gravas (2 mm-1 cm) %') == 0)
                 <b>X Gravas (2 mm-1 cm) %</b>
             @else
@@ -212,6 +188,38 @@
             </p>
         </td>
     </tr>
+    <tr>
+        <td>
+            <label>Interpretación</label>
+        </td>
+        <td>
+            <p style="text-align: justify; width: 100%;">
+                @if(strcmp($stratumCard->interpretation, 'Natural') == 0)
+                    <b>X Natural</b>
+                @else
+                    Natural
+                @endif
+                |
+                @if(strcmp($stratumCard->interpretation, 'Construcción') == 0)
+                    <b>X Construcción</b>
+                @else
+                    Construcción
+                @endif
+                |
+                @if(strcmp($stratumCard->interpretation, 'Ocupación') == 0)
+                    <b>X Ocupación</b>
+                @else
+                    Ocupación
+                @endif
+                |
+                @if(strcmp($stratumCard->interpretation, 'Destrucción') == 0)
+                    <b>X Destrucción</b>
+                @else
+                    Destrucción
+                @endif
+            </p>
+        </td>
+    </tr>
     </tbody>
 </table>
 <hr class="d-hr">
@@ -223,12 +231,12 @@
 <h5 class="h-seccion">
     COMPOSICIÓN
 </h5>
-<table class="table-input-2">
+<table class="table-input">
     <tbody>
     <tr>
-        <td>
-            <label>ORGÁNICA</label>
-            <p style="text-align: justify">
+        <td style="width: 40%;">
+            <label class="label-5">ORGÁNICA</label>
+            <p style="font-size: 10px;">
                 @if(strcmp($stratumCard->organic_composition, 'Ceniza') == 0)
                     <b>X Ceniza</b>
                 @else
@@ -260,9 +268,9 @@
                 @endif
             </p>
         </td>
-        <td>
-            <label>INORGÁNICA</label>
-            <p style="text-align: justify">
+        <td style="width: 60%;">
+            <label class="label-5">INORGÁNICA</label>
+            <p style="font-size: 10px;">
                 @if(strcmp($stratumCard->inorganic_composition, 'Ladrillo') == 0)
                     <b>X Ladrillo</b>
                 @else
@@ -321,7 +329,6 @@
     </tr>
     </tbody>
 </table>
-
 <h5 class="h-seccion">
     ESTRATIGRAFÍA
 </h5>
@@ -375,6 +382,41 @@
         <td>
             <label>Corta a</label>
             <p>{{ $stratumCard->stratigraphy_cut_to }}</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h5 class="h-seccion">
+    COTAS
+</h5>
+<table class="table-input">
+    <tbody>
+    <tr>
+        <td style="width: 60%;">
+            @foreach($stratumCard->urlCroquisPublicAttribute() as $croquis)
+                <img src="{{ $croquis }}" class="imagen-pdf" alt="">
+
+            @endforeach
+        </td>
+        <td style="width: 40%; vertical-align: top;">
+            <table class="table-input" style="border: 1px solid black;">
+                <tbody>
+                <tr style="border: 1px solid black;">
+                    <td style="width: 20%; border: 1px solid black;"></td>
+                    <td style="width: 40%; border: 1px solid black;"><label class="label-5">Sup.</label></td>
+                    <td style="width: 40%; border: 1px solid black;"><label class="label-5">Inf.</label></td>
+                </tr>
+                @foreach($stratumCard->quotes as $index => $cota)
+                <tr style="border: 1px solid black;">
+
+                    <td style="text-align: center; border: 1px solid black;"><p class="p-5">{{$index}}</p></td>
+                    <td style="border: 1px solid black;"><p class="p-5">{{$cota->surface }}</p></td>
+                    <td style="border: 1px solid black;"><p class="p-5">{{$cota->information }}</p></td>
+
+                </tr>
+                @endforeach
+                </tbody>
+            </table>
         </td>
     </tr>
     </tbody>
@@ -1690,6 +1732,12 @@
     <label>Descripción</label>
     <p>{{ $stratumCard->description }}</p>
 </div>
+
+<h5 class="h-seccion">FOTOGRAFÍAS</h5>
+@foreach($stratumCard->urlPhotosPublicAttribute() as $photo)
+    <img src="{{ $photo }}" class="imagen-pdf" alt="">
+@endforeach
+
 </body>
 </html>
 

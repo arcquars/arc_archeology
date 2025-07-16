@@ -265,26 +265,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Comentario</label>
-                    <div class="form-control bg-light">
-                        {{ $muralStratigraphy->comments }}
-                    </div>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label>N. de plano</label>
-                    <div class="form-control bg-light">
-                        {{ $muralStratigraphy->num_flat }}
-                    </div>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label>N. Fotografia</label>
-                    <div class="form-control bg-light">
-                        {{ $muralStratigraphy->num_photography }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-2">
                     <h5>Croquis</h5>
                     <hr class="bg-primary">
@@ -305,7 +285,26 @@
 
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Comentario</label>
+                    <div class="form-control bg-light">
+                        {{ $muralStratigraphy->comments }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>N. de plano</label>
+                    <div class="form-control bg-light">
+                        {{ $muralStratigraphy->num_flat }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>N. Fotografia</label>
+                    <div class="form-control bg-light">
+                        {{ $muralStratigraphy->num_photography }}
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">

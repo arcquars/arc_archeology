@@ -27,6 +27,47 @@
         font-size: 12px;
     }
 
+    .table-input{
+        width: 100%;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-5{
+        width: 100%;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .label-5{
+        font-size: 10px;
+        font-weight: 700;
+        margin: 4px;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .p-5{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+    }
+
+    .table-input-5 thead tr th, .table-input-5 tbody tr td {
+        /*border: 1px solid #ccc;*/
+        padding: 2px;
+        text-align: left;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-5 tbody tr td{
+        width: 20%;
+        vertical-align: top;
+    }
+
     .table-input-4{
         width: 100%;
         table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
@@ -334,5 +375,12 @@
 
     .page-number:before {
         content: "Página " counter(page);
+    }
+
+    .imagen-pdf {
+        width: 100%; /* O el tamaño que necesites */
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
 </style>

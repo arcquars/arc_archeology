@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class HumanRemainCard extends Model
 {
@@ -85,7 +86,67 @@ class HumanRemainCard extends Model
         return $query->where('active', '1');
     }
 
-    public function urlPhotosAttribute(){
-        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-restos-humanos/".$this->id."/fotografias";
+    public function urlFileTopographicAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-restos-humanos/".$this->id."/archivo_topografico";
+    }
+
+    public function urlFilePhotographicAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-restos-humanos/".$this->id."/archivo_fotografico";
+    }
+
+    public function urlSketchAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-restos-humanos/".$this->id."/croquis";
+    }
+
+    public function urlPreservedPartAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-restos-humanos/".$this->id."/parte_reservada";
+    }
+
+    public function urlFileTopographicPublicAttribute(){
+        $dirFileTopographic = $this->urlFileTopographicAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirFileTopographic);
+        $fileTopographicUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $fileTopographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $fileTopographicUrls;
+    }
+
+    public function urlFilePhotographicPublicAttribute(){
+        $dirFilePhotographic = $this->urlFilePhotographicAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirFilePhotographic);
+        $filePhotographicUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $filePhotographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $filePhotographicUrls;
+    }
+
+    public function urlSketchPublicAttribute(){
+        $dirSketch = $this->urlSketchAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirSketch);
+        $sketchUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $sketchUrls;
+    }
+
+    public function urlPreservedPartPublicAttribute(){
+        $dirPreservedPart = $this->urlPreservedPartAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirPreservedPart);
+        $preservedPartUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $preservedPartUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $preservedPartUrls;
     }
 }

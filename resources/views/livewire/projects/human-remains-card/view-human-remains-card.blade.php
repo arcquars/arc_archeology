@@ -132,71 +132,74 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Igual a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_equals }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Se le adosa</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_attached }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cubierto por</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_covered_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Relleno por</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_filling_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cortado por</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_cut_by }}
-                        </div>
+                <div class="col-md-3">
+                    <label>Igual a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_equals }}
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Equivale a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_equivalent_to }}
-                        </div>
+                <div class="col-md-3">
+                    <label>Se le adosa</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_attached }}
                     </div>
-                    <div class="form-group">
-                        <label>Se adosa a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_attached_to }}
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Cubierto por</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_covered_by }}
                     </div>
-                    <div class="form-group">
-                        <label>Cubre a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_covers_to }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Rellena a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_fill_to }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Corta a</label>
-                        <div class="form-control form-control-sm bg-light">
-                            {{ $humanRemainCard->relationship_cut_to }}
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Relleno por</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_filling_by }}
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Cortado por</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_cut_by }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Equivale a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_equivalent_to }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Se adosa a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_attached_to }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Cubre a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_covers_to }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Rellena a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_fill_to }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Corta a</label>
+                    <div class="form-control form-control-sm bg-light">
+                        {{ $humanRemainCard->relationship_cut_to }}
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+            </div>
+            <hr class="bg-primary">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Periodización</label>
@@ -217,8 +220,28 @@
                     {{ $humanRemainCard->interpretation }}
                 </div>
             </div>
-
-
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="cfw_file_topographic">Archivo topográfico</label>
+                    @if($humanRemainCard)
+                        @foreach($humanRemainCard->urlFileTopographicPublicAttribute() as $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <label for="cfw_file_photographic">Archivo fotográfico</label>
+                    @if($humanRemainCard)
+                        @foreach($humanRemainCard->urlFilePhotographicPublicAttribute() as $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Fechas</label>
@@ -233,6 +256,30 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="cfw-sketch">Croquis inhumación (orientación y posición)</label>
+                    @if($humanRemainCard)
+                        @foreach($humanRemainCard->urlSketchPublicAttribute() as $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <label for="cfw-preserved_part">Parte conservada</label>
+                    @if($humanRemainCard)
+                        @foreach($humanRemainCard->urlPreservedPartPublicAttribute() as $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>Observaciones antropológicas</label>
                 <div class="form-control form-control-sm bg-light">

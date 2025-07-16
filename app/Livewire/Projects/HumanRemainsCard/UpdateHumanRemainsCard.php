@@ -4,6 +4,7 @@ namespace App\Livewire\Projects\HumanRemainsCard;
 
 use App\Http\Requests\StoreHumanRemainRequest;
 use App\Models\HumanRemainCard;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ class UpdateHumanRemainsCard extends Component
 {
     use WithFileUploads;
 
-    public $humanRemainCard;
+    public HumanRemainCard $humanRemainCard;
 
     public $project_id;
     public $intervention, $location, $ue, $fact, $type_inhumation, $type_cremation;
@@ -34,7 +35,7 @@ class UpdateHumanRemainsCard extends Component
     public $deposito_adorno_per = false, $deposito_ceramica = false, $deposito_fauna = false, $deposito_semillas = false, $deposito_armamento = false;
     public $obs_antropologicas, $specify, $observations;
 
-    public array $photos = [];
+    public ?UploadedFile $file_topographic = null, $file_photographic = null, $sketch = null, $preserved_part = null;
 
     protected $listeners = ['updateHumanRemainCardId'];
 
@@ -111,6 +112,8 @@ class UpdateHumanRemainsCard extends Component
         $this->obs_antropologicas = $this->humanRemainCard->obs_antropologicas;
         $this->specify = $this->humanRemainCard->specify;
         $this->observations = $this->humanRemainCard->observations;
+
+
     }
 
     public function mount(string $humanRemainCardId)
@@ -123,28 +126,85 @@ class UpdateHumanRemainsCard extends Component
         $validatedData = $this->validate();
         $this->humanRemainCard->update($validatedData);
 
-        $dirPhotos = $this->humanRemainCard->urlPhotosAttribute();
-        $exists = Storage::disk("wasabi")->exists($dirPhotos);
-        if (!$exists) {
-            Storage::disk('wasabi')->makeDirectory($dirPhotos);
-        }
+        if($this->humanRemainCard->save()){
+            if ($this->file_topographic) {
+                $dirTopographic = $this->humanRemainCard->urlFileTopographicAttribute();
+                $exists = Storage::disk("wasabi")->exists($dirTopographic);
+                if (!$exists) {
+                    Storage::disk('wasabi')->makeDirectory($dirTopographic);
+                }
 
-        foreach ($this->photos as $file) {
-            if ($file) {
-                $nombreOriginal = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
+                $nombreOriginal = $this->file_topographic->getClientOriginalName();
+                $extension = $this->file_topographic->getClientOriginalExtension();
                 $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
-                $path = $file->storeAs($dirPhotos, $nombreSanitizado, 'wasabi');
+                $path = $this->file_topographic->storeAs($dirTopographic, $nombreSanitizado, 'wasabi');
                 Log::info('Wasabi archivo subido fotografia::: ' . $path);
             }
-        }
 
-        if($this->humanRemainCard->save()){
+            if ($this->file_photographic) {
+                $dirPhotographic = $this->humanRemainCard->urlFilePhotographicAttribute();
+                $exists = Storage::disk("wasabi")->exists($dirPhotographic);
+                if (!$exists) {
+                    Storage::disk('wasabi')->makeDirectory($dirPhotographic);
+                }
+                $nombreOriginal = $this->file_photographic->getClientOriginalName();
+                $extension = $this->file_photographic->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->file_photographic->storeAs($dirPhotographic, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido fotografia::: ' . $path);
+            }
+
+            if ($this->sketch) {
+                $dirSketch = $this->humanRemainCard->urlSketchAttribute();
+                $exists = Storage::disk("wasabi")->exists($dirSketch);
+                if (!$exists) {
+                    Storage::disk('wasabi')->makeDirectory($dirSketch);
+                }
+                $nombreOriginal = $this->sketch->getClientOriginalName();
+                $extension = $this->sketch->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketch->storeAs($dirSketch, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido fotografia::: ' . $path);
+            }
+
+            if ($this->preserved_part) {
+                $dirPreservedPart = $this->humanRemainCard->urlPreservedPartAttribute();
+                $exists = Storage::disk("wasabi")->exists($dirPreservedPart);
+                if (!$exists) {
+                    Storage::disk('wasabi')->makeDirectory($dirPreservedPart);
+                }
+                $nombreOriginal = $this->preserved_part->getClientOriginalName();
+                $extension = $this->preserved_part->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->preserved_part->storeAs($dirPreservedPart, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido fotografia::: ' . $path);
+            }
+
             $this->dispatch('human-remain-clear-search');
             $this->dispatch('close-human-remain-card-update');
 
             $this->dispatch('show_alert', type: 'success', message: 'Se actualizo la ficha de restos humanos');
         }
+    }
+
+    public function removeTopographies(){
+        $dirTopographies = $this->humanRemainCard->urlFileTopographicAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirTopographies);
+    }
+
+    public function removePhotographs(){
+        $dirPhotographs = $this->humanRemainCard->urlFilePhotographicAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirPhotographs);
+    }
+
+    public function removeSketch(){
+        $dirSketch = $this->humanRemainCard->urlSketchAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirSketch);
+    }
+
+    public function removePreservedPart(){
+        $dirPreserved = $this->humanRemainCard->urlPreservedPartAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirPreserved);
     }
 
     public function render()

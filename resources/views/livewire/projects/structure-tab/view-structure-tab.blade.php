@@ -129,71 +129,74 @@
                     </div>
                 </div>
             </div>
+            <h6 class="bg-primary p-1 text-uppercase text-center">Estratigrafía</h6>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Igual a</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_equals }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Se le apoya</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_support_provided }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cubierto por</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_covered_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Relleno por</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_filling_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cortado por</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_cut_by }}
-                        </div>
+                <div class="col-md-3 form-group">
+                    <label>Igual a</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_equals }}
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Equivale</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_equivale }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Se apoya en</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_supported_by }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cubre o se superpone a</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_overlaps_or_covers }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Rellena a</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_fill_in }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Corta a</label>
-                        <div class="form-control bg-light">
-                            {{ $structureTab->stratigraphy_cut_to }}
-                        </div>
+                <div class="col-md-3 form-group">
+                    <label>Se le apoya</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_support_provided }}
                     </div>
                 </div>
+                <div class="col-md-3 form-group">
+                    <label>Cubierto por</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_covered_by }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Relleno por</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_filling_by }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>Cortado por</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_cut_by }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Equivale</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_equivale }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Se apoya en</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_supported_by }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Cubre o se superpone a</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_overlaps_or_covers }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>Rellena a</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_fill_in }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Corta a</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->stratigraphy_cut_to }}
+                    </div>
+                </div>
+                <div class="col-md-3 form-group"></div>
+                <div class="col-md-3 form-group"></div>
             </div>
 
             @if(count($structureTab->quotes) > 0)

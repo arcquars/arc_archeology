@@ -212,92 +212,97 @@
                         <h6 class="bg-info p-1 text-center mb-1">Relaciones</h6>
                     </div>
                 </div>
+
+
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="r-relationship_equals">Igual a</label>
-                            <input type="text" id="r-relationship_equals" class="form-control form-control-sm @error('relationship_equals') is-invalid @enderror"
-                                   wire:model="relationship_equals">
-                            @error('relationship_equals')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_attached">Se le adosa</label>
-                            <input type="text" id="r-relationship_attached" class="form-control form-control-sm @error('relationship_attached') is-invalid @enderror"
-                                   wire:model="relationship_attached">
-                            @error('relationship_attached')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_covered_by">Cubierto por</label>
-                            <input type="text" id="r-relationship_covered_by" class="form-control form-control-sm @error('relationship_covered_by') is-invalid @enderror"
-                                   wire:model="relationship_covered_by">
-                            @error('relationship_covered_by')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_filling_by">Relleno por</label>
-                            <input type="text" id="r-relationship_filling_by" class="form-control form-control-sm @error('relationship_filling_by') is-invalid @enderror"
-                                   wire:model="relationship_filling_by">
-                            @error('relationship_filling_by')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_cut_by">Cortado por</label>
-                            <input type="text" id="r-relationship_cut_by" class="form-control form-control-sm @error('relationship_cut_by') is-invalid @enderror"
-                                   wire:model="relationship_cut_by">
-                            @error('relationship_cut_by')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_equals">Igual a</label>
+                        <input type="text" id="r-relationship_equals" class="form-control form-control-sm @error('relationship_equals') is-invalid @enderror"
+                               wire:model="relationship_equals">
+                        @error('relationship_equals')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="r-relationship_equivalent_to">Equivale a</label>
-                            <input type="text" id="r-relationship_equivalent_to" class="form-control form-control-sm @error('relationship_equivalent_to') is-invalid @enderror"
-                                   wire:model="relationship_equivalent_to">
-                            @error('relationship_equivalent_to')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_attached_to">Se adosa a</label>
-                            <input type="text" id="r-relationship_attached_to" class="form-control form-control-sm @error('relationship_attached_to') is-invalid @enderror"
-                                   wire:model="relationship_attached_to">
-                            @error('relationship_attached_to')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_covers_to">Cubre a</label>
-                            <input type="text" id="r-relationship_covers_to" class="form-control form-control-sm @error('relationship_covers_to') is-invalid @enderror"
-                                   wire:model="relationship_covers_to">
-                            @error('relationship_covers_to')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_fill_to">Rellena a</label>
-                            <input type="text" id="r-relationship_fill_to" class="form-control form-control-sm @error('relationship_fill_to') is-invalid @enderror"
-                                   wire:model="relationship_fill_to">
-                            @error('relationship_fill_to')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="r-relationship_cut_to">Corta a</label>
-                            <input type="text" id="r-relationship_cut_to" class="form-control form-control-sm @error('relationship_cut_to') is-invalid @enderror"
-                                   wire:model="relationship_cut_to">
-                            @error('relationship_cut_to')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_attached">Se le adosa</label>
+                        <input type="text" id="r-relationship_attached" class="form-control form-control-sm @error('relationship_attached') is-invalid @enderror"
+                               wire:model="relationship_attached">
+                        @error('relationship_attached')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_covered_by">Cubierto por</label>
+                        <input type="text" id="r-relationship_covered_by" class="form-control form-control-sm @error('relationship_covered_by') is-invalid @enderror"
+                               wire:model="relationship_covered_by">
+                        @error('relationship_covered_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_filling_by">Relleno por</label>
+                        <input type="text" id="r-relationship_filling_by" class="form-control form-control-sm @error('relationship_filling_by') is-invalid @enderror"
+                               wire:model="relationship_filling_by">
+                        @error('relationship_filling_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="r-relationship_cut_by">Cortado por</label>
+                        <input type="text" id="r-relationship_cut_by" class="form-control form-control-sm @error('relationship_cut_by') is-invalid @enderror"
+                               wire:model="relationship_cut_by">
+                        @error('relationship_cut_by')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_equivalent_to">Equivale a</label>
+                        <input type="text" id="r-relationship_equivalent_to" class="form-control form-control-sm @error('relationship_equivalent_to') is-invalid @enderror"
+                               wire:model="relationship_equivalent_to">
+                        @error('relationship_equivalent_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_attached_to">Se adosa a</label>
+                        <input type="text" id="r-relationship_attached_to" class="form-control form-control-sm @error('relationship_attached_to') is-invalid @enderror"
+                               wire:model="relationship_attached_to">
+                        @error('relationship_attached_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_covers_to">Cubre a</label>
+                        <input type="text" id="r-relationship_covers_to" class="form-control form-control-sm @error('relationship_covers_to') is-invalid @enderror"
+                               wire:model="relationship_covers_to">
+                        @error('relationship_covers_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="r-relationship_fill_to">Rellena a</label>
+                        <input type="text" id="r-relationship_fill_to" class="form-control form-control-sm @error('relationship_fill_to') is-invalid @enderror"
+                               wire:model="relationship_fill_to">
+                        @error('relationship_fill_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <label for="r-relationship_cut_to">Corta a</label>
+                        <input type="text" id="r-relationship_cut_to" class="form-control form-control-sm @error('relationship_cut_to') is-invalid @enderror"
+                               wire:model="relationship_cut_to">
+                        @error('relationship_cut_to')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <hr class="bg-info">
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="r-periodization">Periodización</label>
@@ -324,18 +329,25 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="cfw_photos">Fotografias</label>
-                    <input type="file" class="form-control form-control-sm @error('photos.*') is-invalid @enderror"
-                           wire:model="photos" id="cfw_photos" multiple
-                    />
-                    @error('photos')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-
-                    @error('photos.*')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="cfw_file_topographic">Archivo topográfico</label>
+                        <input type="file" class="form-control form-control-sm @error('file_topographic') is-invalid @enderror"
+                               wire:model="file_topographic" id="cfw_file_topographic"
+                        />
+                        @error('file_topographic')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cfw_file_photographic">Archivo fotográfico</label>
+                        <input type="file" class="form-control form-control-sm @error('file_photographic') is-invalid @enderror"
+                               wire:model="file_photographic" id="cfw_file_photographic"
+                        />
+                        @error('file_photographic')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
@@ -351,6 +363,26 @@
                         <input type="text" id="r-author" class="form-control form-control-sm @error('author') is-invalid @enderror"
                                wire:model="author">
                         @error('author')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="cfw-sketch">Croquis inhumación (orientación y posición)</label>
+                        <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
+                               wire:model="sketch" id="cfw-sketch"
+                        />
+                        @error('sketch')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cfw-preserved_part">Parte conservada</label>
+                        <input type="file" class="form-control form-control-sm @error('preserved_part') is-invalid @enderror"
+                               wire:model="preserved_part" id="cfw-preserved_part"
+                        />
+                        @error('preserved_part')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
