@@ -50,7 +50,7 @@ class StoreStructureTabRequest extends FormRequest
             'stratigraphy_cut_to' => 'nullable|string|max:200',
 
             'quotes.*.surface' => 'required|numeric|min:0|max:2500',
-            'quotes.*.information' => 'nullable|string|max:200',
+            'quotes.*.information' => 'nullable|numeric|min:0|max:2500',
 
             'bricks.*.long' => 'required|numeric|min:0|max:2500',
             'bricks.*.width' => 'required|numeric|min:0|max:2500',
@@ -58,7 +58,8 @@ class StoreStructureTabRequest extends FormRequest
 
             'formworks.*.formwork' => 'required|numeric|min:0|max:2500',
 
-
+            'sketch' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
+            'photo' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
         ];
     }
 }

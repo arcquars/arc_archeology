@@ -37,9 +37,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('code')">
+            <th scope="col" style="cursor: pointer;" wire:click="updateSortBy('ue')">
                 UE
-                @if ($sortBy === 'code')
+                @if ($sortBy === 'ue')
                     <i class="bi bi-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-fill"></i>
                 @endif
             </th>
@@ -53,7 +53,13 @@
                 Cubre a
             </th>
             <th scope="col" style="cursor: pointer;">
+                interpretacion
+            </th>
+            <th scope="col" style="cursor: pointer;">
                 Ficha
+            </th>
+            <th scope="col" style="cursor: pointer;">
+                Cronologia
             </th>
 {{--            <th scope="col">Acciones</th>--}}
         </tr>
@@ -61,10 +67,13 @@
         <tbody>
         @forelse ($allTicket as $ticket)
             <tr>
-                <td>{{ $ticket->id . ' || ' . $ticket->ue }}</td>
+{{--                <td>{{ $ticket->id . ' || ' . $ticket->ue }}</td>--}}
+                <td>{{ $ticket->ue }}</td>
                 <td>{{ $ticket->covered_by }}</td>
                 <td>{{ $ticket->covers_to }}</td>
+                <td>{{ $ticket->interpretation }}</td>
                 <td>{{ $ticket->ticketType }}</td>
+                <td>{{ $ticket->cronologia }}</td>
 {{--                <td class="text-right">--}}
 {{--                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-view-ue', {ueId: {{$ticket->id}} })">--}}
 {{--                        <i class="far fa-eye"></i>--}}

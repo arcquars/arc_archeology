@@ -25,3 +25,4 @@ composer.lock
 package-lock.json
 public/error_log.txt
 public/img/*
+.htaccess

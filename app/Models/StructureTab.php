@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class StructureTab extends Model
 {
@@ -35,5 +36,37 @@ class StructureTab extends Model
     public function scopeActive($query)
     {
         return $query->where('active', '1');
+    }
+
+    public function urlSketchAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estructura/".$this->id."/croquis";
+    }
+
+    public function urlSketchPublicAttribute(){
+        $dirSketch = $this->urlSketchAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirSketch);
+        $sketchUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $sketchUrls;
+    }
+
+    public function urlPhotoAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estructura/".$this->id."/interpretacion";
+    }
+
+    public function urlPhotoPublicAttribute(){
+        $dirPhoto = $this->urlPhotoAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirPhoto);
+        $photosUrls = [];
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $photosUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        return $photosUrls;
     }
 }

@@ -50,7 +50,7 @@
     .p-5{
         font-size: 11px;
         margin: 0;
-        padding: 2px 4px;
+        padding: 4px 6px;
         white-space: normal;
     }
 
@@ -382,5 +382,13 @@
         height: auto;
         display: block;
         margin: 0 auto;
+    }
+
+    .table-i-bordered-1, .table-i-bordered-1 tbody tr, .table-i-bordered-1 tbody tr td{
+        border: 1px solid #838383;
+    }
+
+    .table-i-bordered-2, .table-i-bordered-2 tbody tr, .table-i-bordered-2 tbody tr td{
+        border: 2px solid #838383;
     }
 </style>

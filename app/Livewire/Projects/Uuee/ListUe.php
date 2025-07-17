@@ -25,7 +25,7 @@ class ListUe extends Component
     public string $s_ue = '';
     public string $s_covered_by = '';
 
-    public string $sortBy = 'code';
+    public string $sortBy = 'ue';
     public string $sortDirection = 'asc';
 
     protected $listeners = ['lueClearSearch' => 'clearSearch', 'reload-list-ue' => 'applySearch'];
@@ -79,28 +79,36 @@ class ListUe extends Component
             'n_ue as ue',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_covers_to as covers_to',
-            DB::raw("'Estratigrafia Mural' as ticketType")
+            DB::raw("identification_type as interpretation"),
+            DB::raw("'Estratigrafia Mural' as ticketType"),
+            DB::raw("msc_date as cronologia")
         )->toBase();
         $stratumCards = StratumCard::select(
             'id',
             'i_n_ue as ue',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_overlaps_or_covers as covers_to',
-            DB::raw("'Estrato' as ticketType")
+            DB::raw("i_type as interpretation"),
+            DB::raw("'Estrato' as ticketType"),
+            DB::raw("i_date as cronologia")
         )->toBase();
         $structureTab = StructureTab::select(
             'id',
             'i_n_ue as ue',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_overlaps_or_covers as covers_to',
-            DB::raw("'Restos Humanos' as ticketType")
+            DB::raw("i_type as interpretation"),
+            DB::raw("'Restos Humanos' as ticketType"),
+            DB::raw("i_date as cronologia")
         )->toBase();
         $humanRemainCard = HumanRemainCard::select(
             'id',
             'ue',
             'relationship_covered_by as covered_by',
             'relationship_covers_to as covers_to',
-            DB::raw("'Estructura' as ticketType")
+            'interpretation',
+            DB::raw("'Estructura' as ticketType"),
+            DB::raw("dates as cronologia")
         )->toBase();
 
         $muralStratigraphyCards->where('active', 1)->where('project_id', $this->projectId)
@@ -159,7 +167,7 @@ class ListUe extends Component
             $allTicket = collect([])->paginate(10);
         } else {
             $allTicket = $unionQuery
-                ->orderBy('ue', 'desc') // Ordena el resultado final
+                ->orderBy($this->sortBy, $this->sortDirection) // Ordena el resultado final
                 ->paginate(env('PAGINATE', 10)); // Paginar 10 resultados por página
         }
 

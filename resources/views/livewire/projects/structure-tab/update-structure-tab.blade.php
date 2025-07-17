@@ -128,12 +128,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="i-descripcion">Descripción e interpretación</label>
-                    <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
-                    @error('interpretation_description')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <h5 class="bg-info p-1 text-center">Descripción e interpretación</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="i-descripcion">Descripción</label>
+                        <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
+                        @error('interpretation_description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cfw_photo">interpretación</label>
+                        <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
+                               wire:model="photo" id="cfw_photo"
+                        />
+                        @error('photo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <hr class="bg-info">
+                        @foreach($structureTab->urlPhotoPublicAttribute() as $i => $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+
+                                <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                        wire:click="removePhoto('{{$i}}')"
+                                >
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 form-group">
@@ -268,58 +292,130 @@
                     </div>
                 </div>
 
-
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="cfw_sketch">Croquis</label>
+                        <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
+                               wire:model="sketch" id="cfw_sketch"
+                        />
+                        @error('sketch')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <hr class="bg-info">
+                        @foreach($structureTab->urlSketchPublicAttribute() as $url)
+                            <div class="position-relative d-inline-block">
+                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+
+                                <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                        wire:click="removeSketch()"
+                                >
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="col-md-6">
                         <h6 class="bg-info p-1 text-center mb-1">Cotas</h6>
+                        <h5>
+                            {{-- Botón para añadir Cota --}}
+                            <button wire:click="addQuote(null, null, null)" class="btn btn-outline-info btn-sm" type="button"
+                                    @if (count($quotes) >= $maxQuotes) disabled @endif>
+                                Añadir Cota ({{ count($quotes) }} / {{ $maxQuotes }})
+                            </button>
+                        </h5>
+                        <div class="row">
+                            @foreach($quotes as $index => $quote)
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span>Cota #{{ $index + 1 }}</span>
+                                                <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="surface-{{ $index }}">Superficie:</label>
+                                                <input type="number" id="surface-{{ $index }}" step="0.01"
+                                                       wire:model="quotes.{{ $index }}.surface"
+                                                       class="form-control @error('quotes.' . $index . '.surface') is-invalid @enderror"
+                                                       placeholder="Ej: 100.50">
+                                                @error('quotes.'.$index.'.surface')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="information-{{ $index }}">Inf:</label>
+                                                <input type="number" id="information-{{ $index }}" step="0.01"
+                                                       wire:model="quotes.{{ $index }}.information"
+                                                       rows="3"
+                                                       class="form-control @error('quotes.' . $index . '.information') is-invalid @enderror"
+                                                       placeholder="Ej: 100.50" />
+                                                @error('quotes.'. $index .'.information')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <h5>
-                    {{-- Botón para añadir Cota --}}
-                    <button wire:click="addQuote(null, '', '')" class="btn btn-outline-info btn-sm" type="button"
-                            @if (count($quotes) >= $maxQuotes) disabled @endif>
-                        Añadir Cota ({{ count($quotes) }} / {{ $maxQuotes }})
-                    </button>
-                </h5>
-                <div class="row">
-                    @foreach($quotes as $index => $quote)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span>Cota #{{ $index + 1 }}</span>
-                                        <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group mb-2">
-                                        <label for="surface-{{ $index }}">Superficie:</label>
-                                        <input type="number" id="surface-{{ $index }}"
-                                               wire:model="quotes.{{ $index }}.surface"
-                                               class="form-control @error('quotes.' . $index . '.surface') is-invalid @enderror"
-                                               placeholder="Ej: 100.50">
-                                        @error('quotes.'.$index.'.surface')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="information-{{ $index }}">Información:</label>
-                                        <input id="information-{{ $index }}"
-                                               wire:model="quotes.{{ $index }}.information"
-                                               rows="3"
-                                               class="form-control @error('quotes.' . $index . '.information') is-invalid @enderror"
-                                               placeholder="Detalles adicionales sobre la cota" />
-                                        @error('quotes.'. $index .'.information')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+
+{{--                <div class="row">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <h6 class="bg-info p-1 text-center mb-1">Cotas</h6>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <h5>--}}
+{{--                     Botón para añadir Cota --}}
+{{--                    <button wire:click="addQuote(null, '', '')" class="btn btn-outline-info btn-sm" type="button"--}}
+{{--                            @if (count($quotes) >= $maxQuotes) disabled @endif>--}}
+{{--                        Añadir Cota ({{ count($quotes) }} / {{ $maxQuotes }})--}}
+{{--                    </button>--}}
+{{--                </h5>--}}
+{{--                <div class="row">--}}
+{{--                    @foreach($quotes as $index => $quote)--}}
+{{--                        <div class="col-md-3">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-header">--}}
+{{--                                    <div class="d-flex justify-content-between align-items-center">--}}
+{{--                                        <span>Cota #{{ $index + 1 }}</span>--}}
+{{--                                        <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">--}}
+{{--                                            Eliminar--}}
+{{--                                        </button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="form-group mb-2">--}}
+{{--                                        <label for="surface-{{ $index }}">Superficie:</label>--}}
+{{--                                        <input type="number" id="surface-{{ $index }}" step="0.01"--}}
+{{--                                               wire:model="quotes.{{ $index }}.surface"--}}
+{{--                                               class="form-control @error('quotes.' . $index . '.surface') is-invalid @enderror"--}}
+{{--                                               placeholder="Ej: 100.50">--}}
+{{--                                        @error('quotes.'.$index.'.surface')--}}
+{{--                                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group mb-2">--}}
+{{--                                        <label for="information-{{ $index }}">Información:</label>--}}
+{{--                                        <input type="number" id="information-{{ $index }}" step="0.01"--}}
+{{--                                               wire:model="quotes.{{ $index }}.information"--}}
+{{--                                               rows="3"--}}
+{{--                                               class="form-control @error('quotes.' . $index . '.information') is-invalid @enderror"--}}
+{{--                                               placeholder="Detalles adicionales sobre la cota" />--}}
+{{--                                        @error('quotes.'. $index .'.information')--}}
+{{--                                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
                 <div class="row">
                     <div class="col-md-12">
                         <h6 class="bg-info p-1 text-center mb-1">DIMENSIONES EN CM DE LOS LADRILLOS (DE PARED O PAVIMENTO), TOMAR COMO MÍNIMO 25 EJEMPLOS DE PIEZAS COMPLETAS (si es posible).</h6>

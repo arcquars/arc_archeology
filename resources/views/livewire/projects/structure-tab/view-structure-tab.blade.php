@@ -78,12 +78,24 @@
                     {{ $structureTab->conservation }}
                 </div>
             </div>
-            <div class="form-group">
-                <label>Descripción e interpretación</label>
-                <div class="form-control bg-light">
-                    {{ $structureTab->interpretation_description }}
+            <h5 class="bg-primary p-1 text-center">Descripción e interpretación</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Descripción</label>
+                    <div class="form-control bg-light">
+                        {{ $structureTab->interpretation_description }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="cfw_photo">Interpretación</label>
+                    @foreach($structureTab->urlPhotoPublicAttribute() as $i => $url)
+                        <div class="position-relative d-inline-block">
+                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                        </div>
+                    @endforeach
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Aparejo</label>
@@ -198,29 +210,35 @@
                 <div class="col-md-3 form-group"></div>
                 <div class="col-md-3 form-group"></div>
             </div>
-
-            @if(count($structureTab->quotes) > 0)
-                <div class="row">
-                    <div class="col-md-12">
-                        <h6 class="bg-primary p-1 text-center mb-1">Cotas</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($structureTab->quotes as $index => $quote)
-                        <div class="col-md-3">
-                            <h5>Cota #{{ $index + 1 }}</h5>
-                            <dl>
-                                <dt>Superficie</dt>
-                                <dd>{{ $quote->surface }}</dd>
-
-                                <dt>Información</dt>
-                                <dd>{{ $quote->information }}</dd>
-                            </dl>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="cfw_sketch">Croquis</label>
+                    @foreach($structureTab->urlSketchPublicAttribute() as $url)
+                        <div class="position-relative d-inline-block">
+                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
                         </div>
                     @endforeach
                 </div>
-            @endif
+                <div class="col-md-6">
+                    <h6 class="bg-primary p-1 text-center mb-1">Cotas</h6>
+                    @if(count($structureTab->quotes) > 0)
+                        <div class="row">
+                            @foreach($structureTab->quotes as $index => $quote)
+                                <div class="col-md-3">
+                                    <h5>Cota #{{ $index + 1 }}</h5>
+                                    <dl>
+                                        <dt>Superficie</dt>
+                                        <dd>{{ $quote->surface }}</dd>
 
+                                        <dt>Información</dt>
+                                        <dd>{{ $quote->information }}</dd>
+                                    </dl>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
             @if(count($structureTab->bricks) > 0)
                 <div class="row">
                     <div class="col-md-12">

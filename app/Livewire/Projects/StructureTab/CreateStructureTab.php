@@ -8,12 +8,18 @@ use App\Models\StructureBrick;
 use App\Models\StructureFormworks;
 use App\Models\StructureQuote;
 use App\Models\StructureTab;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateStructureTab extends Component
 {
+    use WithFileUploads;
+
     public $enableUe = true;
 
     public $project_id;
@@ -33,6 +39,8 @@ class CreateStructureTab extends Component
 
     public $formworks = [];
     public $maxFormworks = 5;
+
+    public ?UploadedFile $sketch = null, $photo = null;
 
     public function addQuote()
     {
@@ -145,6 +153,40 @@ class CreateStructureTab extends Component
         $structureTab->user_id = Auth::id();
 
         if($structureTab->save()){
+            if($this->sketch){
+                $dirCroquis = $structureTab->urlSketchAttribute();
+                $sketcheExists = Storage::disk("wasabi")->exists($dirCroquis);
+                if (!$sketcheExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirCroquis);
+                    Storage::disk('wasabi')->makeDirectory($dirCroquis);
+                }
+
+                $nombreOriginal = $this->sketch->getClientOriginalName();
+                $extension = $this->sketch->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketch->storeAs($dirCroquis, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido croquis::: ' . $path);
+            }
+
+            if($this->photo !== null){
+                $dirPhoto = $structureTab->urlPhotoAttribute();
+                $photoExists = Storage::disk("wasabi")->exists($dirPhoto);
+                if (!$photoExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirPhoto);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirPhoto);
+                    Storage::disk('wasabi')->makeDirectory($dirPhoto);
+                }
+
+                $nombreOriginal = $this->photo->getClientOriginalName();
+                $extension = $this->photo->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->photo->storeAs($dirPhoto, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido croquis::: ' . $path);
+            }
+
             foreach ($this->quotes as $quote){
                 $q = StructureQuote::create([
                     'surface' => $quote['surface'],
