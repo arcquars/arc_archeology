@@ -25,10 +25,10 @@
                 >
                     <i class="fas fa-eraser"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
-                        wire:click="$dispatch('toggle-ue-create',)"
+                <button class="btn btn-sm btn-primary" type="button" title="Exportar a pdf"
+                        wire:click="exportPdf()"
                 >
-                    <i class="far fa-plus-square"></i>
+                    <i class="fas fa-file-pdf"></i>
                 </button>
             </div>
         </div>

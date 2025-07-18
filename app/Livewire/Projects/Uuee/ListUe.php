@@ -7,7 +7,9 @@ use App\Models\MuralStratigraphyCard;
 use App\Models\StratumCard;
 use App\Models\StructureTab;
 use App\Models\Ue;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,6 +31,28 @@ class ListUe extends Component
     public string $sortDirection = 'asc';
 
     protected $listeners = ['lueClearSearch' => 'clearSearch', 'reload-list-ue' => 'applySearch'];
+
+    public function exportPdf(){
+        $unionQuery = $this->construcQuery();
+        $allTicket = null;
+        if (is_null($unionQuery)) {
+            $allTicket = collect([])->paginate(10);
+        } else {
+            $allTicket = $unionQuery
+                ->orderBy($this->sortBy, $this->sortDirection)->get();
+        }
+
+
+        $title = 'LISTADO DE UNIDADES ESTRATIGRAFICAS';
+        $pdf = Pdf::loadView('projects.export-pdf.list_ues_export', compact('title', 'allTicket'));
+        $pdf->setPaper('letter', 'portrait');
+        $filename = 'list_ues_' . $this->projectId . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
 
     public function mount($projectId)
     {
@@ -72,11 +96,11 @@ class ListUe extends Component
         }
     }
 
-    public function render()
-    {
+    public function construcQuery(){
         $muralStratigraphyCards = MuralStratigraphyCard::select(
             'id',
             'n_ue as ue',
+            'description',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_covers_to as covers_to',
             DB::raw("identification_type as interpretation"),
@@ -86,6 +110,7 @@ class ListUe extends Component
         $stratumCards = StratumCard::select(
             'id',
             'i_n_ue as ue',
+            'interpretation_description as description',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_overlaps_or_covers as covers_to',
             DB::raw("i_type as interpretation"),
@@ -95,6 +120,7 @@ class ListUe extends Component
         $structureTab = StructureTab::select(
             'id',
             'i_n_ue as ue',
+            'interpretation_description as description',
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_overlaps_or_covers as covers_to',
             DB::raw("i_type as interpretation"),
@@ -104,6 +130,7 @@ class ListUe extends Component
         $humanRemainCard = HumanRemainCard::select(
             'id',
             'ue',
+            'description',
             'relationship_covered_by as covered_by',
             'relationship_covers_to as covers_to',
             'interpretation',
@@ -112,16 +139,16 @@ class ListUe extends Component
         )->toBase();
 
         $muralStratigraphyCards->where('active', 1)->where('project_id', $this->projectId)
-        ->when($this->s_ue || $this->s_covered_by, function ($query) {
-            if ($this->s_ue && $this->s_covered_by) {
-                $query->where('n_ue', '=', $this->s_ue)
-                    ->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
-            } elseif ($this->s_ue) {
-                $query->where('n_ue', '=', $this->s_ue);
-            } elseif ($this->s_covered_by) {
-                $query->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
-            }
-        });
+            ->when($this->s_ue || $this->s_covered_by, function ($query) {
+                if ($this->s_ue && $this->s_covered_by) {
+                    $query->where('n_ue', '=', $this->s_ue)
+                        ->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                } elseif ($this->s_ue) {
+                    $query->where('n_ue', '=', $this->s_ue);
+                } elseif ($this->s_covered_by) {
+                    $query->where('stratigraphy_covered_by', 'like', '%' . $this->s_covered_by . '%');
+                }
+            });
 
         $stratumCards->where('active', 1)->where('project_id', $this->projectId)
             ->when($this->s_ue || $this->s_covered_by, function ($query) {
@@ -163,6 +190,14 @@ class ListUe extends Component
         $unionQuery->unionAll($structureTab);
         $unionQuery->unionAll($humanRemainCard);
 
+        return $unionQuery;
+    }
+
+    public function render()
+    {
+        $unionQuery = $this->construcQuery();
+
+        $allTicket = null;
         if (is_null($unionQuery)) {
             $allTicket = collect([])->paginate(10);
         } else {
