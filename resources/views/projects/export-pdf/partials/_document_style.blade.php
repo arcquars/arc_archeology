@@ -384,6 +384,13 @@
         margin: 0 auto;
     }
 
+    .imagen-pdf-75 {
+        width: 75%; /* O el tamaño que necesites */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
     .table-i-bordered-1, .table-i-bordered-1 tbody tr, .table-i-bordered-1 tbody tr td{
         border: 1px solid #838383;
     }
