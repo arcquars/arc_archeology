@@ -1,5 +1,5 @@
 // import './bootstrap';
-// import 'admin-lte/dist/js/adminlte.js';
+import 'admin-lte/dist/js/adminlte';
 
 import $ from 'jquery';
 import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.js';

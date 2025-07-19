@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\HumanRemainCard;
+use App\Models\MuralStratigraphyCard;
 use App\Models\Project;
+use App\Models\StratumCard;
+use App\Models\StructureTab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,10 +19,9 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-//        $projects = Project::active()->paginate(config('app.paginate'));
         $query = Project::active();
 
-        if(!auth()->user()->hasRole('admin')){
+        if(auth()->user()->hasRole('user') || auth()->user()->hasRole('editor')){
             $query->whereHas('users', function ($q) {
                 $q->where('users.id', Auth::id());
             });
@@ -167,5 +170,35 @@ class ProjectController extends Controller
         $comment->save();
 
         return redirect()->route('projects.steps.show', ['projectId' => $projectId, 'step' => 5])->with('success', "Se creo correctamente el Comentario.");
+    }
+
+    public function showLog($project_id)
+    {
+        $project = Project::find($project_id);
+        return view('projects.show-log', compact('project'));
+    }
+
+    public function showHumanRemainsLog($humanRemainId)
+    {
+        $humanRemain = HumanRemainCard::find($humanRemainId);
+        return view('projects.show-human-remain-log', compact('humanRemain'));
+    }
+
+    public function showStratumCardLog($stratumCardId)
+    {
+        $stratumCard = StratumCard::find($stratumCardId);
+        return view('projects.show-stratum-card-log', compact('stratumCard'));
+    }
+
+    public function showMuralStratigraphyCardLog($muralStratigraphyCardId)
+    {
+        $muralStratigraphyCard = MuralStratigraphyCard::find($muralStratigraphyCardId);
+        return view('projects.show-mural-stratigraphy-card-log', compact('muralStratigraphyCard'));
+    }
+
+    public function showStructureTabLog($structureTabId)
+    {
+        $structureTab = StructureTab::find($structureTabId);
+        return view('projects.show-structure-tab-log', compact('structureTab'));
     }
 }

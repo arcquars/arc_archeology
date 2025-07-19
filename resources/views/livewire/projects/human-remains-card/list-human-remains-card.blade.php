@@ -71,9 +71,14 @@
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-human-remain-card-update', {humanRemainCardId: {{$humanRemainCard->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
+                    @if(auth()->user()->hasRole('admin'))
+                        <a href="{{route('projects.show.human.remain.log', ['humanRemainId' => $humanRemainCard->id])}}" target="_blank" class="btn btn-sm btn-info" title="Registro de cambios" >
+                            <i class="fas fa-history"></i>
+                        </a>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteHumanRemainCard', {humanRemainCardId: {{$humanRemainCard->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
+                    @endif
                 </td>
             </tr>
         @empty

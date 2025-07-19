@@ -48,5 +48,9 @@
             </tr>
         @endforeach
     </table>
-    {!! $users->links() !!}
+
+    {{-- Paginación --}}
+    <div class="d-flex justify-content-center">
+        {!! $users->links() !!}
+    </div>
  @endsection

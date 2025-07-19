@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 
 class StructureQuote extends Model
 {
+    use Auditable;
+
     /**
      * @var array
      */

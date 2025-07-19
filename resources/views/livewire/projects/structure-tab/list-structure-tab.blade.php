@@ -71,9 +71,14 @@
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggle-structure-tab-update', {structureTabId: {{$structureTab->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
+                    @if(auth()->user()->hasRole('admin'))
+                        <a href="{{route('projects.show.structure.tab.log', ['structureTabId' => $structureTab->id])}}" target="_blank" class="btn btn-sm btn-info" title="Registro de cambios" >
+                            <i class="fas fa-history"></i>
+                        </a>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteStructureTab', {structureTabId: {{$structureTab->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
+                    @endif
                 </td>
             </tr>
         @empty

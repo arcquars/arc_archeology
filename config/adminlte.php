@@ -302,7 +302,7 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'url' => '#',
+            'route' => 'users.profile.user',
             'text' => 'Perfil',
             'icon' => 'fas fa-fw fa-user',
             'topnav_user' => true,
@@ -385,7 +385,10 @@ return [
 //                ],
 //            ],
 //        ],
-        ['header' => 'ADMINISTRACION'],
+        [
+            'header' => 'ADMINISTRACION',
+            'can' => 'manager-users'
+        ],
 //        [
 //            'text' => 'Administrar cuenta',
 //            'url' => 'admin/settings',

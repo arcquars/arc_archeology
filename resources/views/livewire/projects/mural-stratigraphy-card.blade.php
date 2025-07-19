@@ -70,9 +70,14 @@
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
+                    @if(auth()->user()->hasRole('admin'))
+                        <a href="{{route('projects.show.mural.stratigraphy.card.log', ['muralStratigraphyCardId' => $mural->id])}}" target="_blank" class="btn btn-sm btn-info" title="Registro de cambios" >
+                            <i class="fas fa-history"></i>
+                        </a>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteFw', {muralId: {{$mural->id}} })">
                         <i class="far fa-trash-alt"></i>
                     </button>
+                    @endif
                 </td>
             </tr>
         @empty

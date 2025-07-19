@@ -35,6 +35,9 @@
                 <a href="#" class="btn btn-sm btn-link" title="Asignar usuarios" onclick="refreshProjectEditors({{$project->id}})">
                     <i class="fas fa-user-friends"></i>
                 </a>
+                    <a href="{{ route('projects.show.log', ['project_id' => $project->id]) }}" class="btn btn-sm btn-info" title="Registro de cambios" >
+                        <i class="fas fa-history"></i>
+                    </a>
                 <a href="#" class="btn btn-sm btn-danger" title="Eliminar"
                    onclick="Livewire.dispatch('openModalDelete', { project_id: '{{$project->id}}' });" >
                     <i class="far fa-trash-alt"></i>
