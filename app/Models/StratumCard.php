@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FileCheckerService;
 use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -49,10 +50,14 @@ class StratumCard extends Model
         $dirCroquis = $this->urlCroquisAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirCroquis);
         $croquisUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-//                $croquisUrls[] = Storage::disk('wasabi')->url($file);
-                $croquisUrls[] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $croquisUrls[] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $croquisUrls[] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
 
@@ -63,10 +68,14 @@ class StratumCard extends Model
         $dirPhotos = $this->urlPhotosAttribute();
         $photoFiles = Storage::disk('wasabi')->allFiles($dirPhotos);
         $photoUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($photoFiles)) {
             foreach ($photoFiles as $photoFile) {
-//                $photoUrls[] = Storage::disk('wasabi')->url($photoFile);
-                $photoUrls[$photoFile] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile;
+//                $photoUrls[$photoFile] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile;
+                $photoUrls[$photoFile] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile)
+                ];
 
             }
         }

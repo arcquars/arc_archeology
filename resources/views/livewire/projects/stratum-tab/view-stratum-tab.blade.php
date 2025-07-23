@@ -209,9 +209,18 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    @foreach($croquisUrls as $url)
+                    @foreach($stratumCard->urlCroquisPublicAttribute() as $url => $pUrl)
                         <div class="position-relative d-inline-block">
-                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+{{--                            <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                            @if(strcmp($pUrl['type'], 'image') == 0)
+                                <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                            @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                            @else
+                                <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                            @endif
                         </div>
                     @endforeach
                 </div>
@@ -271,10 +280,19 @@
             <hr class="bg-primary">
             <label for="cfw_photos">Fotografías</label>
             <div class="row">
-                @foreach($photoUrls as $index => $pUrl)
+                @foreach($stratumCard->urlPhotosPublicAttribute() as $url => $pUrl)
                     <div class="col-md-3">
                         <div class="position-relative d-inline-block">
-                            <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+{{--                            <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                            @if(strcmp($pUrl['type'], 'image') == 0)
+                                <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                            @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                            @else
+                                <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach

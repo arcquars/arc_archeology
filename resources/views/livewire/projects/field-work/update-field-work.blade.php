@@ -430,9 +430,6 @@
                                             <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
                                             <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
                                         @endif
-
-{{--                                        <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
-
                                         <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
                                                 wire:click="removePhoto('{{$url}}')"
                                         >

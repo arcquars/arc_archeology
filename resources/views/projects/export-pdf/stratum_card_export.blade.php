@@ -393,9 +393,17 @@
     <tbody>
     <tr>
         <td style="width: 60%;">
-            @foreach($stratumCard->urlCroquisPublicAttribute() as $croquis)
-                <img src="{{ $croquis }}" class="imagen-pdf" alt="">
-
+            @foreach($stratumCard->urlCroquisPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $croquis }}" class="imagen-pdf" alt="">--}}
+                @if(strcmp($pUrl['type'], 'image') == 0)
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @else
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @endif
             @endforeach
         </td>
         <td style="width: 40%; vertical-align: top;">
@@ -1734,8 +1742,17 @@
 </div>
 
 <h5 class="h-seccion">FOTOGRAFÍAS</h5>
-@foreach($stratumCard->urlPhotosPublicAttribute() as $photo)
-    <img src="{{ $photo }}" class="imagen-pdf" alt="">
+@foreach($stratumCard->urlPhotosPublicAttribute() as $url => $pUrl)
+{{--    <img src="{{ $photo }}" class="imagen-pdf" alt="">--}}
+    @if(strcmp($pUrl['type'], 'image') == 0)
+        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+    @else
+        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+    @endif
 @endforeach
 
 </body>
