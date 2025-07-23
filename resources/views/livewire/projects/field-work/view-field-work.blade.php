@@ -26,25 +26,25 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Fecha</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->msc_date }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Planta</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->floor }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Estancia</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stay }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Cuadrante/Pared</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->quadrant }}
                     </div>
                 </div>
@@ -52,25 +52,25 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Acrónimo</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->acronym }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Hecho</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->fact }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>N° UE</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->n_ue }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Datacion provisional</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->provisional_dating }}
                     </div>
                 </div>
@@ -78,20 +78,20 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Fiabilidad estratigráfica</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphic_reliability }}
                     </div>
 
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Tipo</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->identification_type }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Conservación</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->preservation }}
                     </div>
                 </div>
@@ -108,19 +108,19 @@
                     <div class="row">
                         <div class="col md-4 form-group">
                             <label>Tipo</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_stone_type }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Caracteristicas</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_stone_characteristics }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Talla/Trabajo</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_stone_size }}
                             </div>
                         </div>
@@ -131,19 +131,19 @@
                     <div class="row">
                         <div class="col md-4 form-group">
                             <label>Tipo</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_brick_type }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Caracteristicas</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_brick_characteristics }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Medidas</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_brick_measures }}
                             </div>
                         </div>
@@ -161,19 +161,19 @@
                     <div class="row">
                         <div class="col md-4 form-group">
                             <label>Tipo</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_binder_type }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Caracteristicas</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_binder_characteristics }}
                             </div>
                         </div>
                         <div class="col md-4 form-group">
                             <label>Juntas</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_binder_joints }}
                             </div>
                         </div>
@@ -184,13 +184,13 @@
                     <div class="row">
                         <div class="col md-6 form-group">
                             <label>Caja</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_tapial_box }}
                             </div>
                         </div>
                         <div class="col md-6 form-group">
                             <label>Altura de los tablones</label>
-                            <div class="form-control bg-light">
+                            <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                                 {{ $muralStratigraphy->component_tapial_height }}
                             </div>
                         </div>
@@ -201,25 +201,25 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Igual a</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_equals_to }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Equivale</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_equivalent }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Se le apoya</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_it_is_supported }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Se apoya en</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_rests_on }}
                     </div>
                 </div>
@@ -227,25 +227,25 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Cubierto por</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_covered_by }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Cubre o se superpone a</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_covers_to }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Relleno por</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_filled_by }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Rellena a</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_fills_to }}
                     </div>
                 </div>
@@ -253,13 +253,13 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>Cortado por</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_cut_by }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Corta a</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->stratigraphy_cut_to }}
                     </div>
                 </div>
@@ -268,17 +268,33 @@
                 <div class="col-md-2">
                     <h5>Croquis</h5>
                     <hr class="bg-primary">
-                    @foreach($croquisUrls as $url)
-                        <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                    @foreach($muralStratigraphy->urlCroquisPublicAttribute() as $url => $pUrl)
+                        @if(strcmp($pUrl['type'], 'image') == 0)
+                            <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                        @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                            <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                        @else
+                            <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                        @endif
                     @endforeach
                 </div>
                 <div class="col-md-10">
                     <h5>Fotografias</h5>
                     <hr class="bg-primary">
                     <div class="row">
-                        @foreach($photoUrls as $pUrl)
+                        @foreach($muralStratigraphy->urlPhotosPublicAttribute() as $url => $pUrl)
                             <div class="col-md-4">
-                                <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                @if(strcmp($pUrl['type'], 'image') == 0)
+                                <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                    <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @else
+                                    <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -288,19 +304,19 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Comentario</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light border rounded p-1" style="min-height: 30px;">
                         {{ $muralStratigraphy->comments }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>N. de plano</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->num_flat }}
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
                     <label>N. Fotografia</label>
-                    <div class="form-control bg-light">
+                    <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->num_photography }}
                     </div>
                 </div>
