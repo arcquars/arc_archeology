@@ -130,9 +130,10 @@ class UpdateHumanRemainsCard extends Component
             if ($this->file_topographic) {
                 $dirTopographic = $this->humanRemainCard->urlFileTopographicAttribute();
                 $exists = Storage::disk("wasabi")->exists($dirTopographic);
-                if (!$exists) {
-                    Storage::disk('wasabi')->makeDirectory($dirTopographic);
+                if ($exists) {
+                    $this->removeTopographies();
                 }
+                Storage::disk('wasabi')->makeDirectory($dirTopographic);
 
                 $nombreOriginal = $this->file_topographic->getClientOriginalName();
                 $extension = $this->file_topographic->getClientOriginalExtension();
@@ -144,9 +145,11 @@ class UpdateHumanRemainsCard extends Component
             if ($this->file_photographic) {
                 $dirPhotographic = $this->humanRemainCard->urlFilePhotographicAttribute();
                 $exists = Storage::disk("wasabi")->exists($dirPhotographic);
-                if (!$exists) {
-                    Storage::disk('wasabi')->makeDirectory($dirPhotographic);
+                if ($exists) {
+                    $this->removePhotographs();
                 }
+                Storage::disk('wasabi')->makeDirectory($dirPhotographic);
+
                 $nombreOriginal = $this->file_photographic->getClientOriginalName();
                 $extension = $this->file_photographic->getClientOriginalExtension();
                 $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
@@ -157,9 +160,11 @@ class UpdateHumanRemainsCard extends Component
             if ($this->sketch) {
                 $dirSketch = $this->humanRemainCard->urlSketchAttribute();
                 $exists = Storage::disk("wasabi")->exists($dirSketch);
-                if (!$exists) {
-                    Storage::disk('wasabi')->makeDirectory($dirSketch);
+                if ($exists) {
+                    $this->removeSketch();
                 }
+                Storage::disk('wasabi')->makeDirectory($dirSketch);
+
                 $nombreOriginal = $this->sketch->getClientOriginalName();
                 $extension = $this->sketch->getClientOriginalExtension();
                 $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
@@ -170,9 +175,10 @@ class UpdateHumanRemainsCard extends Component
             if ($this->preserved_part) {
                 $dirPreservedPart = $this->humanRemainCard->urlPreservedPartAttribute();
                 $exists = Storage::disk("wasabi")->exists($dirPreservedPart);
-                if (!$exists) {
-                    Storage::disk('wasabi')->makeDirectory($dirPreservedPart);
+                if ($exists) {
+                    $this->removePreservedPart();
                 }
+                Storage::disk('wasabi')->makeDirectory($dirPreservedPart);
                 $nombreOriginal = $this->preserved_part->getClientOriginalName();
                 $extension = $this->preserved_part->getClientOriginalExtension();
                 $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;

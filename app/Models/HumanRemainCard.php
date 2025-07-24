@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FileCheckerService;
 use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -109,9 +110,14 @@ class HumanRemainCard extends Model
         $dirFileTopographic = $this->urlFileTopographicAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirFileTopographic);
         $fileTopographicUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $fileTopographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $fileTopographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $fileTopographicUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $fileTopographicUrls;
@@ -121,9 +127,14 @@ class HumanRemainCard extends Model
         $dirFilePhotographic = $this->urlFilePhotographicAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirFilePhotographic);
         $filePhotographicUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $filePhotographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $filePhotographicUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $filePhotographicUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $filePhotographicUrls;
@@ -133,9 +144,14 @@ class HumanRemainCard extends Model
         $dirSketch = $this->urlSketchAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirSketch);
         $sketchUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $sketchUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $sketchUrls;
@@ -145,9 +161,14 @@ class HumanRemainCard extends Model
         $dirPreservedPart = $this->urlPreservedPartAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirPreservedPart);
         $preservedPartUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $preservedPartUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $preservedPartUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $preservedPartUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $preservedPartUrls;

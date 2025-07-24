@@ -204,18 +204,39 @@
     <tr>
         <td colspan="4">
             <label class="label-5">ARCHIVO TOPOGRÁFICO</label>
-
-            @foreach($humanRemainCard->urlFileTopographicPublicAttribute() as $topo)
-                <img src="{{ $topo }}" class="imagen-pdf" alt="" />
+            <div style="width: 100%; display: block;">
+            @foreach($humanRemainCard->urlFileTopographicPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $topo }}" class="imagen-pdf" alt="" />--}}
+                @if(strcmp($pUrl['type'], 'image') == 0)
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                @else
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                @endif
             @endforeach
+            </div>
         </td>
     </tr>
     <tr>
         <td colspan="4">
             <label class="label-5">ARCHIVO FOTOGRÁFICO</label>
-            @foreach($humanRemainCard->urlFilePhotographicPublicAttribute() as $photo)
-                <img src="{{ $photo }}" class="imagen-pdf" alt="" />
+            <div style="width: 100%; display: block;">
+            @foreach($humanRemainCard->urlFilePhotographicPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $photo }}" class="imagen-pdf" alt="" />--}}
+                    @if(strcmp($pUrl['type'], 'image') == 0)
+                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @else
+                        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @endif
             @endforeach
+            </div>
         </td>
     </tr>
     <tr>
@@ -239,15 +260,37 @@
     <tr>
         <td style="width: 50%; vertical-align: top;">
             <label class="label-5">CROQUIS INHUMACIÓN (orientación y posición)</label>
-            @foreach($humanRemainCard->urlSketchPublicAttribute() as $sketch)
-                <img src="{{ $sketch }}" class="imagen-pdf" alt="" />
+            <div style="width: 100%; display: block;">
+            @foreach($humanRemainCard->urlSketchPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $sketch }}" class="imagen-pdf" alt="" />--}}
+                    @if(strcmp($pUrl['type'], 'image') == 0)
+                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @else
+                        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @endif
             @endforeach
+            </div>
         </td>
         <td style="width: 50%; vertical-align: top;">
             <label class="label-5">PARTE CONSERVADA</label>
-            @foreach($humanRemainCard->urlPreservedPartPublicAttribute() as $preserved)
-                <img src="{{ $preserved }}" class="imagen-pdf" alt="" />
+            <div style="width: 100%; display: block;">
+            @foreach($humanRemainCard->urlPreservedPartPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $preserved }}" class="imagen-pdf" alt="" />--}}
+                    @if(strcmp($pUrl['type'], 'image') == 0)
+                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @else
+                        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @endif
             @endforeach
+            </div>
         </td>
     </tr>
     </tbody>

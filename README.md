@@ -1,61 +1,29 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ArcData | Arqueología Digital
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Un sistema web robusto diseñado para la gestión sistemática y el registro digital de datos arqueológicos. Construido con las últimas tecnologías del ecosistema Laravel.
 
-## About Laravel
+## Descripción del Proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Registros Arqueológicos es una aplicación web creada para solucionar la necesidad de centralizar, organizar y facilitar el acceso a la información generada en proyectos de investigación arqueológica. La plataforma permite a los arqueólogos y equipos de investigación digitalizar y gestionar las fichas de campo de manera eficiente, reemplazando los métodos tradicionales en papel por una base de datos segura, consultable y escalable.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El principal objetivo es optimizar el flujo de trabajo en campo y laboratorio, asegurando la integridad de los datos y permitiendo realizar análisis y consultas complejas sobre la información recopilada de excavaciones, prospecciones y estudios de materiales.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### ✨ Características Principales
 
-## Learning Laravel
+- **Gestión de Fichas:** Creación, edición, y eliminación de diferentes tipos de fichas arqueológicas (Unidades Estratigráficas, Materiales, Sepulturas, Muestras, etc.).
+- **Interfaz Reactiva:** Formularios dinámicos e interacciones en tiempo real sin recargar la página, gracias a Livewire y Alpine.js.
+- **Panel de Administración Profesional:** Interfaz de usuario limpia y amigable basada en AdminLTE, que facilita la navegación y gestión de datos.
+- **Búsqueda y Filtrado Avanzado:** Potentes herramientas para buscar y filtrar registros por múltiples criterios (tipo, cronología, material, ubicación, etc.).
+- **Gestión de Usuarios y Roles:** Sistema de permisos para controlar el acceso a la información (administradores, investigadores, colaboradores), implementado con spatie/laravel-permission.
+- **Exportación de Datos:** Posibilidad de exportar los registros a formatos como CSV o PDF para su análisis en otros programas.
+- **Dashboard Interactivo:** Un panel de control con estadísticas y resúmenes visuales del progreso del proyecto.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛠️ Tecnologías Utilizadas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Este proyecto se ha construido utilizando un stack de tecnologías moderno y eficiente:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Backend:** Laravel 12
+- **Frontend Reactivo:** Livewire 3
+- **Interactividad JavaScript:** Alpine.js v3.14+
+- **Plantilla de Administración:** JeroenNoten/Laravel-AdminLTE v3.15+
+- **Base de Datos:** MySQL 8.0+

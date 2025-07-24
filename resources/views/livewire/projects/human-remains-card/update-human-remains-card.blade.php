@@ -340,9 +340,19 @@
                         @enderror
                         <hr class="bg-info">
                         @if($humanRemainCard)
-                            @foreach($humanRemainCard->urlFileTopographicPublicAttribute() as $url)
+                            <div class="d-flex justify-content-center align-items-center">
+                            @foreach($humanRemainCard->urlFileTopographicPublicAttribute() as $url => $pUrl)
                                 <div class="position-relative d-inline-block">
-                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+{{--                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                    @if(strcmp($pUrl['type'], 'image') == 0)
+                                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                        <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @else
+                                        <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @endif
 
                                     <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
                                             wire:click="removeTopographies()"
@@ -351,6 +361,7 @@
                                     </button>
                                 </div>
                             @endforeach
+                            </div>
                         @endif
                     </div>
                     <div class="col-md-6">
@@ -363,10 +374,19 @@
                         @enderror
                         <hr class="bg-info">
                         @if($humanRemainCard)
-                            @foreach($humanRemainCard->urlFilePhotographicPublicAttribute() as $url)
+                            <div class="d-flex justify-content-center align-items-center">
+                            @foreach($humanRemainCard->urlFilePhotographicPublicAttribute() as $url => $pUrl)
                                 <div class="position-relative d-inline-block">
-                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
-
+{{--                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                    @if(strcmp($pUrl['type'], 'image') == 0)
+                                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                        <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @else
+                                        <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @endif
                                     <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
                                             wire:click="removePhotographs()"
                                     >
@@ -374,6 +394,7 @@
                                     </button>
                                 </div>
                             @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -406,9 +427,19 @@
                         @enderror
                         <hr class="bg-info">
                         @if($humanRemainCard)
-                            @foreach($humanRemainCard->urlSketchPublicAttribute() as $url)
+                            <div class="d-flex justify-content-center align-items-center">
+                            @foreach($humanRemainCard->urlSketchPublicAttribute() as $url => $pUrl)
                                 <div class="position-relative d-inline-block">
-                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+{{--                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                    @if(strcmp($pUrl['type'], 'image') == 0)
+                                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                        <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @else
+                                        <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @endif
 
                                     <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
                                         wire:click="removeSketch()"
@@ -417,6 +448,7 @@
                                     </button>
                                 </div>
                             @endforeach
+                            </div>
                         @endif
                     </div>
                     <div class="col-md-6">
@@ -429,10 +461,19 @@
                         @enderror
                         <hr class="bg-info">
                         @if($humanRemainCard)
-                            @foreach($humanRemainCard->urlPreservedPartPublicAttribute() as $url)
+                            <div class="d-flex justify-content-center align-items-center">
+                            @foreach($humanRemainCard->urlPreservedPartPublicAttribute() as $url => $pUrl)
                                 <div class="position-relative d-inline-block">
-                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
-
+{{--                                    <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                    @if(strcmp($pUrl['type'], 'image') == 0)
+                                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                        <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @else
+                                        <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @endif
                                     <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
                                         wire:click="removePreservedPart()"
                                     >
@@ -440,6 +481,7 @@
                                     </button>
                                 </div>
                             @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>
