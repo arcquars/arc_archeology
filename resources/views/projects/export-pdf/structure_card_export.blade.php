@@ -110,8 +110,17 @@
             <p class="p-5">{{ $structureCard->interpretation_description }}</p>
         </td>
         <td style="width: 50%;">
-            @foreach($structureCard->urlPhotoPublicAttribute() as $i => $url)
-                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+            @foreach($structureCard->urlPhotoPublicAttribute() as $url => $pUrl)
+{{--                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="imagen-pdf" />--}}
+                @if(strcmp($pUrl['type'], 'image') == 0)
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-100" />
+                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-100" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @else
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-100" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @endif
             @endforeach
         </td>
     </tr>
@@ -236,10 +245,20 @@
 <table class="table-input">
     <tbody>
     <tr>
-        <td style="width: 70%">
-            @foreach($structureCard->urlSketchPublicAttribute() as $i => $url)
-                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
-            @endforeach
+        <td style="width: 70%; display: block;">
+            <div style="width: 100%; display: block;">
+                @foreach($structureCard->urlSketchPublicAttribute() as $url => $pUrl)
+                    @if(strcmp($pUrl['type'], 'image') == 0)
+                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @else
+                        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250" />
+                        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px; display: block; text-align: center;">Descargar</a>
+                    @endif
+                @endforeach
+            </div>
         </td>
         <td style="width: 30%; vertical-align: top;">
             <table style="width: 100%; table-layout: fixed; border-collapse: collapse">

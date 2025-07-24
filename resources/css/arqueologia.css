@@ -17,3 +17,17 @@
 .thick-border h5 {
     margin-bottom: .2rem;
 }
+
+.imagen-proporcional-250{
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.imagen-proporcional-300{
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    display: block;
+}

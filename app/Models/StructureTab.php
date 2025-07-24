@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FileCheckerService;
 use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -49,9 +50,14 @@ class StructureTab extends Model
         $dirSketch = $this->urlSketchAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirSketch);
         $sketchUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $sketchUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $sketchUrls[] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $sketchUrls;
@@ -65,9 +71,14 @@ class StructureTab extends Model
         $dirPhoto = $this->urlPhotoAttribute();
         $files = Storage::disk('wasabi')->allFiles($dirPhoto);
         $photosUrls = [];
+        $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-                $photosUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+//                $photosUrls[$file] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
+                $photosUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
             }
         }
         return $photosUrls;

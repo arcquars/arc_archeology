@@ -1,12 +1,12 @@
 <style>
     body {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        margin-top: 20px;
+        margin-top: 0;
         color: #333;
     }
 
     @page {
-        margin-top: 80px;    /* Espacio reservado para el encabezado en CADA PÁGINA */
+        margin-top: 70px;    /* Espacio reservado para el encabezado en CADA PÁGINA */
         margin-bottom: 60px; /* Espacio reservado para el pie de página (si lo usas) */
         margin-left: 40px;
         margin-right: 40px;
@@ -389,6 +389,27 @@
         height: auto;
         display: block;
         margin: 0 auto;
+    }
+
+    .imagen-proporcional-100{
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        display: block;
+    }
+
+    .imagen-proporcional-150{
+        max-height: 150px;
+        width: auto;
+        height: auto;
+        display: block;
+    }
+
+    .imagen-proporcional-250{
+        max-height: 250px;
+        width: auto;
+        height: auto;
+        display: block;
     }
 
     .table-i-bordered-1, .table-i-bordered-1 tbody tr, .table-i-bordered-1 tbody tr td{
