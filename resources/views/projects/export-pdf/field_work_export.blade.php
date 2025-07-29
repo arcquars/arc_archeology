@@ -36,7 +36,7 @@
             <p>{{ $muralStratigraphy->acronym }}</p>
         </td>
         <td>
-            <label>Hecho</label>
+            <label>Sector</label>
             <p>{{ $muralStratigraphy->fact }}</p>
         </td>
         <td>

@@ -58,8 +58,8 @@ class StoreStructureTabRequest extends FormRequest
 
             'formworks.*.formwork' => 'required|numeric|min:0|max:2500',
 
-            'sketch' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
-            'photo' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
+            'sketch' => 'nullable|file|mimes:jpeg,png|max:4096',
+            'photo' => 'nullable|file|mimes:jpeg,png|max:4096',
         ];
     }
 }

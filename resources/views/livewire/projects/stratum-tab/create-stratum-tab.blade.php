@@ -51,7 +51,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label for="sc-i_fact">Hecho</label>
+                        <label for="sc-i_fact">Sector</label>
                         <input type="text" class="form-control form-control-sm @error('i_fact') is-invalid @enderror"
                                wire:model="i_fact" id="sc-i_fact"
                         >

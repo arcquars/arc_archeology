@@ -27,7 +27,7 @@
             <p class="p-5">{{ $stratumCard->i_acronym }}</p>
         </td>
         <td style="width: 17% !important;">
-            <label class="label-5">Hecho</label>
+            <label class="label-5">Sector</label>
             <p class="p-5">{{ $stratumCard->i_fact }}</p>
         </td>
         <td style="width: 17% !important;">

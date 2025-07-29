@@ -53,7 +53,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="cfw_fact">Hecho</label>
+                        <label for="cfw_fact">Sector</label>
                         <input type="text" class="form-control form-control-sm @error('fact') is-invalid @enderror"
                                wire:model="fact" id="cfw_fact"
                         >

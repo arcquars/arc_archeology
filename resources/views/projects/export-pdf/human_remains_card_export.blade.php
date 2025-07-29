@@ -31,7 +31,7 @@
             <p class="p-5">{{$humanRemainCard->location}}</p>
         </td>
         <td style="width: 12%">
-            <label class="label-5">HECHO</label>
+            <label class="label-5">SECTOR</label>
         </td>
         <td style="width: 6%">
             <p class="p-5">{{$humanRemainCard->fact}}</p>

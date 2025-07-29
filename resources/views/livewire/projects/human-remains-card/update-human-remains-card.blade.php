@@ -40,7 +40,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="hrc-fact">Hecho</label>
+                        <label for="hrc-fact">Sector</label>
                         <input type="text" class="form-control form-control-sm @error('fact') is-invalid @enderror"
                                wire:model="fact" id="hrc-fact"
                         >

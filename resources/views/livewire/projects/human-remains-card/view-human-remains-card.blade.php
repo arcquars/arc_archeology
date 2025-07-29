@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Hecho</label>
+                    <label>Sector</label>
                     <div class="form-control form-control-sm bg-light">
                         {{ $humanRemainCard->fact }}
                     </div>

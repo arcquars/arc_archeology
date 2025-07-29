@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 form-group">
-                    <label>Hecho</label>
+                    <label>Sector</label>
                     <div class="form-control bg-light">
                         {{ $stratumCard->i_fact }}
                     </div>

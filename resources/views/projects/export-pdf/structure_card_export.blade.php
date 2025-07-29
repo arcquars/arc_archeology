@@ -25,7 +25,7 @@
             <p class="p-5">{{ $structureCard->i_acronym }}</p>
         </td>
         <td style="width: 17% !important; vertical-align: top;">
-            <label class="label-5">Hecho</label>
+            <label class="label-5">Sector</label>
             <p class="p-5">{{ $structureCard->i_fact }}</p>
         </td>
         <td style="width: 17% !important;">

@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 form-group">
-                    <label for="sc-i_fact">Hecho</label>
+                    <label for="sc-i_fact">Sector</label>
                     <div class="form-control bg-light">
                         {{ $structureTab->i_fact }}
                     </div>

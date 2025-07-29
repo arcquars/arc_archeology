@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Hecho</label>
+                    <label>Sector</label>
                     <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->fact }}
                     </div>

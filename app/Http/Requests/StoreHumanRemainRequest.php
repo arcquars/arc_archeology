@@ -80,10 +80,10 @@ class StoreHumanRemainRequest extends FormRequest
             'specify' => 'nullable|string|max:2500',
             'observations' => 'nullable|string|max:2500',
 
-            'file_topographic' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
-            'file_photographic' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
-            'sketch' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
-            'preserved_part' => 'nullable|file|mimes:jpeg,png,pdf|max:4096',
+            'file_topographic' => 'nullable|file|mimes:jpeg,png|max:4096',
+            'file_photographic' => 'nullable|file|mimes:jpeg,png|max:4096',
+            'sketch' => 'nullable|file|mimes:jpeg,png|max:4096',
+            'preserved_part' => 'nullable|file|mimes:jpeg,png|max:4096',
 
         ];
     }

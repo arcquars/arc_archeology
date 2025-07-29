@@ -50,7 +50,7 @@
                 @endif
             </th>
             <th scope="col">
-                Hecho
+                Sector
             </th>
             <th scope="col">Acciones</th>
         </tr>
