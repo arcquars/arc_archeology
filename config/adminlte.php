@@ -402,9 +402,10 @@ return [
         ],
         [
             'text' => 'Salir',
-            'url' => 'admin/settings',
+            'url' => '#',
             'icon' => 'fas fa-sign-out-alt',
-            'icon_color' => 'red'
+            'icon_color' => 'red',
+            'id' => 'logout-link'
         ],
 //        [
 //            'text' => 'important',

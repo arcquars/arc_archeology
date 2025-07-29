@@ -31,6 +31,10 @@
         </div>
     </div>
     @yield('content-aque')
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 @stop
 
 @section('css')
@@ -40,3 +44,14 @@
 @section('js')
 
 @stop
+
+@push('js')
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            $('#logout-link').on('click', function(e) {
+                e.preventDefault(); // Evita que el enlace navegue directamente
+                $('#logout-form').submit(); // Envía el formulario de logout
+            });
+        });
+    </script>
+@endpush
