@@ -42,6 +42,10 @@ class StratumCard extends Model
         return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estrato/".$this->id."/croquis";
     }
 
+    public function urlInterpretacionFileAttribute(){
+        return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estrato/".$this->id."/interpretacion";
+    }
+
     public function urlPhotosAttribute(){
         return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/trabajo-de-campo/ficha-de-estrato/".$this->id."/fotografias";
     }
@@ -53,15 +57,29 @@ class StratumCard extends Model
         $fileChecker = new FileCheckerService();
         if (!empty($files)) {
             foreach ($files as $file) {
-//                $croquisUrls[] = env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file;
                 $croquisUrls[] = [
                     'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
                     'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
                 ];
             }
         }
-
         return $croquisUrls;
+    }
+
+    public function urlInterpretacionFilePublicAttribute(){
+        $dirInterpretacion = $this->urlInterpretacionFileAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirInterpretacion);
+        $interpretacionUrls = [];
+        $fileChecker = new FileCheckerService();
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $interpretacionUrls[] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
+            }
+        }
+        return $interpretacionUrls;
     }
 
     public function urlPhotosPublicAttribute(){

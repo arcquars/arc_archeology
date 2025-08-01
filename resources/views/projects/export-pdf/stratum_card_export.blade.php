@@ -106,7 +106,6 @@
     </tbody>
 </table>
 <hr class="d-hr">
-<h5 class="h-seccion" style="margin-bottom: 2px;">IDENTIFICACIÓN</h5>
 <table class="table-input-25-75">
     <tbody>
     <tr style="margin-bottom: 2px;">
@@ -222,11 +221,29 @@
     </tr>
     </tbody>
 </table>
-<hr class="d-hr">
-<div class="d-textarea">
-    <label>Descripción</label>
-    <p>{{ $stratumCard->interpretation_description }}</p>
-</div>
+<h5 class="h-seccion" style="margin-bottom: 2px;">DESCRIPCIÓN E INTERPRETACIÓN</h5>
+<table class="table-input">
+    <tr>
+        <td style="width: 50%; vertical-align: top;">
+            <div class="d-textarea">
+                <p>{{ $stratumCard->interpretation_description }}</p>
+            </div>
+        </td>
+        <td style="width: 50%; text-align: right">
+            @foreach($stratumCard->urlInterpretacionFilePublicAttribute() as $url => $pUrl)
+                @if(strcmp($pUrl['type'], 'image') == 0)
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @else
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @endif
+            @endforeach
+        </td>
+    </tr>
+</table>
 
 <h5 class="h-seccion">
     COMPOSICIÓN
@@ -236,7 +253,7 @@
     <tr>
         <td style="width: 40%;">
             <label class="label-5">ORGÁNICA</label>
-            <p style="font-size: 10px;">
+            <p style="font-size: 10px; padding: 0; margin: 2px 4px;">
                 @if(strcmp($stratumCard->organic_composition, 'Ceniza') == 0)
                     <b>X Ceniza</b>
                 @else
@@ -270,7 +287,7 @@
         </td>
         <td style="width: 60%;">
             <label class="label-5">INORGÁNICA</label>
-            <p style="font-size: 10px;">
+            <p style="font-size: 10px; padding: 0; margin: 2px 4px;">
                 @if(strcmp($stratumCard->inorganic_composition, 'Ladrillo') == 0)
                     <b>X Ladrillo</b>
                 @else
@@ -394,14 +411,13 @@
     <tr>
         <td style="width: 60%;">
             @foreach($stratumCard->urlCroquisPublicAttribute() as $url => $pUrl)
-{{--                <img src="{{ $croquis }}" class="imagen-pdf" alt="">--}}
                 @if(strcmp($pUrl['type'], 'image') == 0)
-                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
                 @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @else
-                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @endif
             @endforeach
@@ -503,7 +519,7 @@
 
     <tr>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>1. Ibérica</p>
@@ -689,7 +705,7 @@
             </table>
         </td>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>37. Verde y Manganeso</p>
@@ -875,7 +891,7 @@
             </table>
         </td>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>68. Pisa</p>
@@ -987,7 +1003,7 @@
     <tbody>
     <tr>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>14. Terra Sigilata Aretina</p>
@@ -1173,7 +1189,7 @@
             </table>
         </td>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>50. Cerámica Gris</p>
@@ -1345,7 +1361,7 @@
             </table>
         </td>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>74. Vidrio</p>
@@ -1498,7 +1514,7 @@
     <tbody>
     <tr>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>27. Sigilata Clara b</p>
@@ -1642,7 +1658,7 @@
             </table>
         </td>
         <td>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="table-tr-td-p">
                 <tr>
                     <td style="width: 70%; text-align: left;">
                         <p>62. Cerámica Azul</p>

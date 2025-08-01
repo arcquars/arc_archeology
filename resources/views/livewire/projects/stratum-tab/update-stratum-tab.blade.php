@@ -239,10 +239,50 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="i-descripcion">Descripción</label>
-                    <textarea id="i-descripcion" rows="3" class="form-control" wire:model="interpretation_description"></textarea>
+{{--                <div class="form-group">--}}
+{{--                    <label for="i-descripcion">Descripción</label>--}}
+{{--                    <textarea id="i-descripcion" rows="3" class="form-control" wire:model="interpretation_description"></textarea>--}}
+{{--                </div>--}}
+
+
+                <div class="row mb-1">
+                    <div class="col-md-6">
+                        <label for="i-descripcion">Descripción</label>
+                        <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
+                        @error('interpretation_description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <input type="file" class="form-control form-control-sm @error('interpretation_file') is-invalid @enderror"
+                               wire:model="interpretation_file" id="cfw_interpretation_file"
+                        />
+                        @error('interpretation_file')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                        <hr class="bg-info">
+                        @foreach($stratumCard->urlInterpretacionFilePublicAttribute() as $url => $pUrl)
+                            <div class="position-relative d-inline-block">
+                                @if(strcmp($pUrl['type'], 'image') == 0)
+                                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                    <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @else
+                                    <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @endif
+
+                                <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;" wire:click="removeInterpretacionFile()">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
+
+
 
                 <div class="row">
                     <div class="col-md-12">
@@ -444,7 +484,6 @@
                         <hr class="bg-info">
                         @foreach($stratumCard->urlCroquisPublicAttribute() as $url => $pUrl)
                             <div class="position-relative d-inline-block">
-{{--                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
                                 @if(strcmp($pUrl['type'], 'image') == 0)
                                     <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
                                 @elseif(strcmp($pUrl['type'], 'pdf') == 0)
@@ -595,7 +634,7 @@
                                     <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
                                 @endif
                                 <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
-                                        wire:click="removePhoto('{{$index}}')"
+                                        wire:click="removePhoto('{{$url}}')"
                                 >
                                     <i class="far fa-trash-alt"></i>
                                 </button>

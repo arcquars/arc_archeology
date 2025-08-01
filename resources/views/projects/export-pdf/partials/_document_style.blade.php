@@ -17,14 +17,14 @@
     .pagecount:before { content: counter(pages); }
 
     .h-seccion{
-        margin: 4px 0 2px 0;
-        padding-top: 4px;
-        padding-bottom: 4px;
+        margin: 2px 0 2px 0;
+        padding-top: 2px;
+        padding-bottom: 2px;
         background: gray;
         text-align: center;
         width: 100%;
         color: #fff;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .table-input{
@@ -42,7 +42,7 @@
     .label-5{
         font-size: 10px;
         font-weight: 700;
-        margin: 4px;
+        margin: 2px;
         padding: 0;
         white-space: normal;
     }
@@ -50,7 +50,21 @@
     .p-5{
         font-size: 11px;
         margin: 0;
-        padding: 4px 6px;
+        padding: 1px 6px;
+        white-space: normal;
+    }
+
+    .p-9{
+        font-size: 9px;
+        margin: 0;
+        padding: 1px;
+        white-space: normal;
+    }
+
+    .table-tr-td-p tr td p {
+        font-size: 9px !important;
+        margin: 0;
+        padding: 1px;
         white-space: normal;
     }
 
@@ -185,13 +199,14 @@
     }
 
     .table-input-3 thead tr th {
-        margin: 2px;
+        margin: 1px;
+        padding: 0;
         background: #808080;
         border: solid 1px #fff;
     }
 
     .table-input-3 thead tr th label{
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 700;
         margin: 0;
         padding: 0;
@@ -235,7 +250,7 @@
 
     .d-hr{
         /*background: grey;*/
-        margin: 4px 0;
+        margin: 2px 0;
         padding: 0;
         border: solid 1px grey;
     }

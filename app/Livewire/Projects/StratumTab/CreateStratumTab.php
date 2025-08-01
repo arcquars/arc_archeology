@@ -70,6 +70,7 @@ class CreateStratumTab extends Component
         $stratum_modern_ceramica_comun, $stratum_modern_azulejos_alica;
 
     public $sketch;
+    public $interpretation_file;
     public $quotes = [];
     public $maxQuotes = 5;
     public array $photos = [];
@@ -158,6 +159,23 @@ class CreateStratumTab extends Component
                     'information' => $quote['information'],
                     'stratum_card_id' => $stratumCard->id,
                 ]);
+            }
+
+            if($this->interpretation_file){
+                $dirInterpretacion = $stratumCard->urlInterpretacionFileAttribute();
+                $interpretacionExists = Storage::disk("wasabi")->exists($dirInterpretacion);
+                if (!$interpretacionExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirInterpretacion);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirInterpretacion);
+                    Storage::disk('wasabi')->makeDirectory($dirInterpretacion);
+                }
+
+                $nombreOriginal = $this->sketch->getClientOriginalName();
+                $extension = $this->sketch->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->sketch->storeAs($dirInterpretacion, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido interpretacion::: ' . $path);
             }
 
             if($this->sketch){

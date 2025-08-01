@@ -240,9 +240,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="i-descripcion">Descripción</label>
-                    <textarea id="i-descripcion" rows="3" class="form-control" wire:model="interpretation_description"></textarea>
+                <div class="row mb-1">
+                    <div class="col-md-6">
+                        <label for="i-descripcion">Descripción</label>
+                        <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
+                        @error('interpretation_description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <input type="file" class="form-control form-control-sm @error('interpretation_file') is-invalid @enderror"
+                               wire:model="interpretation_file" id="cfw_interpretation_file"
+                        />
+                        @error('interpretation_file')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="row">

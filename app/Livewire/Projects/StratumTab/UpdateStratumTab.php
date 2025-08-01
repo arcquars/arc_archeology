@@ -68,6 +68,7 @@ class UpdateStratumTab extends Component
         $stratum_modern_ceramica_comun, $stratum_modern_azulejos_alica;
 
     public $sketch;
+    public $interpretation_file;
     public $quotes = [];
     public $maxQuotes = 5;
     public array $photos = [];
@@ -244,6 +245,11 @@ class UpdateStratumTab extends Component
         Storage::disk('wasabi')->deleteDirectory($dirCroquis);
     }
 
+    public function removeInterpretacionFile(){
+        $dirInterpretacion = $this->stratumCard->urlInterpretacionFileAttribute();
+        Storage::disk('wasabi')->deleteDirectory($dirInterpretacion);
+    }
+
     public function removePhoto($url){
         Storage::disk('wasabi')->delete($url);
         $this->photoUrls = $this->stratumCard->urlPhotosPublicAttribute();
@@ -385,6 +391,23 @@ class UpdateStratumTab extends Component
 
         if($this->stratumCard->save()){
             $this->saveStratumCard();
+
+            if($this->interpretation_file){
+                $dirInter = $this->stratumCard->urlInterpretacionFileAttribute();
+                $interExists = Storage::disk("wasabi")->exists($dirInter);
+                if (!$interExists) {
+                    Storage::disk('wasabi')->makeDirectory($dirInter);
+                } else {
+                    Storage::disk('wasabi')->deleteDirectory($dirInter);
+                    Storage::disk('wasabi')->makeDirectory($dirInter);
+                }
+
+                $nombreOriginal = $this->interpretation_file->getClientOriginalName();
+                $extension = $this->interpretation_file->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $this->interpretation_file->storeAs($dirInter, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido interpretacion::: ' . $path);
+            }
 
             if($this->sketch){
                 $dirCroquis = $this->stratumCard->urlCroquisAttribute();

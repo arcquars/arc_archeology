@@ -53,6 +53,9 @@ class StoreStratumCardRequest extends FormRequest
             'quotes.*.surface' => 'required|numeric|min:0|max:2500',
             'quotes.*.information' => 'nullable|string|max:200',
 
+            'sketch' => 'nullable|file|mimes:jpeg,png|max:4096',
+            'interpretation_file' => 'nullable|file|mimes:jpeg,png|max:4096',
+
             'photos' => 'nullable|array|max:4',
             'photos.*' => 'nullable|file|mimes:jpeg,png|max:4096',
 //            '' => '',

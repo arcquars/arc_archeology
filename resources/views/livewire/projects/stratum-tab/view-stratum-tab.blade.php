@@ -101,11 +101,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 form-group">
+                <div class="col-md-6 form-group">
                     <label>Descripción</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light p-1 border rounded">
                         {{ $stratumCard->interpretation_description }}
                     </div>
+                </div>
+                <div class="col-md-6">
+                    @foreach($stratumCard->urlInterpretacionFilePublicAttribute() as $url => $pUrl)
+                        <div class="col-md-3">
+                            <div class="position-relative d-inline-block">
+                                {{--                            <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                @if(strcmp($pUrl['type'], 'image') == 0)
+                                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                    <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @else
+                                    <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="row">
@@ -254,7 +272,7 @@
             <hr class="bg-primary">
             <div class="form-group">
                 <label>Comentario</label>
-                <div class="form-control bg-light">
+                <div class="bg-light p-1 border rounded">
                     {{ $stratumCard->comment }}
                 </div>
             </div>
@@ -273,7 +291,7 @@
 
             <div class="form-group">
                 <label>Descripción</label>
-                <div class="form-control bg-light">
+                <div class="bg-light p-1 border rounded">
                     {{ $stratumCard->description }}
                 </div>
             </div>
