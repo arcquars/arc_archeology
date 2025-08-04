@@ -4,6 +4,7 @@ namespace App\Livewire\Projects\StratumTab;
 
 use App\Http\Requests\StoreStratumCardRequest;
 use App\Models\StratumCard;
+use App\Models\StratumCardMeta;
 use App\Models\StratumQuotes;
 use App\Models\StructureQuote;
 use Illuminate\Support\Facades\Log;
@@ -348,6 +349,101 @@ class UpdateStratumTab extends Component
             $this->stratumCard->meta->stratum_modern_azulejos_alica = $this->stratum_modern_azulejos_alica;
 
             $this->stratumCard->meta->save();
+        } else {
+            $meta = new StratumCardMeta();
+
+            $meta->stratum_card_id = $this->stratumCard->id;
+            $meta->material_romano_iberico = $this->material_romano_iberico;
+            $meta->material_romano_campaniense_a = $this->material_romano_campaniense_a;
+            $meta->material_romano_campaniense_b = $this->material_romano_campaniense_b;
+            $meta->material_romano_beoboide = $this->material_romano_beoboide;
+            $meta->material_romano_barniz_negro_g = $this->material_romano_barniz_negro_g;
+            $meta->material_romano_lucernas = $this->material_romano_lucernas;
+            $meta->material_romano_paredes_finas = $this->material_romano_paredes_finas;
+            $meta->material_romano_anfora_italica = $this->material_romano_anfora_italica;
+            $meta->material_romano_anforas_genericas = $this->material_romano_anforas_genericas;
+            $meta->material_romano_ceramica_gris = $this->material_romano_ceramica_gris;
+            $meta->material_romano_ceramica_cocina_g = $this->material_romano_ceramica_cocina_g;
+            $meta->material_romano_ceramica_comun_a = $this->material_romano_ceramica_comun_a;
+            $meta->material_romano_ceramica_comun_m = $this->material_romano_ceramica_comun_m;
+
+            $meta->material_islamico_verde_manganeso = $this->material_islamico_verde_manganeso;
+            $meta->material_islamico_cuerda_seca_total = $this->material_islamico_cuerda_seca_total;
+            $meta->material_islamico_ceramica_dorada = $this->material_islamico_ceramica_dorada;
+            $meta->material_islamico_bicromas = $this->material_islamico_bicromas;
+            $meta->material_islamico_cuerda_seca_parcial = $this->material_islamico_cuerda_seca_parcial;
+            $meta->material_islamico_esgrafiada = $this->material_islamico_esgrafiada;
+            $meta->material_islamico_monocromas = $this->material_islamico_monocromas;
+            $meta->material_islamico_ceramica_comun = $this->material_islamico_ceramica_comun;
+            $meta->material_islamico_ceramica_cocina = $this->material_islamico_ceramica_cocina;
+            $meta->material_islamico_candiles = $this->material_islamico_candiles;
+            $meta->material_islamico_cantaros_tinajas = $this->material_islamico_cantaros_tinajas;
+            $meta->material_islamico_arcaduces = $this->material_islamico_arcaduces;
+            $meta->material_islamico_azulejos_alicatados = $this->material_islamico_azulejos_alicatados;
+
+            $meta->material_contem_pisa = $this->material_contem_pisa;
+            $meta->material_contem_porcelana = $this->material_contem_porcelana;
+            $meta->material_contem_ceramica_cocina = $this->material_contem_ceramica_cocina;
+            $meta->material_contem_ceramica_comun_g = $this->material_contem_ceramica_comun_g;
+            $meta->material_contem_azulejos_g = $this->material_contem_azulejos_g;
+            $meta->material_contem_pavimento_hidra = $this->material_contem_pavimento_hidra;
+
+            $meta->recovered_romano_i_terra_sa = $this->recovered_romano_i_terra_sa;
+            $meta->recovered_romano_i_terra_ss = $this->recovered_romano_i_terra_ss;
+            $meta->recovered_romano_i_terra_sh = $this->recovered_romano_i_terra_sh;
+            $meta->recovered_romano_i_terra_sca = $this->recovered_romano_i_terra_sca;
+            $meta->recovered_romano_i_terra_scb = $this->recovered_romano_i_terra_scb;
+            $meta->recovered_romano_i_lucernas = $this->recovered_romano_i_lucernas;
+            $meta->recovered_romano_i_paredes_finas = $this->recovered_romano_i_paredes_finas;
+            $meta->recovered_romano_i_anfora_hispanica = $this->recovered_romano_i_anfora_hispanica;
+            $meta->recovered_romano_i_anfora_africana = $this->recovered_romano_i_anfora_africana;
+            $meta->recovered_romano_i_anfora_genericas = $this->recovered_romano_i_anfora_genericas;
+            $meta->recovered_romano_i_ceramica_cocina = $this->recovered_romano_i_ceramica_cocina;
+            $meta->recovered_romano_i_ceramica_comun_afr = $this->recovered_romano_i_ceramica_comun_afr;
+            $meta->recovered_romano_i_ceramica_comun_mesa_g = $this->recovered_romano_i_ceramica_comun_mesa_g;
+
+            $meta->recovered_bajomedieval_ceramica_gris = $this->recovered_bajomedieval_ceramica_gris;
+            $meta->recovered_bajomedieval_verde_manganeso = $this->recovered_bajomedieval_verde_manganeso;
+            $meta->recovered_bajomedieval_ceramica_azul = $this->recovered_bajomedieval_ceramica_azul;
+            $meta->recovered_bajomedieval_ceramica_dorada = $this->recovered_bajomedieval_ceramica_dorada;
+            $meta->recovered_bajomedieval_azul_dorada = $this->recovered_bajomedieval_azul_dorada;
+            $meta->recovered_bajomedieval_monocroma = $this->recovered_bajomedieval_monocroma;
+            $meta->recovered_bajomedieval_ceramica_comun_g = $this->recovered_bajomedieval_ceramica_comun_g;
+            $meta->recovered_bajomedieval_ceramica_cocina = $this->recovered_bajomedieval_ceramica_cocina;
+            $meta->recovered_bajomedieval_candiles = $this->recovered_bajomedieval_candiles;
+            $meta->recovered_bajomedieval_cantaros_tinajas = $this->recovered_bajomedieval_cantaros_tinajas;
+            $meta->recovered_bajomedieval_arcaduces = $this->recovered_bajomedieval_arcaduces;
+            $meta->recovered_bajomedieval_azulejos_alicatados = $this->recovered_bajomedieval_azulejos_alicatados;
+
+            $meta->recovered_om_vidrio = $this->recovered_om_vidrio;
+            $meta->recovered_om_hueso_trabajado = $this->recovered_om_hueso_trabajado;
+            $meta->recovered_om_material_const = $this->recovered_om_material_const;
+            $meta->recovered_om_pinturas_murales = $this->recovered_om_pinturas_murales;
+            $meta->recovered_om_yeserias = $this->recovered_om_yeserias;
+            $meta->recovered_om_metales = $this->recovered_om_metales;
+            $meta->recovered_om_monedas = $this->recovered_om_monedas;
+            $meta->recovered_om_conducciones_hidra = $this->recovered_om_conducciones_hidra;
+            $meta->recovered_om_piedra_trabajada = $this->recovered_om_piedra_trabajada;
+
+            $meta->stratum_romano_t_sigilata_clara_b = $this->stratum_romano_t_sigilata_clara_b;
+            $meta->stratum_romano_t_sigilata_clara_c = $this->stratum_romano_t_sigilata_clara_c;
+            $meta->stratum_romano_t_derivada_sigilata_p = $this->stratum_romano_t_derivada_sigilata_p;
+            $meta->stratum_romano_t_otras_ceramicas_f = $this->stratum_romano_t_otras_ceramicas_f;
+            $meta->stratum_romano_t_lucernas = $this->stratum_romano_t_lucernas;
+            $meta->stratum_romano_t_anfora_africana = $this->stratum_romano_t_anfora_africana;
+            $meta->stratum_romano_t_anfora_oriental = $this->stratum_romano_t_anfora_oriental;
+            $meta->stratum_romano_t_anfora_genericas = $this->stratum_romano_t_anfora_genericas;
+            $meta->stratum_romano_t_ceramica_cocina_a = $this->stratum_romano_t_ceramica_cocina_a;
+            $meta->stratum_romano_t_ceramica_comun_imp = $this->stratum_romano_t_ceramica_comun_imp;
+
+            $meta->stratum_modern_ceramica_azul = $this->stratum_modern_ceramica_azul;
+            $meta->stratum_modern_ceramica_dorada = $this->stratum_modern_ceramica_dorada;
+            $meta->stratum_modern_ceramica_alcora = $this->stratum_modern_ceramica_alcora;
+            $meta->stratum_modern_ceramica_cocina = $this->stratum_modern_ceramica_cocina;
+            $meta->stratum_modern_ceramica_comun = $this->stratum_modern_ceramica_comun;
+            $meta->stratum_modern_azulejos_alica = $this->stratum_modern_azulejos_alica;
+
+            $meta->save();
         }
     }
 

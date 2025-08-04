@@ -16,6 +16,10 @@
     .pagenum:before { content: counter(page); }
     .pagecount:before { content: counter(pages); }
 
+    .page-break {
+        page-break-after: always;
+    }
+
     .h-seccion{
         margin: 2px 0 2px 0;
         padding-top: 2px;
@@ -233,7 +237,7 @@
     }
 
     .d-textarea p{
-        font-size: 11px;
+        font-size: 9px;
         margin: 0;
         padding: 2px 4px;
         white-space: normal;
@@ -413,8 +417,21 @@
         display: block;
     }
 
+    .imagen-proporcional-125{
+        max-height: 125px;
+        width: auto;
+        height: auto;
+        display: block;
+    }
     .imagen-proporcional-150{
         max-height: 150px;
+        width: auto;
+        height: auto;
+        display: block;
+    }
+
+    .imagen-proporcional-175{
+        max-height: 175px;
         width: auto;
         height: auto;
         display: block;

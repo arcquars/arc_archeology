@@ -67,7 +67,6 @@ class ListStructureTab extends Component
         $structureCard = StructureTab::find($id);
         $title = 'Ficha de estructura';
         $pdf = Pdf::loadView('projects.export-pdf.structure_card_export', compact('title', 'structureCard'));
-        $pdf->setPaper('letter', 'portrait');
         $filename = 'reporte_stratum_card_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
         return Response::streamDownload(function () use ($pdf) {
             echo $pdf->output();

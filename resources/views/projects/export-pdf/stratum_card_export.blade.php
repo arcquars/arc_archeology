@@ -232,12 +232,12 @@
         <td style="width: 50%; text-align: right">
             @foreach($stratumCard->urlInterpretacionFilePublicAttribute() as $url => $pUrl)
                 @if(strcmp($pUrl['type'], 'image') == 0)
-                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                 @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @else
-                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @endif
             @endforeach
@@ -412,12 +412,12 @@
         <td style="width: 60%;">
             @foreach($stratumCard->urlCroquisPublicAttribute() as $url => $pUrl)
                 @if(strcmp($pUrl['type'], 'image') == 0)
-                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                 @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @else
-                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-150" />
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-175" />
                     <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
                 @endif
             @endforeach
@@ -450,6 +450,8 @@
     <label>Comentario</label>
     <p>{{ $stratumCard->comment }}</p>
 </div>
+
+<div class="page-break"></div>
 
 <table class="table-input-25-75">
     <tbody>
@@ -1758,19 +1760,39 @@
 </div>
 
 <h5 class="h-seccion">FOTOGRAFÍAS</h5>
-@foreach($stratumCard->urlPhotosPublicAttribute() as $url => $pUrl)
-{{--    <img src="{{ $photo }}" class="imagen-pdf" alt="">--}}
-    @if(strcmp($pUrl['type'], 'image') == 0)
-        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
-    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
-        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
-    @else
-        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />
-        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
-    @endif
-@endforeach
-
+{{--@foreach($stratumCard->urlPhotosPublicAttribute() as $url => $pUrl)--}}
+{{--    @if(strcmp($pUrl['type'], 'image') == 0)--}}
+{{--        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-pdf" />--}}
+{{--    @elseif(strcmp($pUrl['type'], 'pdf') == 0)--}}
+{{--        <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />--}}
+{{--        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>--}}
+{{--    @else--}}
+{{--        <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-pdf" />--}}
+{{--        <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>--}}
+{{--    @endif--}}
+{{--@endforeach--}}
+<?php
+$photoChunks = array_chunk($stratumCard->urlPhotosPublicAttribute(), 3);
+?>
+<table style="width: 100%;">
+    @foreach($photoChunks as $columns)
+    <tr>
+        @foreach($columns as $url => $pUrl)
+            <td style="width: 33.33%">
+                @if(strcmp($pUrl['type'], 'image') == 0)
+                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-125" />
+                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                    <img src="{{ public_path('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-125" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @else
+                    <img src="{{ public_path('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-125" />
+                    <a href="{{ $pUrl['url'] }}" target="_blank" style="font-size: 10px;">Descargar</a>
+                @endif
+            </td>
+        @endforeach
+    </tr>
+    @endforeach
+</table>
 </body>
 </html>
 

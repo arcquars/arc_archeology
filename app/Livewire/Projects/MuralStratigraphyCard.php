@@ -73,7 +73,6 @@ class MuralStratigraphyCard extends Component
         $muralStratigraphy = \App\Models\MuralStratigraphyCard::find($id);
         $title = 'ESTRATIGRAFÍA MURARIA';
         $pdf = Pdf::loadView('projects.export-pdf.field_work_export', compact('title', 'muralStratigraphy'));
-        $pdf->setPaper('letter', 'portrait');
         $filename = 'reporte_mural_stratigraphy_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
         return Response::streamDownload(function () use ($pdf) {
             echo $pdf->output();

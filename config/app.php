@@ -123,5 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'paginate' => env('PAGINATE', '10')
+    'paginate' => env('PAGINATE', '10'),
+
+    'version' => '1.0.0'
 ];

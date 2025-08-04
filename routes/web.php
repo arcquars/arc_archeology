@@ -13,6 +13,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/integraciones', [App\Http\Controllers\HomeController::class, 'integraciones'])->name('home.integraciones');
 
 Route::middleware(['auth'])->group(function () {
     /** Seccion proyectos */
@@ -44,4 +45,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::group(['middleware' => ['role:system-owner|admin']], function () { // Solo usuarios con rol 'admin'
     Route::resource('users', UserController::class);
+
+    Route::get('/audit-log', [\App\Http\Controllers\AuditLogController::class, 'index'])
+        ->name('audit.log');
 });
+

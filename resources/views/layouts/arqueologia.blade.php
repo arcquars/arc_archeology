@@ -37,6 +37,13 @@
     </form>
 @stop
 
+@section('footer')
+    <footer class="main-footer text-center">
+        <strong>© {{ date('Y') }} {{  config('app.name', 'Test') }} </strong> | Versión {{  config('app.version', 'N/A') }} | Desarrollado por <a href="#">Test</a> |
+        <a href="{{ route('home.integraciones') }}">Integraciones</a>
+    </footer>
+@endsection
+
 @section('css')
 
 @stop

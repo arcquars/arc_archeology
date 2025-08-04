@@ -66,7 +66,6 @@ class ListStratumTab extends Component
         $stratumCard = StratumCard::find($id);
         $title = 'Ficha de estrato';
         $pdf = Pdf::loadView('projects.export-pdf.stratum_card_export', compact('title', 'stratumCard'));
-        $pdf->setPaper('letter', 'portrait');
         $filename = 'reporte_stratum_card_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
         return Response::streamDownload(function () use ($pdf) {
             echo $pdf->output();

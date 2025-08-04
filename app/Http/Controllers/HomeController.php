@@ -29,4 +29,14 @@ class HomeController extends Controller
         $userCount = User::all()->count();
         return view('home', compact('projectCount', 'userCount'));
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function integraciones()
+    {
+        return view('integraciones');
+    }
 }

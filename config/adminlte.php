@@ -401,6 +401,12 @@ return [
             'can' => ['manager-users']
         ],
         [
+            'text' => 'Auditoria Cambios',
+            'route' => 'audit.log',
+            'icon' => 'far fa-file-code',
+            'can' => ['manager-users']
+        ],
+        [
             'text' => 'Salir',
             'url' => '#',
             'icon' => 'fas fa-sign-out-alt',
@@ -577,4 +583,5 @@ return [
     */
 
     'livewire' => true,
+
 ];
