@@ -22,9 +22,10 @@ class UpdateCatalogueArchitectural extends Component
     public $proceed_date_admission, $proceed_source_admission, $proceed_origin, $proceed_acronym, $proceed_ue;
     public $c_classification, $c_specific_name, $c_common_name, $c_dating, $c_integrity_status, $a_acronyms, $a_location;
     public $location_date, $location, $location_notes, $dimension_long, $dimension_anch, $dimension_alt, $dimension_other;
-    public $subject, $technique, $description, $conservation_status, $author, $comments, $sketch;
+    public $subject, $technique, $description, $conservation_status, $author, $comments;
 
     public array $photos = [];
+    public array $sketches = [];
 
     protected $listeners = ['updateCatalogueArchitecturalId'];
 
@@ -61,7 +62,6 @@ class UpdateCatalogueArchitectural extends Component
         $this->conservation_status = $this->catalogueArchitectural->conservation_status;
         $this->author = $this->catalogueArchitectural->author;
         $this->comments = $this->catalogueArchitectural->comments;
-        $this->sketch = $this->catalogueArchitectural->sketch;
     }
 
     public function rules(){
@@ -71,6 +71,10 @@ class UpdateCatalogueArchitectural extends Component
     public function mount(string $catalogueArchitecturalId)
     {
         $this->load($catalogueArchitecturalId);
+    }
+
+    public function removePhoto($url){
+        Storage::disk('wasabi')->delete($url);
     }
 
     public function updateCatalogueArquitectural()
@@ -83,7 +87,6 @@ class UpdateCatalogueArchitectural extends Component
         if (!$exists) {
             Storage::disk('wasabi')->makeDirectory($dirPhotos);
         }
-
         foreach ($this->photos as $file) {
             if ($file) {
                 $nombreOriginal = $file->getClientOriginalName();
@@ -91,6 +94,22 @@ class UpdateCatalogueArchitectural extends Component
                 $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
                 $path = $file->storeAs($dirPhotos, $nombreSanitizado, 'wasabi');
                 Log::info('Wasabi archivo subido fotografia::: ' . $path);
+            }
+        }
+
+        $dirSketches = $this->catalogueArchitectural->urlSketchAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirSketches);
+        if (!$exists) {
+            Storage::disk('wasabi')->makeDirectory($dirSketches);
+        }
+
+        foreach ($this->sketches as $file) {
+            if ($file) {
+                $nombreOriginal = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $file->storeAs($dirSketches, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido fotografiappp::: ' . $path);
             }
         }
 

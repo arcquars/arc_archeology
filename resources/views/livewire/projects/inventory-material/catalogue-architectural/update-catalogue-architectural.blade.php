@@ -277,15 +277,69 @@
                         @error('photos.*')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+
+                        <hr class="bg-info">
+                        <div class="row">
+                            @foreach($catalogueArchitectural->urlPhotosPublicAttribute() as $url => $pUrl)
+                                <div class="col-md-3">
+                                    <div class="position-relative d-inline-block">
+                                        {{--                                <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                        @if(strcmp($pUrl['type'], 'image') == 0)
+                                            <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                                        @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                            <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @else
+                                            <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @endif
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                                wire:click="removePhoto('{{$url}}')"
+                                        >
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="ea-sketch">Croquis</label>
-                        <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
-                               wire:model="sketch" id="ea-sketch"
+                        <label for="ea-sketches">Croquis</label>
+                        <input type="file" class="form-control form-control-sm @error('sketches.*') is-invalid @enderror"
+                               wire:model="sketches" id="ea-sketches" multiple
                         />
-                        @error('sketch')
+                        @error('sketches')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        @error('sketches.*')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                        <hr class="bg-info">
+                        <div class="row">
+                            @foreach($catalogueArchitectural->urlSketchPublicAttribute() as $url => $pUrl)
+                                <div class="col-md-3">
+                                    <div class="position-relative d-inline-block">
+                                        {{--                                <img src="{{ $pUrl }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                        @if(strcmp($pUrl['type'], 'image') == 0)
+                                            <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />
+                                        @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                            <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @else
+                                            <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="img-thumbnail" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @endif
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                                wire:click="removePhoto('{{$url}}')"
+                                        >
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
                     </div>
                 </div>
             </div>

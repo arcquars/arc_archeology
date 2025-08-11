@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Services\FileCheckerService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class CatalogueArchitectual extends Model
 {
@@ -56,5 +58,38 @@ class CatalogueArchitectual extends Model
 
     public function urlSketchAttribute(){
         return env('WASABI_DIR', 'default') . "/proyectos/".$this->project_id."/inventario-materiales/catalogo-elementos-arquitectonico/".$this->id."/croquis";
+    }
+
+    public function urlPhotosPublicAttribute(){
+        $dirPhotos = $this->urlPhotosAttribute();
+        $photoFiles = Storage::disk('wasabi')->allFiles($dirPhotos);
+        $photoUrls = [];
+        $fileChecker = new FileCheckerService();
+        if (!empty($photoFiles)) {
+            foreach ($photoFiles as $photoFile) {
+                $photoUrls[$photoFile] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $photoFile)
+                ];
+
+            }
+        }
+        return $photoUrls;
+    }
+
+    public function urlSketchPublicAttribute(){
+        $dirCroquis = $this->urlSketchAttribute();
+        $files = Storage::disk('wasabi')->allFiles($dirCroquis);
+        $sketchUrls = [];
+        $fileChecker = new FileCheckerService();
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $sketchUrls[$file] = [
+                    'url' => env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file,
+                    'type' =>$fileChecker->isType(env('WASABI_BUNNY'). DIRECTORY_SEPARATOR . $file)
+                ];
+            }
+        }
+        return $sketchUrls;
     }
 }

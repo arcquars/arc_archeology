@@ -3,6 +3,9 @@
 namespace App\Livewire\Projects\InventoryMaterial\CatalogueArchitectural;
 
 use App\Models\CatalogueArchitectual;
+use App\Models\StratumCard;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -59,6 +62,18 @@ class ListCatalogueArchitectural extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function exportPdf($id){
+        $catalogueArchitectural = CatalogueArchitectual::find($id);
+        $title = 'FICHA CATÁLOGACIÓN ELEMENTOS ARQUITECTÓNICOS';
+        $pdf = Pdf::loadView('projects.export-pdf.catalogue-element-architectural', compact('title', 'catalogueArchitectural'));
+        $filename = 'reporte_stratum_card_' . $id . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function render()
