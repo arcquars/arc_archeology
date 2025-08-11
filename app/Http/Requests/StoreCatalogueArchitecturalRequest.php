@@ -48,6 +48,12 @@ class StoreCatalogueArchitecturalRequest extends FormRequest
             'conservation_status' => 'nullable|string|max:250',
             'comments' => 'nullable|string|max:2500',
             'author' => 'nullable|string|max:250',
+
+            'photos' => 'nullable|array|max:4',
+            'photos.*' => 'nullable|file|mimes:jpeg,png|max:4096',
+
+            'sketches' => 'nullable|array|max:4',
+            'sketches.*' => 'nullable|file|mimes:jpeg,png|max:4096',
         ];
     }
 }

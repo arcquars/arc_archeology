@@ -26,3 +26,4 @@ package-lock.json
 public/error_log.txt
 public/img/*
 .htaccess
+error_log.txt
