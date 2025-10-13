@@ -124,7 +124,7 @@ class ListUe extends Component
             'stratigraphy_covered_by as covered_by',
             'stratigraphy_overlaps_or_covers as covers_to',
             DB::raw("i_type as interpretation"),
-            DB::raw("'Restos Humanos' as ticketType"),
+            DB::raw("'Estructuras' as ticketType"),
             DB::raw("i_date as cronologia")
         )->toBase();
         $humanRemainCard = HumanRemainCard::select(
@@ -134,7 +134,7 @@ class ListUe extends Component
             'relationship_covered_by as covered_by',
             'relationship_covers_to as covers_to',
             'interpretation',
-            DB::raw("'Estructura' as ticketType"),
+            DB::raw("'Restos humanos' as ticketType"),
             DB::raw("dates as cronologia")
         )->toBase();
 

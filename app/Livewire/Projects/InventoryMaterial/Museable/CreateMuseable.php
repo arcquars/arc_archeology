@@ -87,6 +87,7 @@ class CreateMuseable extends Component
 
     public function render()
     {
-        return view('livewire.projects.inventory-material.museable.create-museable');
+        $ues = Project::find($this->project_id)->allUes();
+        return view('livewire.projects.inventory-material.museable.create-museable', compact('ues'));
     }
 }

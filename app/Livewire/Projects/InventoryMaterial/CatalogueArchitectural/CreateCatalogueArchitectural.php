@@ -69,7 +69,7 @@ class CreateCatalogueArchitectural extends Component
             }
         }
 
-        $dirSketches = $this->catalogueArchitectural->urlSketchAttribute();
+        $dirSketches = $catalogueArchitectural->urlSketchAttribute();
         $exists = Storage::disk("wasabi")->exists($dirSketches);
         if (!$exists) {
             Storage::disk('wasabi')->makeDirectory($dirSketches);
@@ -93,6 +93,11 @@ class CreateCatalogueArchitectural extends Component
 
     public function render()
     {
-        return view('livewire.projects.inventory-material.catalogue-architectural.create-catalogue-architectural');
+        $ues = Project::find($this->project_id)->allUes();
+
+        return view(
+            'livewire.projects.inventory-material.catalogue-architectural.create-catalogue-architectural',
+            compact('ues')
+        );
     }
 }

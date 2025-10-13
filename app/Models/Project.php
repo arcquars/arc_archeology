@@ -6,6 +6,7 @@ use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Project extends Model
@@ -78,6 +79,7 @@ class Project extends Model
         if($hrcMaxUe > $ueNext ){
             $ueNext = $hrcMaxUe;
         }
+        /*
         $catalogueArchitectualMaxUe = CatalogueArchitectual::where('project_id', $this->id)->max('proceed_ue');
         if($catalogueArchitectualMaxUe > $ueNext ){
             $ueNext = $catalogueArchitectualMaxUe;
@@ -92,8 +94,18 @@ class Project extends Model
         if($materialRecountMaxUe > $ueNext ){
             $ueNext = $materialRecountMaxUe;
         }
+        */
 
         $ueNext = intval($ueNext);
         return $ueNext>0? $ueNext + 1 : 0;
+    }
+
+    public function allUes(){
+        $query1 = DB::table('mural_stratigraphy_cards')->select("n_ue", DB::raw('"mural_stratigraphy" material_sheets'))->where('project_id', $this->id);
+        $query2 = DB::table('stratum_cards')->select(DB::raw('i_n_ue as n_ue'), DB::raw('"stratum_cards" material_sheets'))->where('project_id', $this->id);
+        $query3 = DB::table('structure_tabs')->select(DB::raw('i_n_ue as n_ue'), DB::raw('"structure_tabs" material_sheets'))->where('project_id', $this->id);
+        $query4 = DB::table('human_remain_cards')->select(DB::raw('ue as n_ue'), DB::raw('"human_remain_card" material_sheets'))->where('project_id', $this->id);
+
+        return $query1->union($query2)->union($query3)->union($query4)->orderBy('n_ue')->get();
     }
 }
