@@ -314,7 +314,7 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="r-provisional_dating">Datación provisional</label>
-                        <input type="text" id="r-provisional_dating" class="form-control form-control-sm @error('provisional_dating') is-invalid @enderror"
+                        <input type="date" id="r-provisional_dating" class="form-control form-control-sm @error('provisional_dating') is-invalid @enderror"
                                wire:model="provisional_dating">
                         @error('provisional_dating')
                         <div class="invalid-feedback">{{ $message }}</div>

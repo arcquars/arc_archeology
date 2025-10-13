@@ -31,7 +31,7 @@ class StoreStructureTabRequest extends FormRequest
             'i_stratigraphic_reliability' => 'nullable|string|max:200',
             'i_type' => 'nullable|string|max:200',
             'conservation' => 'nullable|string|max:200',
-            'interpretation_description' => 'nullable|string|max:200',
+            'interpretation_description' => 'nullable|string|max:2500',
             'aparejo' => 'nullable|numeric|max:200',
             'largo' => 'nullable|numeric|max:200',
             'anchura' => 'nullable|numeric|max:200',

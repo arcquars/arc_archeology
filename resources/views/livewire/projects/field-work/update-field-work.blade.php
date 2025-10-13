@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="cfw_provisional_dating">Datacion provisional</label>
-                        <input type="text" class="form-control form-control-sm @error('provisional_dating') is-invalid @enderror"
+                        <input type="date" class="form-control form-control-sm @error('provisional_dating') is-invalid @enderror"
                                wire:model="provisional_dating" id="cfw_provisional_dating"
                         >
                         @error('provisional_dating')

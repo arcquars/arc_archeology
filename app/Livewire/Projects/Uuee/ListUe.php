@@ -105,7 +105,7 @@ class ListUe extends Component
             'stratigraphy_covers_to as covers_to',
             DB::raw("identification_type as interpretation"),
             DB::raw("'Estratigrafia Mural' as ticketType"),
-            DB::raw("msc_date as cronologia")
+            DB::raw("provisional_dating as cronologia")
         )->toBase();
         $stratumCards = StratumCard::select(
             'id',
@@ -115,7 +115,7 @@ class ListUe extends Component
             'stratigraphy_overlaps_or_covers as covers_to',
             DB::raw("i_type as interpretation"),
             DB::raw("'Estrato' as ticketType"),
-            DB::raw("i_date as cronologia")
+            DB::raw("i_provisional_dating as cronologia")
         )->toBase();
         $structureTab = StructureTab::select(
             'id',
@@ -125,7 +125,7 @@ class ListUe extends Component
             'stratigraphy_overlaps_or_covers as covers_to',
             DB::raw("i_type as interpretation"),
             DB::raw("'Estructuras' as ticketType"),
-            DB::raw("i_date as cronologia")
+            DB::raw("i_provisional_dating as cronologia")
         )->toBase();
         $humanRemainCard = HumanRemainCard::select(
             'id',
@@ -135,7 +135,7 @@ class ListUe extends Component
             'relationship_covers_to as covers_to',
             'interpretation',
             DB::raw("'Restos humanos' as ticketType"),
-            DB::raw("dates as cronologia")
+            DB::raw("provisional_dating as cronologia")
         )->toBase();
 
         $muralStratigraphyCards->where('active', 1)->where('project_id', $this->projectId)
