@@ -7,9 +7,14 @@ use App\Models\Ceramic;
 use App\Models\Material;
 use App\Models\Project;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class UpdateMuseable extends Component
 {
+    use WithFileUploads;
     public $project_id;
     public $material;
 
@@ -19,6 +24,8 @@ class UpdateMuseable extends Component
     public $side_max, $side_min, $notes;
     public $height, $diameter_base, $diameter_mouth, $diameter_max, $description;
     public $changeType = '';
+
+    public array $photos = [];
 
     public function rules(){
         return (new StoreMaterialRequest())->rules($this->material_type);
@@ -76,6 +83,21 @@ class UpdateMuseable extends Component
     {
         $validatedData = $this->validate();
         $this->material->update($validatedData);
+
+        $dirPhotos = $this->material->urlPhotosAttribute();
+        $exists = Storage::disk("wasabi")->exists($dirPhotos);
+        if (!$exists) {
+            Storage::disk('wasabi')->makeDirectory($dirPhotos);
+        }
+        foreach ($this->photos as $file) {
+            if ($file) {
+                $nombreOriginal = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $nombreSanitizado = Str::slug(pathinfo($nombreOriginal, PATHINFO_FILENAME)) . '.' . $extension;
+                $path = $file->storeAs($dirPhotos, $nombreSanitizado, 'wasabi');
+                Log::info('Wasabi archivo subido fotografia::: ' . $path);
+            }
+        }
 
         if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0){
             $ceramic = $this->material->ceramic;

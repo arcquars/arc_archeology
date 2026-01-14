@@ -33,6 +33,9 @@ class StoreMaterialRequest extends FormRequest
             'piece_percentage' => 'nullable',
             'thickness' => 'nullable',
             'material_type' => 'required',
+
+            'photos' => 'nullable|array|max:4',
+            'photos.*' => 'nullable|file|mimes:jpeg,png|max:4096',
         ];
 
         $ruleType = [];

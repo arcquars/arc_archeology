@@ -22,7 +22,10 @@ class StoreMaterialRecountRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'ue' => 'required',
             'chronology' => 'required',
+            'photos' => 'nullable|array|max:4',
+            'photos.*' => 'nullable|file|mimes:jpeg,png|max:4096',
         ];
     }
 }

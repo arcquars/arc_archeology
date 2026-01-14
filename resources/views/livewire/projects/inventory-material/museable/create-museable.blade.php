@@ -216,6 +216,22 @@
                     </div>
                 @endif
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="ea-photos">Fotografias</label>
+                        <input type="file" class="form-control form-control-sm @error('photos.*') is-invalid @enderror"
+                            wire:model="photos" id="ea-photos" multiple
+                        />
+                        @error('photos')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                        @error('photos.*')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
             </div>
             <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">
                 <button class="btn btn-sm btn-dark" type="button" wire:click="$dispatch('closeCreateMuseable')">Cerrar</button>

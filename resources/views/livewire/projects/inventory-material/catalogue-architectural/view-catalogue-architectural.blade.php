@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
                 <label>Clasificación</label>
-                <div class="form-control bg-light">
+                <div class="bg-light p-2 border rounded">
                     {{ $catalogueArchitectural->c_classification }}
                 </div>
             </div>
@@ -123,7 +123,7 @@
             </div>
             <div class="form-group">
                 <label>Notas</label>
-                <div class="form-control bg-light">
+                <div class="bg-light p-2 border rounded">
                     {{ $catalogueArchitectural->location_notes }}
                 </div>
             </div>
@@ -164,20 +164,20 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Materia</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light p-1 border rounded">
                         {{ $catalogueArchitectural->subject }}
                     </div>
                 </div>
-                <div class="col-md-8 form-group">
+                <div class="col-md-6 form-group">
                     <label>Técnica</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light p-1 border rounded">
                         {{ $catalogueArchitectural->technique }}
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <div class="form-control bg-light">
+                <div class="bg-light p-1 border rounded">
                     {{ $catalogueArchitectural->description }}
                 </div>
             </div>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="col-md-8 form-group">
                     <label>Observaciones</label>
-                    <div class="form-control bg-light">
+                    <div class="bg-light p-1 border rounded">
                         {{ $catalogueArchitectural->comments }}
                     </div>
                 </div>

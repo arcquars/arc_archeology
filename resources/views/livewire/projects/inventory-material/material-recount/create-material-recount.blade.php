@@ -14,9 +14,14 @@
                 <div class="row">
                     <div class="col-md-2 form-group">
                         <label for="imm-ue">UE</label>
-                        <input type="text" class="form-control form-control-sm @error('ue') is-invalid @enderror"
+                        {{-- <input type="text" class="form-control form-control-sm @error('ue') is-invalid @enderror"
                                wire:model="ue" id="imm-ue" @if(!$enableUe) disabled @endif
-                        >
+                        > --}}
+                        <select wire:model="ue" id="imm-ue" class="form-control form-control-sm @error('ue') is-invalid @enderror">
+                            @foreach($ues as $ue1)
+                                <option value="{{ $ue1->n_ue }}">{{ $ue1->n_ue }}</option>
+                            @endforeach
+                        </select>
                         @error('ue')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -27,6 +32,22 @@
                                wire:model="chronology" id="imm-chronology"
                         >
                         @error('chronology')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="ea-photos">Fotografias</label>
+                        <input type="file" class="form-control form-control-sm @error('photos.*') is-invalid @enderror"
+                            wire:model="photos" id="ea-photos" multiple
+                        />
+                        @error('photos')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                        @error('photos.*')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
