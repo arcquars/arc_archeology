@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="sc-i_provisional_dating">Datación provisional</label>
-                        <input type="date" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
                                wire:model="i_provisional_dating" id="sc-i_provisional_dating"
                         >
                         @error('i_provisional_dating')
@@ -78,7 +78,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="sc-i_type">Tipo</label>
+                        <label for="sc-i_type">Interpretación</label>
                         <input type="text" class="form-control form-control-sm @error('i_type') is-invalid @enderror"
                                wire:model="i_type" id="sc-i_type"
                         >
@@ -130,44 +130,12 @@
                 </div>
                 <h5 class="bg-info p-1 text-center">Descripción e interpretación</h5>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="i-descripcion">Descripción</label>
                         <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
                         @error('interpretation_description')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cfw_photo">interpretación</label>
-                        <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
-                               wire:model="photo" id="cfw_photo"
-                        />
-                        @error('photo')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        <hr class="bg-info">
-                        @foreach($structureTab->urlPhotoPublicAttribute() as $url => $pUrl)
-                            <div class="d-flex justify-content-center align-items-center">
-                            <div class="position-relative d-inline-block">
-                                {{--                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
-                                @if(strcmp($pUrl['type'], 'image') == 0)
-                                    <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                                @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-                                    <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
-                                @else
-                                    <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                                    <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
-                                @endif
-                                <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
-                                        wire:click="removePhoto('{{$url}}')"
-                                >
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </div>
-                            </div>
-                        @endforeach
-
                     </div>
                 </div>
                 <div class="row">
@@ -305,16 +273,49 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="cfw_sketch">Croquis</label>
-                        <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
-                               wire:model="sketch" id="cfw_sketch"
-                        />
-                        @error('sketch')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        <hr class="bg-info">
-                        @foreach($structureTab->urlSketchPublicAttribute() as $url => $pUrl)
-                            <div class="d-flex justify-content-center align-items-center">
+                        <div class="form-group">
+                            <label for="cfw_sketch">Croquis</label>
+                            <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
+                                wire:model="sketch" id="cfw_sketch"
+                            />
+                            @error('sketch')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <hr class="bg-info">
+                            @foreach($structureTab->urlSketchPublicAttribute() as $url => $pUrl)
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="position-relative d-inline-block">
+                                        {{--                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
+                                        @if(strcmp($pUrl['type'], 'image') == 0)
+                                            <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                            <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @else
+                                            <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                            <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                        @endif
+
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
+                                                wire:click="removeSketch()"
+                                        >
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            <label for="cfw_photo">Fotografias</label>
+                            <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
+                                wire:model="photo" id="cfw_photo"
+                            />
+                            @error('photo')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <hr class="bg-info">
+                            @foreach($structureTab->urlPhotoPublicAttribute() as $url => $pUrl)
+                                <div class="d-flex justify-content-center align-items-center">
                                 <div class="position-relative d-inline-block">
                                     {{--                                <img src="{{ $url }}" alt="Imagen desde Wasabi" class="img-thumbnail mb-1" />--}}
                                     @if(strcmp($pUrl['type'], 'image') == 0)
@@ -326,15 +327,16 @@
                                         <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
                                         <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
                                     @endif
-
                                     <button type="button" class="btn btn-sm btn-danger position-absolute m-2" style="top: 0px; right: 0px; z-index: 10;"
-                                            wire:click="removeSketch()"
+                                            wire:click="removePhoto('{{$url}}')"
                                     >
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </div>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h6 class="bg-info p-1 text-center mb-1">Cotas</h6>

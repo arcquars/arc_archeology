@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Tipo</label>
+                    <label>Interpretación</label>
                     <div class="form-control bg-light">
                         {{ $structureTab->i_type }}
                     </div>
@@ -80,30 +80,11 @@
             </div>
             <h5 class="bg-primary p-1 text-center">Descripción e interpretación</h5>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label>Descripción</label>
                     <div class="form-control bg-light">
                         {{ $structureTab->interpretation_description }}
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="cfw_photo">Interpretación</label>
-                    <hr class="bg-primary mt-1 mb-1">
-                    @foreach($structureTab->urlPhotoPublicAttribute() as $url => $pUrl)
-                        <div class="d-flex justify-content-center align-items-center">
-                        <div class="position-relative d-inline-block">
-                            @if(strcmp($pUrl['type'], 'image') == 0)
-                                <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                            @elseif(strcmp($pUrl['type'], 'pdf') == 0)
-                                <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
-                            @else
-                                <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
-                                <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
-                            @endif
-                        </div>
-                        </div>
-                    @endforeach
                 </div>
             </div>
 
@@ -223,10 +204,30 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="cfw_sketch">Croquis</label>
-                    <hr class="bg-primary mb-1 mt-1">
-                    <div class="d-flex justify-content-center align-items-center">
-                        @foreach($structureTab->urlSketchPublicAttribute() as $url => $pUrl)
+                    <div class="form-group">
+                        <label for="cfw_sketch">Croquis</label>
+                        <hr class="bg-primary mb-1 mt-1">
+                        <div class="d-flex justify-content-center align-items-center">
+                            @foreach($structureTab->urlSketchPublicAttribute() as $url => $pUrl)
+                                <div class="position-relative d-inline-block">
+                                    @if(strcmp($pUrl['type'], 'image') == 0)
+                                        <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                    @elseif(strcmp($pUrl['type'], 'pdf') == 0)
+                                        <img src="{{ asset('img/generate-pdf.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @else
+                                        <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
+                                        <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cfw_photo">Interpretación</label>
+                        <hr class="bg-primary mt-1 mb-1">
+                        @foreach($structureTab->urlPhotoPublicAttribute() as $url => $pUrl)
+                            <div class="d-flex justify-content-center align-items-center">
                             <div class="position-relative d-inline-block">
                                 @if(strcmp($pUrl['type'], 'image') == 0)
                                     <img src="{{ $pUrl['url'] }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
@@ -237,6 +238,7 @@
                                     <img src="{{ asset('img/generate-unknown.jpeg') }}" alt="Imagen desde Wasabi" class="imagen-proporcional-250 mb-1" />
                                     <a href="{{ $pUrl['url'] }}" target="_blank" class="btn btn-link">Descargar</a>
                                 @endif
+                            </div>
                             </div>
                         @endforeach
                     </div>

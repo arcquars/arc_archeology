@@ -31,7 +31,7 @@ class UpdateStructureTab extends Component
     public $stratigraphy_fill_in, $stratigraphy_cut_to;
 
     public $quotes = []; // Array para almacenar las "quotes"
-    public $maxQuotes = 5; // Límite máximo de quotes
+    public $maxQuotes = 10; // Límite máximo de quotes
 
     public $bricks = [];
     public $maxBricks = 5;

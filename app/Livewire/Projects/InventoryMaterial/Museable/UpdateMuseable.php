@@ -5,6 +5,7 @@ namespace App\Livewire\Projects\InventoryMaterial\Museable;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Models\Ceramic;
 use App\Models\Material;
+use App\Models\Project;
 use Livewire\Component;
 
 class UpdateMuseable extends Component
@@ -44,6 +45,8 @@ class UpdateMuseable extends Component
         $this->pasta = $this->material->pasta;
         $this->decoration = $this->material->decoration;
         $this->material_type = $this->material->material_type;
+
+        $this->project_id = $this->material->project_id;
 
         if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0){
             $this->changeType = Material::MATERIAL_TYPE_CERAMIC;
@@ -99,6 +102,7 @@ class UpdateMuseable extends Component
 
     public function render()
     {
-        return view('livewire.projects.inventory-material.museable.update-museable');
+        $ues = Project::find($this->project_id)->allUes();
+        return view('livewire.projects.inventory-material.museable.update-museable', compact('ues'));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Livewire\Projects\InventoryMaterial\CatalogueArchitectural;
 use App\Http\Requests\StoreCatalogueArchitecturalRequest;
 use App\Models\CatalogueArchitectual;
 use App\Models\HumanRemainCard;
+use App\Models\Project;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -62,6 +63,8 @@ class UpdateCatalogueArchitectural extends Component
         $this->conservation_status = $this->catalogueArchitectural->conservation_status;
         $this->author = $this->catalogueArchitectural->author;
         $this->comments = $this->catalogueArchitectural->comments;
+
+        $this->project_id = $this->catalogueArchitectural->project_id;
     }
 
     public function rules(){
@@ -121,6 +124,9 @@ class UpdateCatalogueArchitectural extends Component
 
     public function render()
     {
-        return view('livewire.projects.inventory-material.catalogue-architectural.update-catalogue-architectural');
+        $ues = Project::find($this->project_id)->allUes();
+        return view(
+            'livewire.projects.inventory-material.catalogue-architectural.update-catalogue-architectural',
+            compact('ues'));
     }
 }

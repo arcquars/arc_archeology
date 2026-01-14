@@ -14,10 +14,10 @@
         <th style="width: 5%;">
             <label class="label-5">UE</label>
         </th>
-        <th style="width: 40%;">
+        {{-- <th style="width: 40%;">
             <label class="label-5">Descripción</label>
-        </th>
-        <th style="width: 10%;">
+        </th> --}}
+        <th style="width: 50%;">
             <label class="label-5">Interpretación</label>
         </th>
         <th style="width: 15%;">
@@ -37,9 +37,9 @@
         <td>
             <p class="p-5">{{ $ticket->ue }}</p>
         </td>
-        <td>
+        {{-- <td>
             <p class="p-5">{{ $ticket->description }}</p>
-        </td>
+        </td> --}}
         <td>
             <p class="p-5">{{ $ticket->interpretation }}</p>
         </td>

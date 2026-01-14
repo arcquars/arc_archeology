@@ -51,9 +51,11 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="ea-proceed_ue">UE</label>
-                            <input type="text" class="form-control form-control-sm @error('proceed_ue') is-invalid @enderror"
-                                   wire:model="proceed_ue" id="ea-proceed_ue" disabled
-                            />
+                            <select wire:model="proceed_ue" id="ea-proceed_ue" class="form-control form-control-sm">
+                                @foreach($ues as $ue)
+                                    <option value="{{ $ue->n_ue }}">{{ $ue->n_ue }}</option>
+                                @endforeach
+                            </select>
                             @error('proceed_ue')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

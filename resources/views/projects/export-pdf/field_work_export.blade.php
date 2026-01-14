@@ -54,7 +54,7 @@
             <p>{{ $muralStratigraphy->stratigraphic_reliability }}</p>
         </td>
         <td colspan="2">
-            <label>Tipo</label>
+            <label>Interpretación</label>
             <p>{{ $muralStratigraphy->identification_type }}</p>
         </td>
     </tr>

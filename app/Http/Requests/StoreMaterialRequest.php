@@ -22,6 +22,7 @@ class StoreMaterialRequest extends FormRequest
     public function rules(?string $materialType): array
     {
         $ruleMaterial = [
+            'ue' => 'required',
             'object' => 'required',
             'century' => 'nullable',
             'class' => 'nullable|string|max:200',

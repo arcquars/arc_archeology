@@ -49,7 +49,7 @@
             <p class="p-5">{{ $stratumCard->i_stratigraphic_reliability }}</p>
         </td>
         <td style="width: 33.33%;">
-            <label class="label-5">Tipo</label>
+            <label class="label-5">Interpretación</label>
             <p class="p-5">{{ $stratumCard->i_type }}</p>
         </td>
     </tr>

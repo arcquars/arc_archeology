@@ -451,4 +451,39 @@
     .table-i-bordered-2, .table-i-bordered-2 tbody tr, .table-i-bordered-2 tbody tr td{
         border: 2px solid #838383;
     }
+
+    .table-input-6-1-1{
+        width: 100%;
+        margin: 2px;
+        table-layout: fixed; /* ¡Crucial! Las columnas tendrán ancho fijo */
+        border-collapse: collapse;
+    }
+
+    .table-input-6-1-1 thead tr th, .table-input-6-1-1 tbody tr td {
+        width: 15%;
+        padding: 2px;
+        overflow: hidden; /* Evita que el contenido se desborde si es demasiado largo */
+        white-space: nowrap; /* Mantiene el contenido en una sola línea */
+        /*text-overflow: ellipsis; !* Añade puntos suspensivos si el contenido es cortado *!*/
+    }
+
+    .table-input-6-1-1 tbody tr td{
+        vertical-align: top;
+    }
+
+    .table-input-6-1-1 tbody tr td label{
+        font-size: 10px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        white-space: normal;
+    }
+
+    .table-input-6-1-1 tbody tr td p{
+        font-size: 11px;
+        margin: 0;
+        padding: 2px 4px;
+        white-space: normal;
+        text-align: justify;
+    }
 </style>

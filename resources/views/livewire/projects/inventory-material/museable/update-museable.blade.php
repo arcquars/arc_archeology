@@ -14,9 +14,14 @@
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <label for="imm-ue">UE</label>
-                        <input type="text" class="form-control form-control-sm @error('ue') is-invalid @enderror"
+                        {{-- <input type="text" class="form-control form-control-sm @error('ue') is-invalid @enderror"
                                wire:model="ue" id="imm-ue" disabled
-                        >
+                        > --}}
+                        <select wire:model="ue" id="imm-ue" class="form-control form-control-sm @error('ue') is-invalid @enderror">
+                            @foreach($ues as $ue1)
+                                <option value="{{ $ue1->n_ue }}">{{ $ue1->n_ue }}</option>
+                            @endforeach
+                        </select>
                         @error('ue')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

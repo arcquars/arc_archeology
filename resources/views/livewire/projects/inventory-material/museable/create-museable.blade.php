@@ -17,9 +17,9 @@
 {{--                        <input type="text" class="form-control form-control-sm @error('ue') is-invalid @enderror"--}}
 {{--                               wire:model="ue" id="imm-ue" @if(!$enableUe) disabled @endif--}}
 {{--                        >--}}
-                        <select wire:model="proceed_ue" id="ea-proceed_ue" class="form-control form-control-sm">
-                            @foreach($ues as $ue)
-                                <option value="{{ $ue->n_ue }}">{{ $ue->n_ue }}</option>
+                        <select wire:model="ue" id="imm-ue" class="form-control form-control-sm @error('ue') is-invalid @enderror">
+                            @foreach($ues as $ue1)
+                                <option value="{{ $ue1->n_ue }}">{{ $ue1->n_ue }}</option>
                             @endforeach
                         </select>
                         @error('ue')

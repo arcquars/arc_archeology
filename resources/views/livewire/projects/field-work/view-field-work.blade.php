@@ -84,7 +84,7 @@
 
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Tipo</label>
+                    <label>Interpretación</label>
                     <div class="border rounded p-1 bg-light" style="min-height: 30px;">
                         {{ $muralStratigraphy->identification_type }}
                     </div>

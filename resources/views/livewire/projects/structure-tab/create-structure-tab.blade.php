@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="sc-i_provisional_dating">Datación provisional</label>
-                        <input type="date" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
                                wire:model="i_provisional_dating" id="sc-i_provisional_dating"
                         >
                         @error('i_provisional_dating')
@@ -78,7 +78,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="sc-i_type">Tipo</label>
+                        <label for="sc-i_type">Interpretación</label>
                         <input type="text" class="form-control form-control-sm @error('i_type') is-invalid @enderror"
                                wire:model="i_type" id="sc-i_type"
                         >
@@ -131,14 +131,14 @@
 
                 <h5 class="bg-info p-1 text-center">Descripción e interpretación</h5>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="i-descripcion">Descripción</label>
                         <textarea id="i-descripcion" rows="3" class="form-control form-control-sm @error('interpretation_description') is-invalid @enderror" wire:model="interpretation_description"></textarea>
                         @error('interpretation_description')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <label for="cfw_photo">interpretación</label>
                         <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
                                wire:model="photo" id="cfw_photo"
@@ -146,7 +146,7 @@
                         @error('photo')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="row">
@@ -283,13 +283,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="cfw_sketch">Croquis</label>
-                        <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
-                               wire:model="sketch" id="cfw_sketch"
-                        />
-                        @error('sketch')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <div class="form-group">
+                            <label for="cfw_sketch">Croquis</label>
+                            <input type="file" class="form-control form-control-sm @error('sketch') is-invalid @enderror"
+                                wire:model="sketch" id="cfw_sketch"
+                            />
+                            @error('sketch')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="cfw_photo">Fotografias</label>
+                            <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
+                                wire:model="photo" id="cfw_photo"
+                            />
+                            @error('photo')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h6 class="bg-info p-1 text-center mb-1">Cotas</h6>

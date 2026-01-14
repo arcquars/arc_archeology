@@ -11,6 +11,7 @@ use App\Models\Tile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Log;
 
 class CreateMuseable extends Component
 {
@@ -31,20 +32,20 @@ class CreateMuseable extends Component
     public function mount(string $projectId)
     {
         $this->project_id = $projectId;
-        $ueNext = Project::find($projectId)->ueNext();
-        if($ueNext){
-            $this->enableUe = false;
-            $this->ue = $ueNext;
-        }
+        // $ueNext = Project::find($projectId)->ueNext();
+        // if($ueNext){
+        //     $this->enableUe = false;
+        //     $this->ue = $ueNext;
+        // }
     }
 
     public function saveMaterial()
     {
         $validateData = $this->validate();
-        $ueNext = Project::find($this->project_id)->ueNext();
-        if($ueNext > 0){
-            $validateData['ue'] = $ueNext;
-        }
+        // $ueNext = Project::find($this->project_id)->ueNext();
+        // if($ueNext > 0){
+        //     $validateData['ue'] = $ueNext;
+        // }
 
         try{
             $material = Material::create(array_merge($validateData, [

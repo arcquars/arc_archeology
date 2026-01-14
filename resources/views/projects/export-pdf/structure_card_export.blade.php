@@ -47,7 +47,7 @@
             <p class="p-5">{{ $structureCard->i_stratigraphic_reliability }}</p>
         </td>
         <td style="width: 33.33%; vertical-align: top;">
-            <label class="label-5">Tipo</label>
+            <label class="label-5">Interpretación</label>
             <p class="p-5">{{ $structureCard->i_type }}</p>
         </td>
     </tr>
@@ -126,7 +126,7 @@
     </tr>
     </tbody>
 </table>
-<table class="table-input-6-1 table-i-bordered-1">
+<table class="table-input-6-1-1 table-i-bordered-1">
     <tbody>
     <tr>
         <td>
@@ -151,18 +151,18 @@
                 <tr>
                     <td colspan="2">
                         <div style="background: #808080; padding-bottom: 2px; text-align: center">
-                            <label style="color: #fff">Orientación en °</label>
+                            <label style="color: #fff">Orientación en grados</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 50%">
-                        <label>1 grado</label>
-                        <p>{{ $structureCard->di_orientation_degrees_1 }}</p>
+                        {{-- <label>1 grado</label> --}}
+                        <p><b>1° </b>{{ $structureCard->di_orientation_degrees_1 }}</p>
                     </td>
                     <td style="width: 50%">
-                        <label>2 grado</label>
-                        <p>{{ $structureCard->di_orientation_degrees_2 }}</p>
+                        {{-- <label>2 grado</label> --}}
+                        <p><b>2° </b>{{ $structureCard->di_orientation_degrees_2 }}</p>
                     </td>
                 </tr>
                 </tbody>

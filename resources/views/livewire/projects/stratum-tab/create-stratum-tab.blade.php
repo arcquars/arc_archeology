@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="sc-i_provisional_dating">Datación provisional</label>
-                        <input type="date" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('i_provisional_dating') is-invalid @enderror"
                                wire:model="i_provisional_dating" id="sc-i_provisional_dating"
                         >
                         @error('i_provisional_dating')
@@ -78,7 +78,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="sc-i_type">Tipo</label>
+                        <label for="sc-i_type">Interpretación</label>
                         <input type="text" class="form-control form-control-sm @error('i_type') is-invalid @enderror"
                                wire:model="i_type" id="sc-i_type"
                         >

@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 form-group">
-                    <label for="sc-i_type">Tipo</label>
+                    <label for="sc-i_type">Interpretación</label>
                     <div class="form-control bg-light">
                         {{ $stratumCard->i_type }}
                     </div>
