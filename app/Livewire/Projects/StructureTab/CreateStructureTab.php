@@ -25,7 +25,7 @@ class CreateStructureTab extends Component
     public $project_id;
     public $i_date, $i_n_ue, $i_location_intervention, $i_acronym, $i_fact;
 
-    public $i_provisional_dating, $i_stratigraphic_reliability, $i_type, $conservation;
+    public $i_provisional_dating, $i_stratigraphic_reliability, $i_type, $conservation = [];
     public $interpretation_description, $aparejo, $largo, $anchura, $alto_grueso, $orientacion_1, $orientacion_2;
     public $stratigraphy_equals, $stratigraphy_support_provided, $stratigraphy_covered_by, $stratigraphy_filling_by;
     public $stratigraphy_cut_by, $stratigraphy_equivale, $stratigraphy_supported_by, $stratigraphy_overlaps_or_covers;
@@ -129,7 +129,11 @@ class CreateStructureTab extends Component
         $structureTab->i_provisional_dating = $this->i_provisional_dating;
         $structureTab->i_stratigraphic_reliability = $this->i_stratigraphic_reliability;
         $structureTab->i_type = $this->i_type;
-        $structureTab->conservation = $this->conservation;
+
+        $structureTab->conservation = !empty($this->conservation) 
+            ? implode(",", array_filter($this->conservation)) 
+            : null;
+
         $structureTab->interpretation_description = $this->interpretation_description;
         $structureTab->di_rigging = $this->aparejo;
         $structureTab->di_length = $this->largo;

@@ -28,7 +28,7 @@ class CreateFieldWork extends Component
     public $provisional_dating;
     public $stratigraphic_reliability;
     public $identification_type;
-    public $preservation;
+    public $preservation = [];
     public $description;
     public $component_stone_type;
     public $component_stone_characteristics;
@@ -95,7 +95,9 @@ class CreateFieldWork extends Component
         $mural->provisional_dating = $this->provisional_dating;
         $mural->stratigraphic_reliability = $this->stratigraphic_reliability;
         $mural->identification_type = $this->identification_type;
-        $mural->preservation = $this->preservation;
+        $mural->preservation = !empty($this->preservation) 
+            ? implode(",", array_filter($this->preservation)) 
+            : null;
         $mural->description = $this->description;
         $mural->component_stone_type = $this->component_stone_type;
         $mural->component_stone_characteristics = $this->component_stone_characteristics;

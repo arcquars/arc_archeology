@@ -103,37 +103,37 @@
                 <div class="form-group">
                     <h6 class="bg-info p-1 text-uppercase">Conservación</h6>
                     <div class="form-check form-check-inline @error('preservation') is-invalid @enderror">
-                        <input class="form-check-input" type="radio" value="MUY DEFICIENTE" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="MUY DEFICIENTE" name="preservation"
                                wire:model="preservation" id="cfw_muy_deficiente"
                         >
                         <label class="form-check-label" for="cfw_muy_deficiente">Muy deficiente</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="DEFICIENTE" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="DEFICIENTE" name="preservation"
                                wire:model="preservation" id="cfw_deficiente"
                         >
                         <label class="form-check-label" for="cfw_deficiente">Deficiente</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="ACEPTABLE" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="ACEPTABLE" name="preservation"
                                wire:model="preservation" id="cfw_aceptable"
                         >
                         <label class="form-check-label" for="cfw_aceptable">Aceptable</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="SATISFACTORIA" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="SATISFACTORIA" name="preservation"
                                wire:model="preservation" id="cfw_satisfactoria"
                         >
                         <label class="form-check-label" for="cfw_satisfactoria">Satisfactoria</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="RETIRAR" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="RETIRAR" name="preservation"
                                wire:model="preservation" id="cfw_retirar"
                         >
                         <label class="form-check-label" for="cfw_retirar">Retirar</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="CONSERVAR" name="preservation"
+                        <input class="form-check-input" type="checkbox" value="CONSERVAR" name="preservation"
                                wire:model="preservation" id="cfw_conservar"
                         >
                         <label class="form-check-label" for="cfw_conservar">Conservar</label>

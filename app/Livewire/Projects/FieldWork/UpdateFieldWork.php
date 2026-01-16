@@ -27,7 +27,7 @@ class UpdateFieldWork extends Component
     public $provisional_dating;
     public $stratigraphic_reliability;
     public $identification_type;
-    public $preservation;
+    public $preservation = [];
     public $description;
     public $component_stone_type;
     public $component_stone_characteristics;
@@ -83,7 +83,10 @@ class UpdateFieldWork extends Component
         $this->provisional_dating = $this->muralStratigraphyCard->provisional_dating;
         $this->stratigraphic_reliability = $this->muralStratigraphyCard->stratigraphic_reliability;
         $this->identification_type = $this->muralStratigraphyCard->identification_type;
-        $this->preservation = $this->muralStratigraphyCard->preservation;
+
+        if($this->muralStratigraphyCard->preservation != null && !empty($this->muralStratigraphyCard->preservation))
+            $this->preservation = explode(',', $this->muralStratigraphyCard->preservation);
+        
         $this->description = $this->muralStratigraphyCard->description;
         $this->component_stone_type = $this->muralStratigraphyCard->component_stone_type;
         $this->component_stone_characteristics = $this->muralStratigraphyCard->component_stone_characteristics;
@@ -140,7 +143,12 @@ class UpdateFieldWork extends Component
         $this->muralStratigraphyCard->provisional_dating = $this->provisional_dating;
         $this->muralStratigraphyCard->stratigraphic_reliability = $this->stratigraphic_reliability;
         $this->muralStratigraphyCard->identification_type = $this->identification_type;
-        $this->muralStratigraphyCard->preservation = $this->preservation;
+
+        // $this->muralStratigraphyCard->preservation = $this->preservation;
+        $this->muralStratigraphyCard->preservation = !empty($this->preservation) 
+            ? implode(",", array_filter($this->preservation)) 
+            : null;
+
         $this->muralStratigraphyCard->description = $this->description;
         $this->muralStratigraphyCard->component_stone_type = $this->component_stone_type;
         $this->muralStratigraphyCard->component_stone_characteristics = $this->component_stone_characteristics;

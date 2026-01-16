@@ -30,7 +30,7 @@ class StoreMuralStratigraphyCardRequest extends FormRequest
             'fact' => 'nullable',
             'n_ue' => 'required|integer|min:1',
             'provisional_dating' => 'nullable',
-            'preservation' => 'nullable',
+            'preservation' => 'nullable|array',
             'description' => 'nullable',
             'component_stone_type' => 'nullable',
             'component_stone_characteristics' => 'nullable',

@@ -91,37 +91,37 @@
                     <label>Conservación</label>
                     <div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-muy_deficiente" value="MUY DEFICIENTE"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-muy_deficiente" value="MUY DEFICIENTE"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-muy_deficiente">Muy deficiente</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-deficiente" value="DEFICIENTE"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-deficiente" value="DEFICIENTE"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-deficiente">Deficiente</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-aceptable" value="ACEPTABLE"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-aceptable" value="ACEPTABLE"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-aceptable">Aceptable</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-satisfactoria" value="SATISFACTORIA"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-satisfactoria" value="SATISFACTORIA"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-satisfactoria">Satisfactoria</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-retirar" value="RETIRAR"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-retirar" value="RETIRAR"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-retirar">Retirar</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="conservation" id="c-conservar" value="CONSERVAR"
+                            <input class="form-check-input" type="checkbox" name="conservation" id="c-conservar" value="CONSERVAR"
                                    wire:model="conservation"
                             >
                             <label class="form-check-label" for="c-conservar">Conservar</label>

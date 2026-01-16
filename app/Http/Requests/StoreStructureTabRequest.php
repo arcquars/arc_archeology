@@ -30,7 +30,7 @@ class StoreStructureTabRequest extends FormRequest
             'i_provisional_dating' => 'nullable|string|max:200',
             'i_stratigraphic_reliability' => 'nullable|string|max:200',
             'i_type' => 'nullable|string|max:200',
-            'conservation' => 'nullable|string|max:200',
+            'conservation' => 'nullable|array',
             'interpretation_description' => 'nullable|string|max:2500',
             'aparejo' => 'nullable|max:200',
             'largo' => 'nullable|numeric|max:200',

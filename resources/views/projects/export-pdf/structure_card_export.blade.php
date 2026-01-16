@@ -8,6 +8,12 @@
 </head>
 <body>
 @include('projects.export-pdf.partials._document_head')
+@php
+    $conservation = [];
+    if($structureCard->conservation != null && !empty($structureCard->conservation))
+            $conservation = explode(',', $structureCard->conservation);
+@endphp
+
 <h5 class="h-seccion">IDENTIFICACIÓN</h5>
 <table class="table-input">
     <tbody>
@@ -58,42 +64,42 @@
     <tr>
         <td><p><b> Conservación </b></p></td>
         <td>
-            @if(strcmp($structureCard->conservation, 'MUY DEFICIENTE') == 0)
+            @if(in_array('MUY DEFICIENTE', $conservation))
                 <p><b>X Muy deficiente</b></p>
             @else
                 <p>Muy deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($structureCard->conservation, 'DEFICIENTE') == 0)
+            @if(in_array('DEFICIENTE', $conservation))
                 <p><b>X Deficiente</b></p>
             @else
                 <p>Deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($structureCard->conservation, 'ACEPTABLE') == 0)
+            @if(in_array('ACEPTABLE', $conservation))
                 <p><b>X Aceptable</b></p>
             @else
                 <p>Aceptable</p>
             @endif
         </td>
         <td>
-            @if(strcmp($structureCard->conservation, 'SATISFACTORIA') == 0)
+            @if(in_array('SATISFACTORIA', $conservation))
                 <p><b>X Satisfactoria</b></p>
             @else
                 <p>Satisfactoria</p>
             @endif
         </td>
         <td>
-            @if(strcmp($structureCard->conservation, 'RETIRAR') == 0)
+            @if(in_array('RETIRAR', $conservation))
                 <p><b>X Retirar</b></p>
             @else
                 <p>Retirar</p>
             @endif
         </td>
         <td>
-            @if(strcmp($structureCard->conservation, 'CONSERVAR') == 0)
+            @if(in_array('CONSERVAR', $conservation))
                 <p><b>X Conservar</b></p>
             @else
                 <p>Conservar</p>

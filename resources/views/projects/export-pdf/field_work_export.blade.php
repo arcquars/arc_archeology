@@ -9,6 +9,11 @@
 <body>
 @include('projects.export-pdf.partials._document_head')
 
+@php
+    $preservation = [];
+    if($muralStratigraphy->preservation != null && !empty($muralStratigraphy->preservation))
+            $preservation = explode(',', $muralStratigraphy->preservation);
+@endphp
 <h5 class="h-seccion">IDENTIFICACIÓN</h5>
 <table class="table-input-4">
     <tbody>
@@ -66,42 +71,42 @@
     <tr>
         <td><p><b>CONSERVACIÓN</b></p></td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'MUY DEFICIENTE') == 0)
+            @if(in_array('MUY DEFICIENTE', $preservation))
                 <p><b>X Muy deficiente</b></p>
             @else
                 <p>Muy deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'DEFICIENTE') == 0)
+            @if(in_array('DEFICIENTE', $preservation))
                 <p><b>X Deficiente</b></p>
             @else
                 <p>Deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'ACEPTABLE') == 0)
+            @if(in_array('ACEPTABLE', $preservation))
                 <p><b>X Aceptable</b></p>
             @else
                 <p>Aceptable</p>
             @endif
         </td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'SATISFACTORIA') == 0)
+            @if(in_array('SATISFACTORIA', $preservation))
                 <p><b>X Satisfactoria</b></p>
             @else
                 <p>Satisfactoria</p>
             @endif
         </td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'RETIRAR') == 0)
+            @if(in_array('RETIRAR', $preservation))
                 <p><b>X Retirar</b></p>
             @else
                 <p>Retirar</p>
             @endif
         </td>
         <td>
-            @if(strcmp($muralStratigraphy->preservation, 'CONSERVAR') == 0)
+            @if(in_array('CONSERVAR', $preservation))
                 <p><b>X Conservar</b></p>
             @else
                 <p>Conservar</p>
