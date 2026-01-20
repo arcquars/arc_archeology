@@ -49,6 +49,9 @@
                 <td>{{ $material->ue }}</td>
                 <td>{{ $material->chronology }}</td>
                 <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$material->id}})">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMaterialRecount', {materialRecountId: {{$material->id}} })">
                         <i class="far fa-eye"></i>
                     </button>

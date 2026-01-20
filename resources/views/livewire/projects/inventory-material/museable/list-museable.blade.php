@@ -66,6 +66,9 @@
                 <td>{{ $material->century }}</td>
                 <td>{{ $material->material_type }}</td>
                 <td class="text-right">
+                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$material->id}})">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
                     <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMuseable', {materialId: {{$material->id}} })">
                         <i class="far fa-eye"></i>
                     </button>

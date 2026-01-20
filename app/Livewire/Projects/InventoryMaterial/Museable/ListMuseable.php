@@ -5,6 +5,8 @@ namespace App\Livewire\Projects\InventoryMaterial\Museable;
 use App\Models\Material;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 
 class ListMuseable extends Component
 {
@@ -58,6 +60,18 @@ class ListMuseable extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function exportPdf($id){
+        $material = Material::find($id);
+        $title = 'FICHA INVENTARIO DE MATERIALES';
+        $pdf = Pdf::loadView('projects.export-pdf.inventario-materiales-museable', compact('title', 'material'));
+        $filename = 'reporte_inventary_materials_museable' . $id . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function render()

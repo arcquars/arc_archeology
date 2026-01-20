@@ -5,6 +5,8 @@ namespace App\Livewire\Projects\InventoryMaterial\MaterialRecount;
 use App\Models\MaterialRecount;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 
 class ListMaterialRecount extends Component
 {
@@ -52,6 +54,18 @@ class ListMaterialRecount extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function exportPdf($id){
+        $material = MaterialRecount::find($id);
+        $title = 'FICHA INVENTARIO DE MATERIALES RECUENTO';
+        $pdf = Pdf::loadView('projects.export-pdf.inventario-materiales-recuento', compact('title', 'material'));
+        $filename = 'reporte_inventary_materials_recuento' . $id . '_' . now()->format('Ymd_His') . '.pdf';
+        return Response::streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, $filename, [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function render()
