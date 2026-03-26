@@ -382,6 +382,11 @@ if($rest2 < 0){
     </tbody>
 </table>
 
+<hr class="d-hr">
+<div class="d-textarea">
+    <label>Comentario</label>
+    <p>{{ $structureCard->comments }}</p>
+</div>
 
 </body>
 </html>

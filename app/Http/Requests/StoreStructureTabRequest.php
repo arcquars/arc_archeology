@@ -36,6 +36,7 @@ class StoreStructureTabRequest extends FormRequest
             'largo' => 'nullable|numeric|max:200',
             'anchura' => 'nullable|numeric|max:200',
             'alto_grueso' => 'nullable|numeric|max:200',
+            'comments' => 'nullable|string|max:2500',
             'orientacion_1' => 'nullable|max:200',
             'orientacion_2' => 'nullable|max:200',
             'stratigraphy_equals' => 'nullable|string|max:200',

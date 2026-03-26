@@ -29,7 +29,7 @@ class CreateStructureTab extends Component
     public $interpretation_description, $aparejo, $largo, $anchura, $alto_grueso, $orientacion_1, $orientacion_2;
     public $stratigraphy_equals, $stratigraphy_support_provided, $stratigraphy_covered_by, $stratigraphy_filling_by;
     public $stratigraphy_cut_by, $stratigraphy_equivale, $stratigraphy_supported_by, $stratigraphy_overlaps_or_covers;
-    public $stratigraphy_fill_in, $stratigraphy_cut_to;
+    public $stratigraphy_fill_in, $stratigraphy_cut_to, $comments;
 
     public $quotes = []; // Array para almacenar las "quotes"
     public $maxQuotes = 5; // Límite máximo de quotes
@@ -129,6 +129,7 @@ class CreateStructureTab extends Component
         $structureTab->i_provisional_dating = $this->i_provisional_dating;
         $structureTab->i_stratigraphic_reliability = $this->i_stratigraphic_reliability;
         $structureTab->i_type = $this->i_type;
+        $structureTab->comments = $this->comments;
 
         $structureTab->conservation = !empty($this->conservation) 
             ? implode(",", array_filter($this->conservation)) 

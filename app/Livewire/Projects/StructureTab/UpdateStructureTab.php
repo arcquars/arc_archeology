@@ -28,7 +28,7 @@ class UpdateStructureTab extends Component
     public $interpretation_description, $aparejo, $largo, $anchura, $alto_grueso, $orientacion_1, $orientacion_2;
     public $stratigraphy_equals, $stratigraphy_support_provided, $stratigraphy_covered_by, $stratigraphy_filling_by;
     public $stratigraphy_cut_by, $stratigraphy_equivale, $stratigraphy_supported_by, $stratigraphy_overlaps_or_covers;
-    public $stratigraphy_fill_in, $stratigraphy_cut_to;
+    public $stratigraphy_fill_in, $stratigraphy_cut_to, $comments;
 
     public $quotes = []; // Array para almacenar las "quotes"
     public $maxQuotes = 10; // Límite máximo de quotes
@@ -68,6 +68,8 @@ class UpdateStructureTab extends Component
         $this->i_provisional_dating = $this->structureTab->i_provisional_dating;
         $this->i_stratigraphic_reliability = $this->structureTab->i_stratigraphic_reliability;
         $this->i_type = $this->structureTab->i_type;
+
+        $this->comments = $this->structureTab->comments;
 
         $this->conservation = $this->structureTab->conservation;
         if($this->structureTab->conservation != null && !empty($this->structureTab->conservation))
@@ -234,6 +236,7 @@ class UpdateStructureTab extends Component
         $this->structureTab->stratigraphy_overlaps_or_covers = $this->stratigraphy_overlaps_or_covers;
         $this->structureTab->stratigraphy_fill_in = $this->stratigraphy_fill_in;
         $this->structureTab->stratigraphy_cut_to = $this->stratigraphy_cut_to;
+        $this->structureTab->comments = $this->comments;
 
         if($this->structureTab->save()){
 

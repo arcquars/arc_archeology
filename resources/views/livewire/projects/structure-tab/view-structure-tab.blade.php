@@ -297,7 +297,13 @@
                     @endforeach
                 </div>
             @endif
-
+            
+            <div class="form-group">
+                <label>Comentario</label>
+                <div class="bg-light border rounded p-1" style="min-height: 30px;">
+                    {{ $structureTab->comments }}
+                </div>
+            </div>
 
         </div>
         <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">

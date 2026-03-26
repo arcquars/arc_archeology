@@ -7,27 +7,57 @@
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'muralStratigraphyCard' ? 'active' : '' }}"
+                <a href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'muralStratigraphyCard' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('muralStratigraphyCard')"
                 >
                     1. Ficha estratigrafia mural
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listStratumTab' ? 'active' : '' }}"
+                <a href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'listStratumTab' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('listStratumTab')"
                 >
                     2. Ficha de estrato
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'structureSheet' ? 'active' : '' }}"
+                <a href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'structureSheet' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('structureSheet')"
                 >
                     3. Ficha de estructura
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'humanRemainsFile' ? 'active' : '' }}"
+                <a href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'humanRemainsFile' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('humanRemainsFile')"
                 >
                     4. Ficha restos humanos
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'listUuEe' ? 'active' : '' }}"
+                <a href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'listUuEe' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('listUuEe')"
                 >
                     Listado UU.EE.

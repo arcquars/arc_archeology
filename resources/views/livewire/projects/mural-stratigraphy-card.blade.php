@@ -1,5 +1,14 @@
 <div>
-    <h4>Fichas estratigrafia mural</h4>
+    <div class="d-flex justify-content-between">
+        <h4>Fichas estratigrafia mural</h4>
+        @if(auth()->user()->hasRole('admin'))
+            <button class="btn btn-sm btn-arqueologia-primary" type="button" title="Nueva ficha estratigrafica mural"
+                    wire:click="$dispatch('toggleCreateFieldWork')">
+                <i class="far fa-plus-square"></i>
+                Nueva ficha estratigrafica mural
+            </button>
+        @endif
+    </div>
     <div class="row">
         <div class="col-md-3 form-group">
             <label for="pName">Fecha</label>
@@ -15,20 +24,15 @@
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="button" title="Buscar..."
+                <button class="btn btn-sm btn-danger" type="button" title="Buscar..."
                         wire:click="applySearch"
                 >
                     <i class="fas fa-search"></i>
                 </button>
-                <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
+                <button  class="btn btn-sm btn-arqueologia-brown" title="Limpiar filtros de busqueda" type="button"
                    wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
-                </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo proyecto"
-                        wire:click="$dispatch('toggleCreateFieldWork')"
-                >
-                    <i class="far fa-plus-square"></i>
                 </button>
             </div>
         </div>
@@ -58,20 +62,20 @@
                 <td>{{ $mural->msc_date }}</td>
                 <td>{{ $mural->floor }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$mural->id}})">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="exportPdf({{$mural->id}})">
                         <i class="fas fa-file-pdf"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleViewFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
 {{--                    <button class="btn btn-sm btn-primary" wire:click="reloadViewFieldWork({{ $mural->id }})">--}}
 {{--                        <i class="far fa-eye"></i>--}}
 {{--                    </button>--}}
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleUpdateFieldWork', {muralId: {{$mural->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
                     @if(auth()->user()->hasRole('admin'))
-                        <a href="{{route('projects.show.mural.stratigraphy.card.log', ['muralStratigraphyCardId' => $mural->id])}}" target="_blank" class="btn btn-sm btn-info" title="Registro de cambios" >
+                        <a href="{{route('projects.show.mural.stratigraphy.card.log', ['muralStratigraphyCardId' => $mural->id])}}" target="_blank" class="btn btn-sm btn-arqueologia-brown" title="Registro de cambios" >
                             <i class="fas fa-history"></i>
                         </a>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteFw', {muralId: {{$mural->id}} })">

@@ -71,7 +71,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" wire:click="closeModal">Cancelar</button>
-                        <button type="submit" class="btn btn-sm btn-primary" >Confirmar</button>
+                        <button type="submit" class="btn btn-sm btn-arqueologia-primary" >Confirmar</button>
                     </div>
                 </div>
             </form>

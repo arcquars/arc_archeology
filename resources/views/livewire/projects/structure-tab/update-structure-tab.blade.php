@@ -388,58 +388,6 @@
                         </div>
                     </div>
                 </div>
-
-{{--                <div class="row">--}}
-{{--                    <div class="col-md-12">--}}
-{{--                        <h6 class="bg-info p-1 text-center mb-1">Cotas</h6>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <h5>--}}
-{{--                     Botón para añadir Cota --}}
-{{--                    <button wire:click="addQuote(null, '', '')" class="btn btn-outline-info btn-sm" type="button"--}}
-{{--                            @if (count($quotes) >= $maxQuotes) disabled @endif>--}}
-{{--                        Añadir Cota ({{ count($quotes) }} / {{ $maxQuotes }})--}}
-{{--                    </button>--}}
-{{--                </h5>--}}
-{{--                <div class="row">--}}
-{{--                    @foreach($quotes as $index => $quote)--}}
-{{--                        <div class="col-md-3">--}}
-{{--                            <div class="card">--}}
-{{--                                <div class="card-header">--}}
-{{--                                    <div class="d-flex justify-content-between align-items-center">--}}
-{{--                                        <span>Cota #{{ $index + 1 }}</span>--}}
-{{--                                        <button type="button" wire:click="removeQuote({{ $index }})" class="btn btn-danger btn-sm">--}}
-{{--                                            Eliminar--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="form-group mb-2">--}}
-{{--                                        <label for="surface-{{ $index }}">Superficie:</label>--}}
-{{--                                        <input type="number" id="surface-{{ $index }}" step="0.01"--}}
-{{--                                               wire:model="quotes.{{ $index }}.surface"--}}
-{{--                                               class="form-control @error('quotes.' . $index . '.surface') is-invalid @enderror"--}}
-{{--                                               placeholder="Ej: 100.50">--}}
-{{--                                        @error('quotes.'.$index.'.surface')--}}
-{{--                                        <span class="invalid-feedback">{{ $message }}</span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group mb-2">--}}
-{{--                                        <label for="information-{{ $index }}">Información:</label>--}}
-{{--                                        <input type="number" id="information-{{ $index }}" step="0.01"--}}
-{{--                                               wire:model="quotes.{{ $index }}.information"--}}
-{{--                                               rows="3"--}}
-{{--                                               class="form-control @error('quotes.' . $index . '.information') is-invalid @enderror"--}}
-{{--                                               placeholder="Detalles adicionales sobre la cota" />--}}
-{{--                                        @error('quotes.'. $index .'.information')--}}
-{{--                                        <span class="invalid-feedback">{{ $message }}</span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
                 <div class="row">
                     <div class="col-md-12">
                         <h6 class="bg-info p-1 text-center mb-1">DIMENSIONES EN CM DE LOS LADRILLOS (DE PARED O PAVIMENTO), TOMAR COMO MÍNIMO 25 EJEMPLOS DE PIEZAS COMPLETAS (si es posible).</h6>
@@ -542,9 +490,17 @@
                     @endforeach
                 </div>
 
-
-
-
+                <div class="form-group">
+                    <label for="comments">Comentario</label>
+                    <textarea 
+                        id="comments" 
+                        rows="3" 
+                        class="form-control @error('comments') is-invalid @enderror" 
+                        wire:model="comments"></textarea>
+                    @error('comments')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
             <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">
                 <button class="btn btn-sm btn-dark" type="button" wire:click="$dispatch('close-structure-tab-update')">Cerrar</button>

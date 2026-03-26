@@ -453,10 +453,17 @@
                         </div>
                     @endforeach
                 </div>
-
-
-
-
+                <div class="form-group">
+                    <label for="comments">Comentario</label>
+                    <textarea 
+                        id="comments" 
+                        rows="3" 
+                        class="form-control @error('comments') is-invalid @enderror" 
+                        wire:model="comments"></textarea>
+                    @error('comments')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
             <div class="card-footer bg-transparent border-top border-width-2 text-right p-2">
                 <button class="btn btn-sm btn-dark" type="button" wire:click="$dispatch('close-structure-tab-create')">Cerrar</button>

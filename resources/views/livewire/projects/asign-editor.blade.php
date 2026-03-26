@@ -1,8 +1,8 @@
 <div>
     @if($project)
-    <div class="card card-outline card-primary">
+    <div class="card card-outline card-danger">
         <div class="card-header">
-            <h3 class="card-title text-primary">Proyecto: {{ $project->name }}</h3>
+            <h3 class="card-title text-danger">Proyecto: {{ $project->name }}</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -12,7 +12,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
-            <button class="btn btn-sm btn-primary mb-2" onclick="@this.dispatch('openUserSearchModal', { projectId: {{ $project->id }} })"><i class="far fa-plus-square"></i></button>
+            <button class="btn btn-sm btn-danger mb-2" onclick="@this.dispatch('openUserSearchModal', { projectId: {{ $project->id }} })"><i class="far fa-plus-square"></i></button>
             @livewire('users.user-search-assign-modal')
             <div class="table-responsive">
                 <table class="table table-sm table-striped">

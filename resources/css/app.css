@@ -19,3 +19,230 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+:root {
+    --text: #343a40; /* Gris oscuro estándar de AdminLTE */
+
+    --arena:       #F5F0E6;
+  --arena-dk:    #EAE3D2;   /* arena oscuro para bordes y fondos alternos */
+  --arena-dkr:   #D6CCBA;   /* separadores */
+  --rojo:        #c1272d;
+  --rojo-dk:     #9b1e23;
+  --rojo-lt:     #f5e0e1;
+  --cafe:        #7A6348;   /* café derivado de la paleta arena */
+  --cafe-claro:  #D8AF7F;
+  --cafe-lt:     #A0896E;
+  --text:        #2C1F14;   /* texto principal — marrón oscuro cálido */
+  --text-2:      #6B5744;   /* texto secundario */
+  --text-3:      #9E8B78;   /* placeholder / hints */
+  --white:       #FFFDF9;
+  --shadow:      0 2px 8px rgba(44,31,20,.08);
+  --shadow-md:   0 4px 20px rgba(44,31,20,.12);
+  --rad:         8px;
+}
+
+.btn-arqueologia-primary { 
+  color: #FFFFFF; 
+  background-color: #C1272D; 
+  border-color: #C1272D; 
+}
+.btn-arqueologia-primary:hover,
+.btn-sample:active,
+.btn-sample.active { 
+  background-color: #9E282C; 
+  color: #FFFFFF;
+}
+
+/* Manejo del foco para accesibilidad */
+.btn-arqueologia-primary:focus {
+  color: #FFFFFF;
+  background-color: #a61d23;
+  box-shadow: 0 0 0 0.2rem rgba(193, 39, 45, 0.5); /* Ring de color suave */
+}
+
+/* btn-arqueologia-brown */
+.btn-arqueologia-brown { 
+  color: #FFFFFF; 
+  background-color: var(--cafe); 
+  border-color: var(--cafe-lt); 
+}
+.btn-arqueologia-brown:hover,
+.btn-sample:active,
+.btn-sample.active { 
+  background-color: var(--cafe-claro); 
+  color: #FFFFFF;
+}
+
+/* Manejo del foco para accesibilidad */
+.btn-arqueologia-brown:focus {
+  color: #FFFFFF;
+  background-color: var(--cafe-claro);
+  box-shadow: 0 0 0 0.2rem rgba(122, 99, 72, 0.5); /* Ring de color suave */
+}
+
+/* Integración con los Badges de AdminLTE */
+.btn-arqueologia-primary .badge { 
+  color: #C1272D; 
+  background-color: #FFFFFF; 
+}
+
+.content-wrapper {
+  background-color: #F5F0E6 !important;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 600;
+  color: var(--text);
+  display: flex; align-items: center; gap: .75rem;
+}
+.page-title::before {
+  content: '';
+  display: block; width: 5px; height: 2rem;
+  background: var(--rojo);
+  border-radius: 3px;
+}
+
+/* 2. Aplicamos tu diseño directamente al selector h1 del header */
+.content-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; 
+    font-weight: 600;
+    color: var(--text);
+    display: flex; 
+    align-items: center; 
+    gap: .75rem;
+}
+
+/* 3. El indicador vertical (la barrita roja) */
+.content-header h1::before {
+    content: '';
+    display: block; 
+    width: 5px; 
+    height: 2rem;
+    background: var(--rojo);
+    border-radius: 3px;
+}
+
+.btn-nuevo {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: var(--rojo);
+  color: #fff; border: none; border-radius: var(--rad);
+  padding: .58rem 1.25rem; font-family: 'Lato', sans-serif;
+  font-size: .82rem; font-weight: 700; letter-spacing: .05em;
+  cursor: pointer; transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 3px 12px rgba(193,39,45,.3);
+}
+.btn-nuevo:hover { background: var(--rojo-dk); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(193,39,45,.35); }
+
+/* ── FILTROS ── */
+.filters-card {
+  background: var(--white);
+  border-radius: var(--rad);
+  border: 1px solid var(--arena-dkr);
+  box-shadow: var(--shadow);
+  padding: 1.2rem 1.4rem 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters-title {
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: .9rem;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr auto;
+  gap: .8rem;
+  align-items: end;
+}
+
+.fg { display: flex; flex-direction: column; gap: .28rem; }
+.fg label {
+  font-size: .7rem; font-weight: 700; color: var(--text-2);
+  letter-spacing: .07em; text-transform: uppercase;
+}
+.fg input {
+  border: 1.5px solid var(--arena-dk);
+  border-radius: 6px; padding: .52rem .75rem;
+  font-family: 'Lato', sans-serif; font-size: .88rem;
+  color: var(--text); background: var(--arena);
+  outline: none; transition: border .15s, box-shadow .15s;
+}
+.fg input:focus {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(193,39,45,.1);
+  background: var(--white);
+}
+.fg input::placeholder { color: var(--text-3); }
+
+.filter-actions { display: flex; gap: .5rem; align-items: flex-end; }
+
+.bg-arqueologia-danger {
+  background: #A67C52 repeat-x !important;
+  color: #fff;
+  font-weight: 500;
+}
+
+.bg-arqueologia-brown {
+  background: #A67C52 repeat-x !important;
+  color: #fff;
+  font-weight: 500;
+}
+
+.bg-arqueologia-brown.btn:not(:disabled):not(.disabled):active, .bg-arqueologia-brown.btn:not(:disabled):not(.disabled).active, .bg-arqueologia-brown.btn:active, .bg-arqueologia-brown.btn.active {
+  background-color: #735A40 !important;
+  border-color: #A67C52;
+  color: #fff;
+}
+
+.bg-arqueologia-brown-1 {
+  background: #735A40 repeat-x !important;
+  color: #fff;
+  font-weight: 500;
+}
+
+.bg-arqueologia-brown-1.btn:not(:disabled):not(.disabled):active, .bg-arqueologia-brown-1.btn:not(:disabled):not(.disabled).active, .bg-arqueologia-brown-1.btn:active, .bg-arqueologia-brown-1.btn.active {
+  background-color: #A67C52 !important;
+  border-color: #735A40;
+  color: #fff;
+}
+
+.bg-arqueologia-sand {
+  background: #E8E1D0 repeat-x !important;
+  color: #6B4C2A;
+  font-weight: 500;
+}
+
+.bg-arqueologia-sand.btn:not(:disabled):not(.disabled):active, .bg-arqueologia-sand.btn:not(:disabled):not(.disabled).active, .bg-arqueologia-sand.btn:active, .bg-arqueologia-sand.btn.active {
+  background-color: #E8E1D0 !important;
+  border-color: #E8E1D0;
+  color: #6B4C2A;
+}
+
+.border-brown {
+  border-color: #A67C52 !important;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff !important;
+  font-weight: 800;
+  background-color: #735A40;
+  border-color: #A67C52;
+}
+
+.border-b-2 { border-bottom-width: 2px !important; }
+.border-b-3 { border-bottom-width: 3px !important; }
+.border-b-4 { border-bottom-width: 4px !important; }
+
+.text-icon-arqueologia {
+    color: var(--cafe) !important; /* El color naranja de los botones anteriores */
+    background-color: rgba(245, 240, 230, 0.3);
+
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 0.8em;          /* Un poco más pequeño para que se vea como un marcador */
+    vertical-align: middle;    /* Alineación perfecta con el texto */
+}

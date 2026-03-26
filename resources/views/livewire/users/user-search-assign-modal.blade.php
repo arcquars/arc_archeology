@@ -57,7 +57,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" wire:click="closeModal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" wire:click="assignUser" @if(!$selectedUserId) disabled @endif>
+                        <button type="button" class="btn btn-arqueologia-primary" wire:click="assignUser" @if(!$selectedUserId) disabled @endif>
                             <span wire:loading.remove wire:target="assignUser">Asignar Usuario</span>
                             <span wire:loading wire:target="assignUser">Asignando... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
                         </button>

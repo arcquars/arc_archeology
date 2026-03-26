@@ -1,0 +1,23 @@
+.btn-arqueologia-primary { 
+  color: #FFFFFF; 
+  background-color: #C1272D; 
+  border-color: #C1272D; 
+}
+.btn-arqueologia-primary:hover,
+.btn-sample:active,
+.btn-sample.active { 
+  background-color: #9E282C; 
+}
+
+/* Manejo del foco para accesibilidad */
+.btn-arqueologia-primary:focus {
+  color: #FFFFFF;
+  background-color: #a61d23;
+  box-shadow: 0 0 0 0.2rem rgba(193, 39, 45, 0.5); /* Ring de color suave */
+}
+
+/* Integración con los Badges de AdminLTE */
+.btn-arqueologia-primary .badge { 
+  color: #C1272D; 
+  background-color: #FFFFFF; 
+}
