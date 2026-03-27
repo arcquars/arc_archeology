@@ -575,7 +575,7 @@
                 @include('livewire.projects.stratum-tab.partials._stratum-form-stratum')
 
                 <div class="form-group">
-                    <label for="description">Descripción</label>
+                    <label for="description">Descripción de la cerámica y otros materiales</label>
                     <textarea id="" rows="3" class="form-control form-control-sm" wire:model="description"></textarea>
                 </div>
 

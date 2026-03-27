@@ -1755,7 +1755,7 @@
 
 <hr class="d-hr">
 <div class="d-textarea">
-    <label>Descripción</label>
+    <label>Descripción de la cerámica y otros materiales</label>
     <p>{{ $stratumCard->description }}</p>
 </div>
 

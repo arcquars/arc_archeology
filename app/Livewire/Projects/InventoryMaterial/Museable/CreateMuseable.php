@@ -74,7 +74,7 @@ class CreateMuseable extends Component
                 }
             }
 
-            if(strcmp($this->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0){
+            if(strcmp($this->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($this->material_type, \App\Models\Material::MATERIAL_TYPE_OTHERS) == 0){
                 Ceramic::create([
                     'material_id' => $material->id,
                     'height' => $this->height,

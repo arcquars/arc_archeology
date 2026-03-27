@@ -11,6 +11,16 @@
         <div class="card border border-info mb-2 mt-2">
             <div class="card-header p-2 text-info">Editar Material</div>
             <div class="card-body text-secondary p-2">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong class="font-bold">¡Ups! Algo salió mal:</strong>
+                        <ul class="mt-2 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <label for="imm-ue">UE</label>
@@ -134,13 +144,20 @@
                         >
                         <label class="form-check-label" for="imm-azulejos">{{ \App\Models\Material::MATERIAL_TYPE_TILE }}</label>
                     </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="imm-otros" value="{{ \App\Models\Material::MATERIAL_TYPE_OTHERS }}"
+                               wire:model="material_type" wire:change="showType('{{ \App\Models\Material::MATERIAL_TYPE_OTHERS }}')" disabled
+                        >
+                        <label class="form-check-label" for="imm-otros">{{ \App\Models\Material::MATERIAL_TYPE_OTHERS }}</label>
+                    </div>
                     @error('material_type')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
                 </div>
 
-                @if(strcmp($changeType, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0)
+                {{ $changeType }}
+                @if(strcmp($changeType, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($changeType, \App\Models\Material::MATERIAL_TYPE_OTHERS) == 0)
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="imm-height">Altura</label>
@@ -222,7 +239,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="ea-photos">Fotografias</label>
+                        <label for="ea-photos">Imágenes/dibujo</label>
                         <input type="file" class="form-control form-control-sm @error('photos.*') is-invalid @enderror"
                                wire:model="photos" id="ea-photos" multiple
                         />

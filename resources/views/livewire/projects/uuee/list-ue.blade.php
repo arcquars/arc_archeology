@@ -15,17 +15,17 @@
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="button" title="Buscar..."
+                <button class="btn btn-sm btn-danger" type="button" title="Buscar..."
                         wire:click="applySearch"
                 >
                     <i class="fas fa-search"></i>
                 </button>
-                <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
+                <button  class="btn btn-sm btn-arqueologia-brown" title="Limpiar filtros de busqueda" type="button"
                          wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Exportar a pdf"
+                <button class="btn btn-sm btn-arqueologia-brown" type="button" title="Exportar a pdf"
                         wire:click="exportPdf()"
                 >
                     <i class="fas fa-file-pdf"></i>

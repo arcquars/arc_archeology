@@ -290,7 +290,7 @@
             <hr class="bg-primary">
 
             <div class="form-group">
-                <label>Descripción</label>
+                <label>Descripción de la cerámica y otros materiales</label>
                 <div class="bg-light p-1 border rounded">
                     {{ $stratumCard->description }}
                 </div>

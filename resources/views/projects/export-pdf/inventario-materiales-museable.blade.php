@@ -79,7 +79,7 @@
             <p class="p-9">{{ $material->decoration }}</p>
         </td>
     </tr>
-    @if(strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0)
+    @if(strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_OTHERS) == 0)
         <tr>
             <td>
                 <label class="label-5">Altura</label>
@@ -142,7 +142,7 @@
     @endif
     </tbody>
 </table>
-<h5 class="h-seccion">FOTO</h5>
+<h5 class="h-seccion">Imágenes/dibujo</h5>
 <?php
 $photoChunks = array_chunk($material->urlPhotosPublicAttribute(), 3);
 ?>

@@ -40,7 +40,7 @@ class StoreMaterialRequest extends FormRequest
 
         $ruleType = [];
 
-        if(strcmp($materialType, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0){
+        if(strcmp($materialType, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($materialType, \App\Models\Material::MATERIAL_TYPE_OTHERS) == 0){
             $ruleType = [
                 'height' => 'required',
                 'diameter_base' => 'nullable',

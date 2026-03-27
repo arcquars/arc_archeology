@@ -1,5 +1,14 @@
 <div>
-    <h4>Inventario de inventario Mouseable</h4>
+    <div class="d-flex justify-content-between">
+        <h4>Inventario Mouseable</h4>
+        @if(auth()->user()->hasRole('admin'))
+            <button class="btn btn-sm btn-arqueologia-primary" type="button" title="Nueva ficha estratigrafica mural"
+                    wire:click="$dispatch('toggleCreateMuseable')"
+                <i class="far fa-plus-square"></i>
+                Nuevo Inventario Mouseable
+            </button>
+        @endif
+    </div>
     <div class="row">
         <div class="col-md-3 form-group">
             <label for="imm-object">Objecto</label>
@@ -15,20 +24,15 @@
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="button" title="Buscar..."
+                <button class="btn btn-sm btn-danger" type="button" title="Buscar..."
                         wire:click="applySearch"
                 >
                     <i class="fas fa-search"></i>
                 </button>
-                <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
+                <button  class="btn btn-sm btn-arqueologia-brown" title="Limpiar filtros de busqueda" type="button"
                          wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
-                </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
-                        wire:click="$dispatch('toggleCreateMuseable')"
-                >
-                    <i class="far fa-plus-square"></i>
                 </button>
             </div>
         </div>
@@ -66,13 +70,13 @@
                 <td>{{ $material->century }}</td>
                 <td>{{ $material->material_type }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$material->id}})">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="exportPdf({{$material->id}})">
                         <i class="fas fa-file-pdf"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewMuseable', {materialId: {{$material->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleViewMuseable', {materialId: {{$material->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateMuseable', {materialId: {{$material->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleUpdateMuseable', {materialId: {{$material->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteMaterial', {materialId: {{$material->id}} })">

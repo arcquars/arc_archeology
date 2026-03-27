@@ -54,9 +54,8 @@ class UpdateMuseable extends Component
         $this->material_type = $this->material->material_type;
 
         $this->project_id = $this->material->project_id;
-
-        if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0){
-            $this->changeType = Material::MATERIAL_TYPE_CERAMIC;
+        $this->changeType = $this->material->material_type;
+        if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($this->material_type, Material::MATERIAL_TYPE_OTHERS) == 0){
             $ceramic = $this->material->ceramic;
             $this->height = $ceramic->height;
             $this->diameter_base = $ceramic->diameter_base;
@@ -64,7 +63,6 @@ class UpdateMuseable extends Component
             $this->diameter_mouth = $ceramic->diameter_mouth;
             $this->description = $ceramic->description;
         } else {
-            $this->changeType = Material::MATERIAL_TYPE_TILE;
             if($this->material->tile){
                 $tile = $this->material->tile;
                 $this->side_max = $tile->side_max;
@@ -99,7 +97,7 @@ class UpdateMuseable extends Component
             }
         }
 
-        if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0){
+        if(strcmp($this->material_type, Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($this->material_type, Material::MATERIAL_TYPE_OTHERS) == 0){
             $ceramic = $this->material->ceramic;
             $ceramic->height = $this->height;
             $ceramic->diameter_base = $this->diameter_base;

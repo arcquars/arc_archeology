@@ -5,17 +5,38 @@
     <div class="row mt-2">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'CatalogArchitecturalElements' ? 'active' : '' }}"
+                <a 
+                    href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'CatalogArchitecturalElements' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('CatalogArchitecturalElements')"
                 >
                     1. Catalogo elementos arquitectónico
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'inventoryMaterialMuseumable' ? 'active' : '' }}"
+                <a 
+                    href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'inventoryMaterialMuseumable' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('inventoryMaterialMuseumable')"
                 >
                     2. Inventario de materiales, museable
                 </a>
-                <a href="#" class="list-group-item list-group-item-action {{ $componenteActivo === 'inventoryMaterialCount' ? 'active' : '' }}"
+                <a 
+                    href="#" 
+                    class="
+                        list-group-item 
+                        list-group-item-action 
+                        list-group-item-transparent
+                        text-dark
+                        {{ $componenteActivo === 'inventoryMaterialCount' ? 'active' : '' }}"
                    wire:click="seleccionarComponente('inventoryMaterialCount')"
                 >
                     3. Inventario de materiales, recuento

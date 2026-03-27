@@ -95,7 +95,7 @@
 
 
 
-            @if(strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0)
+            @if(strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_CERAMIC) == 0 || strcmp($material->material_type, \App\Models\Material::MATERIAL_TYPE_OTHERS) == 0)
                 <div class="row">
                     <div class="col-md-3 form-group">
                         <label>Altura</label>
@@ -152,7 +152,7 @@
             @endif
             
             <hr class="bg-primary">
-            <label for="cfw_photos">Foto</label>
+            <label for="cfw_photos">Imágenes/dibujo</label>
             <div class="row">
                 @foreach($material->urlPhotosPublicAttribute() as $url => $pUrl)
                     <div class="col-md-3">

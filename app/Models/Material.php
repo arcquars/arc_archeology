@@ -13,6 +13,7 @@ class Material extends Model
 
     const MATERIAL_TYPE_CERAMIC = 'Cerámica';
     const MATERIAL_TYPE_TILE = 'Azulejo';
+    const MATERIAL_TYPE_OTHERS = 'Otros';
     protected $fillable = [
         'ue',
         'object',

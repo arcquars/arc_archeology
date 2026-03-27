@@ -1,5 +1,15 @@
 <div>
-    <h4>Catalogo elementos arquitectonico</h4>
+    <div class="d-flex justify-content-between">
+        <h4>Catalogo elementos arquitectonico</h4>
+        @if(auth()->user()->hasRole('admin'))
+            <button class="btn btn-sm btn-arqueologia-primary" type="button" title="Nueva ficha estratigrafica mural"
+                    wire:click="$dispatch('toggleCreateFieldWork')"
+                <i class="far fa-plus-square"></i>
+                Nuevo catalogo de elementos arquitectonicos
+            </button>
+        @endif
+    </div>
+    
     <div class="row">
         <div class="col-md-3 form-group">
             <label for="intervention">Fecha</label>
@@ -15,20 +25,15 @@
         </div>
         <div class="col-md-3 d-flex flex-column justify-content-end">
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="button" title="Buscar..."
+                <button class="btn btn-sm btn-danger" type="button" title="Buscar..."
                         wire:click="applySearch"
                 >
                     <i class="fas fa-search"></i>
                 </button>
-                <button  class="btn btn-sm btn-primary" title="Limpiar filtros de busqueda" type="button"
+                <button  class="btn btn-sm btn-arqueologia-brown" title="Limpiar filtros de busqueda" type="button"
                          wire:click="clearSearch"
                 >
                     <i class="fas fa-eraser"></i>
-                </button>
-                <button class="btn btn-sm btn-primary" type="button" title="Crear nuevo "
-                        wire:click="$dispatch('toggleCreateFieldWork')"
-                >
-                    <i class="far fa-plus-square"></i>
                 </button>
             </div>
         </div>
@@ -62,13 +67,13 @@
                 <td>{{ $catalogueArchitectural->proceed_ue }}</td>
                 <td>{{ $catalogueArchitectural->proceed_acronym }}</td>
                 <td class="text-right">
-                    <button class="btn btn-sm btn-primary" wire:click="exportPdf({{$catalogueArchitectural->id}})">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="exportPdf({{$catalogueArchitectural->id}})">
                         <i class="fas fa-file-pdf"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleViewCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleViewCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
                         <i class="far fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-primary" wire:click="$dispatch('toggleUpdateCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
+                    <button class="btn btn-sm btn-arqueologia-brown" wire:click="$dispatch('toggleUpdateCatArch', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
                         <i class="far fa-edit"></i>
                     </button>
                     <button class="btn btn-sm btn-danger" type="button" wire:click="$dispatch('openModalDeleteCatalogueArchitectural', {catalogueArchitecturalId: {{$catalogueArchitectural->id}} })">
