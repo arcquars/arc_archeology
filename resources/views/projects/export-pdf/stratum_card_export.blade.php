@@ -61,42 +61,42 @@
     <tr>
         <td><p><b> Conservación </b></p></td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'MUY DEFICIENTE') == 0)
+            @if(in_array('MUY DEFICIENTE', $stratumCard->conservation))
                 <p><b>X Muy deficiente</b></p>
             @else
                 <p>Muy deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'DEFICIENTE') == 0)
+            @if(in_array('DEFICIENTE', $stratumCard->conservation))
                 <p><b>X Deficiente</b></p>
             @else
                 <p>Deficiente</p>
             @endif
         </td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'ACEPTABLE') == 0)
+            @if(in_array('ACEPTABLE', $stratumCard->conservation))
                 <p><b>X Aceptable</b></p>
             @else
                 <p>Aceptable</p>
             @endif
         </td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'SATISFACTORIA') == 0)
+            @if(in_array('SATISFACTORIA', $stratumCard->conservation))
                 <p><b>X Satisfactoria</b></p>
             @else
                 <p>Satisfactoria</p>
             @endif
         </td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'RETIRAR') == 0)
+            @if(in_array('RETIRAR', $stratumCard->conservation))
                 <p><b>X Retirar</b></p>
             @else
                 <p>Retirar</p>
             @endif
         </td>
         <td>
-            @if(strcmp($stratumCard->conservation, 'CONSERVAR') == 0)
+            @if(in_array('CONSERVAR', $stratumCard->conservation))
                 <p><b>X Conservar</b></p>
             @else
                 <p>Conservar</p>
@@ -115,43 +115,43 @@
         <td style="text-align: left">
             <p>
                 <span style="font-size: 13px;">Porcentaje</span> |
-            @if(strcmp($stratumCard->fine_fraction, 'Arena') == 0)
+            @if(in_array('Arena', $stratumCard->fine_fraction))
                 <b>X Arena</b>
             @else
                 Arena
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Arcilla') == 0)
+            @if(in_array('Arcilla', $stratumCard->fine_fraction))
                 <b>X Arcilla</b>
             @else
                 Arcilla
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Arcilla-Arenosa') == 0)
+            @if(in_array('Arcilla-Arenosa', $stratumCard->fine_fraction))
                 <b>X Arcilla-Arenosa</b>
             @else
                 Arcilla-Arenosa
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Limo-Arenoso') == 0)
+            @if(in_array('Limo-Arenoso', $stratumCard->fine_fraction))
                 <b>X Limo-Arenoso</b>
             @else
                 Limo-Arenoso
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Limo-Arcilloso') == 0)
+            @if(in_array('Limo-Arcilloso', $stratumCard->fine_fraction))
                 <b>X Limo-Arcilloso</b>
             @else
                 Limo-Arcilloso
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Limo') == 0)
+            @if(in_array('Limo', $stratumCard->fine_fraction))
                 <b>X Limo</b>
             @else
                 Limo
             @endif
             |
-            @if(strcmp($stratumCard->fine_fraction, 'Arcilla-Limosa') == 0)
+            @if(in_array('Arcilla-Limosa', $stratumCard->fine_fraction))
                 <b>X Arcilla-Limosa</b>
             @else
                 Arcilla-Limosa
@@ -167,19 +167,19 @@
         <td style="text-align: left">
             <p>
                 <span style="font-size: 13px;">Porcentaje</span> |
-            @if(strcmp($stratumCard->coarse_fraction, 'Gravas (2 mm-1 cm) %') == 0)
+            @if(in_array('Gravas (2 mm-1 cm) %', $stratumCard->coarse_fraction))
                 <b>X Gravas (2 mm-1 cm) %</b>
             @else
                 Gravas (2 mm-1 cm) %
             @endif
             |
-            @if(strcmp($stratumCard->coarse_fraction, 'Cantos (1-10 cm) %') == 0)
+            @if(in_array('Cantos (1-10 cm) %', $stratumCard->coarse_fraction))
                 <b>X Cantos (1-10 cm) %</b>
             @else
                 Cantos (1-10 cm) %
             @endif
             |
-            @if(strcmp($stratumCard->coarse_fraction, 'Bloques (>10 cm) %') == 0)
+            @if(in_array('Bloques (>10 cm) %', $stratumCard->coarse_fraction))
                 <b>X Bloques (>10 cm) %</b>
             @else
                 Bloques (>10 cm) %
@@ -193,25 +193,25 @@
         </td>
         <td>
             <p style="text-align: justify; width: 100%;">
-                @if(strcmp($stratumCard->interpretation, 'Natural') == 0)
+                @if(in_array('Natural', $stratumCard->interpretation))
                     <b>X Natural</b>
                 @else
                     Natural
                 @endif
                 |
-                @if(strcmp($stratumCard->interpretation, 'Construcción') == 0)
+                @if(in_array('Construcción', $stratumCard->interpretation))
                     <b>X Construcción</b>
                 @else
                     Construcción
                 @endif
                 |
-                @if(strcmp($stratumCard->interpretation, 'Ocupación') == 0)
+                @if(in_array('Ocupación', $stratumCard->interpretation))
                     <b>X Ocupación</b>
                 @else
                     Ocupación
                 @endif
                 |
-                @if(strcmp($stratumCard->interpretation, 'Destrucción') == 0)
+                @if(in_array('Destrucción', $stratumCard->interpretation))
                     <b>X Destrucción</b>
                 @else
                     Destrucción
@@ -254,31 +254,31 @@
         <td style="width: 40%;">
             <label class="label-5">ORGÁNICA</label>
             <p style="font-size: 10px; padding: 0; margin: 2px 4px;">
-                @if(strcmp($stratumCard->organic_composition, 'Ceniza') == 0)
+                @if(in_array('Ceniza', $stratumCard->organic_composition))
                     <b>X Ceniza</b>
                 @else
                         Ceniza
                 @endif
                 |
-                @if(strcmp($stratumCard->organic_composition, 'Carbones') == 0)
+                @if(in_array('Carbones', $stratumCard->organic_composition))
                     <b>X Carbones</b>
                 @else
                         Carbones
                 @endif
                 |
-                @if(strcmp($stratumCard->organic_composition, 'Hueso') == 0)
+                @if(in_array('Hueso', $stratumCard->organic_composition))
                     <b>X Hueso</b>
                 @else
                         Hueso
                 @endif
                 |
-                @if(strcmp($stratumCard->organic_composition, 'Malacof') == 0)
+                @if(in_array('Malacof', $stratumCard->organic_composition))
                     <b>X Malacof</b>
                 @else
                     Malacof
                 @endif
                 |
-                @if(strcmp($stratumCard->organic_composition, 'Madera') == 0)
+                @if(in_array('Madera', $stratumCard->organic_composition))
                     <b>X Madera</b>
                 @else
                         Madera
@@ -288,55 +288,55 @@
         <td style="width: 60%;">
             <label class="label-5">INORGÁNICA</label>
             <p style="font-size: 10px; padding: 0; margin: 2px 4px;">
-                @if(strcmp($stratumCard->inorganic_composition, 'Ladrillo') == 0)
+                @if(in_array('Ladrillo', $stratumCard->inorganic_composition))
                     <b>X Ladrillo</b>
                 @else
                     Ladrillo
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Escoria') == 0)
+                @if(in_array('Escoria', $stratumCard->inorganic_composition))
                     <b>X Escoria</b>
                 @else
                         Escoria
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Enlucido') == 0)
+                @if(in_array('Enlucido', $stratumCard->inorganic_composition))
                     <b>X Enlucido</b>
                 @else
                     Enlucido
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Mortero') == 0)
+                @if(in_array('Mortero', $stratumCard->inorganic_composition))
                     <b>X Mortero</b>
                 @else
                     Mortero
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Cal') == 0)
+                @if(in_array('Cal', $stratumCard->inorganic_composition))
                     <b>X Cal</b>
                 @else
                     Cal
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Piedra trabajada') == 0)
+                @if(in_array('Piedra trabajada', $stratumCard->inorganic_composition))
                     <b>X Piedra trabajada</b>
                 @else
                     Piedra trabajada
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Tejas') == 0)
+                @if(in_array('Tejas', $stratumCard->inorganic_composition))
                     <b>X Tejas</b>
                 @else
                     Tejas
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Adobes') == 0)
+                @if(in_array('Adobes', $stratumCard->inorganic_composition))
                     <b>X Adobes</b>
                 @else
                     Adobes
                 @endif
                 |
-                @if(strcmp($stratumCard->inorganic_composition, 'Plástico') == 0)
+                @if(in_array('Plástico', $stratumCard->inorganic_composition))
                     <b>X Plástico</b>
                 @else
                     Plástico

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\PipeSeparatedArray;
 use App\Services\FileCheckerService;
 use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,18 @@ class StratumCard extends Model
      */
     protected $fillable = [
         '',
+    ];
+
+    /**
+     * Conversiones automáticas de atributos
+     */
+    protected $casts = [
+        'conservation' => PipeSeparatedArray::class,
+        'interpretation' => PipeSeparatedArray::class,
+        'fine_fraction' => PipeSeparatedArray::class,
+        'coarse_fraction' => PipeSeparatedArray::class,
+        'organic_composition' => PipeSeparatedArray::class,
+        'inorganic_composition' => PipeSeparatedArray::class,
     ];
 
     public function meta(){

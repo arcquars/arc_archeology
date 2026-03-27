@@ -30,13 +30,15 @@
                         </tr>
                         </thead>
                         <tbody>
+                            @if($auditsWithProject->old_values)
                         @foreach($auditsWithProject->old_values as $key => $value)
                             <tr>
                                 <td>{{ __('messages.'.$key) }}</td>
-                                <td>{{$value}}</td>
+                                <td>{{is_string($value)? $value : "-"}}</td>
                                 <td>{{$auditsWithProject->new_values[$key]}}</td>
                             </tr>
                         @endforeach
+                        @endif
                         </tbody>
                     </table>
 

@@ -76,13 +76,13 @@
                 <div class="col-md-6 form-group">
                     <label for="sc-i_type">Conservación</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->conservation }}
+                        {{ implode(', ', $stratumCard->conservation) }}
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="sc-i_type">Interpretación</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->interpretation }}
+                        {{ implode(', ', $stratumCard->interpretation) }}
                     </div>
                 </div>
             </div>
@@ -90,13 +90,13 @@
                 <div class="col-md-6 form-group">
                     <label for="sc-i_type">Fracción fina</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->fine_fraction }}
+                        {{ implode(', ', $stratumCard->fine_fraction) }}
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="sc-i_type">Fracción gruesa</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->coarse_fraction }}
+                        {{ implode(', ', $stratumCard->coarse_fraction) }}
                     </div>
                 </div>
             </div>
@@ -135,13 +135,13 @@
                 <div class="col-md-6">
                     <label for="">ORGÁNICA</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->organic_composition }}
+                        {{ implode(', ', $stratumCard->organic_composition) }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="">INORGÁNICA</label>
                     <div class="form-control bg-light">
-                        {{ $stratumCard->inorganic_composition }}
+                        {{ implode(', ', $stratumCard->inorganic_composition) }}
                     </div>
                 </div>
             </div>

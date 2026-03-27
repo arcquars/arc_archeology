@@ -25,9 +25,9 @@ class UpdateStratumTab extends Component
     public $project_id;
     public $i_date, $i_n_ue, $i_location_intervention, $i_acronym, $i_fact;
 
-    public $i_provisional_dating, $i_stratigraphic_reliability, $i_type, $preservation, $interpretation;
-    public $fine_fraction, $coarse_fraction, $interpretation_description;
-    public $organic_composition, $inorganic_composition;
+    public $i_provisional_dating, $i_stratigraphic_reliability, $i_type, $preservation = [], $interpretation = [];
+    public $fine_fraction = [], $coarse_fraction = [], $interpretation_description;
+    public $organic_composition = [], $inorganic_composition = [];
 
     public $stratigraphy_equals, $stratigraphy_support_provided, $stratigraphy_covered_by, $stratigraphy_filling_by;
     public $stratigraphy_cut_by, $stratigraphy_equivale, $stratigraphy_supported_by, $stratigraphy_overlaps_or_covers;

@@ -93,37 +93,67 @@
                             <label>Conservación</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-muy_deficiente" value="MUY DEFICIENTE"
-                                           wire:model="preservation"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-muy_deficiente" 
+                                        value="MUY DEFICIENTE"
+                                        @if(in_array("MUY DEFICIENTE", $preservation)) checked @endif
+                                        wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-muy_deficiente">Muy deficiente</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-deficiente" value="DEFICIENTE"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-deficiente" 
+                                        value="DEFICIENTE"
+                                        @if(in_array("DEFICIENTE", $preservation)) checked @endif
                                            wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-deficiente">Deficiente</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-aceptable" value="ACEPTABLE"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-aceptable" 
+                                        value="ACEPTABLE"
+                                        @if(in_array("ACEPTABLE", $preservation)) checked @endif
                                            wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-aceptable">Aceptable</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-satisfactoria" value="SATISFACTORIA"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-satisfactoria" 
+                                        value="SATISFACTORIA"
+                                        @if(in_array("SATISFACTORIA", $preservation)) checked @endif
                                            wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-satisfactoria">Satisfactoria</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-retirar" value="RETIRAR"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-retirar" 
+                                        value="RETIRAR"
+                                        @if(in_array("RETIRAR", $preservation)) checked @endif
                                            wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-retirar">Retirar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="preservation" id="c-conservar" value="CONSERVAR"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="c-conservar" 
+                                        value="CONSERVAR"
+                                        @if(in_array("CONSERVAR", $preservation)) checked @endif
                                            wire:model="preservation"
                                     >
                                     <label class="form-check-label" for="c-conservar">Conservar</label>
@@ -136,25 +166,44 @@
                             <label>Interpretación</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="interpretation" id="i-natural" value="Gravas (2 mm-1 cm) %"
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        id="i-natural" 
+                                        value="Natural"
+                                        @if(in_array("Natural", $interpretation)) checked @endif
                                            wire:model="interpretation"
                                     >
                                     <label class="form-check-label" for="i-natural">Natural</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="interpretation" id="i-construccion" value="Construcción"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="i-construccion" 
+                                        value="Construcción"
+                                        @if(in_array("Construcción", $interpretation)) checked @endif
                                            wire:model="interpretation"
                                     >
                                     <label class="form-check-label" for="i-construccion">Construcción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="interpretation" id="i-ocupacion" value="Ocupación"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="i-ocupacion" 
+                                        value="Ocupación"
+                                        @if(in_array("interpretation", $interpretation)) checked @endif
                                            wire:model="interpretation"
                                     >
                                     <label class="form-check-label" for="i-ocupacion">Ocupación</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="interpretation" id="i-destruccion" value="Destrucción"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="i-destruccion" 
+                                        value="Destrucción"
+                                        @if(in_array("Destrucción", $interpretation)) checked @endif
                                            wire:model="interpretation"
                                     >
                                     <label class="form-check-label" for="i-destruccion">Destrucción</label>
@@ -169,43 +218,78 @@
                             <label>Fracción fina</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-arena" value="Arena"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-arena" value="Arena"
+                                        @if(in_array("Arena", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-arena">Arena</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-arcilla" value="Arcilla"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-arcilla" 
+                                        value="Arcilla"
+                                        @if(in_array("Arcilla", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-arcilla">Arcilla</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-arcilla-arenosa" value="Arcilla-Arenosa"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-arcilla-arenosa" 
+                                        value="Arcilla-Arenosa"
+                                        @if(in_array("Arcilla-Arenosa", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-arcilla-arenosa">Arcilla-Arenosa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-limo-arenoso" value="Limo-Arenoso"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-limo-arenoso" 
+                                        value="Limo-Arenoso"
+                                        @if(in_array("Limo-Arenoso", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-limo-arenoso">Limo-Arenoso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-limo-arcilloso" value="Limo-Arcilloso"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-limo-arcilloso" 
+                                        @if(in_array("Limo-Arcilloso", $fine_fraction)) checked @endif
+                                        value="Limo-Arcilloso"
+                                        
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-limo-arcilloso">Limo-Arcilloso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-limo" value="Limo"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="ff-limo" 
+                                        value="Limo"
+                                        @if(in_array("Limo", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-limo">Limo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fine_fraction" id="ff-arcilla-limosa" value="Arcilla-Limosa"
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox"  
+                                        id="ff-arcilla-limosa" 
+                                        value="Arcilla-Limosa"
+                                        @if(in_array("Arcilla-Limosa", $fine_fraction)) checked @endif
                                            wire:model="fine_fraction"
                                     >
                                     <label class="form-check-label" for="ff-arcilla-limosa">Arcilla-Limosa</label>
@@ -218,19 +302,25 @@
                             <label>Fracción gruesa</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="coarse_fraction" id="fg-gravas" value="Gravas (2 mm-1 cm) %"
+                                    <input class="form-check-input" type="checkbox" id="fg-gravas" 
+                                        value="Gravas (2 mm-1 cm) %"
+                                        @if(in_array("Gravas (2 mm-1 cm) %", $coarse_fraction)) checked @endif
                                            wire:model="coarse_fraction"
                                     >
                                     <label class="form-check-label" for="fg-gravas">Gravas (2 mm-1 cm) %</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="coarse_fraction" id="fg-cantos" value="Cantos (1-10 cm) %"
+                                    <input class="form-check-input" type="checkbox" id="fg-cantos" 
+                                        @if(in_array("Cantos (1-10 cm) %", $coarse_fraction)) checked @endif
+                                        value="Cantos (1-10 cm) %"
                                            wire:model="coarse_fraction"
                                     >
                                     <label class="form-check-label" for="fg-cantos">Cantos (1-10 cm) %</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="coarse_fraction" id="fg-bloques" value="Bloques (>10 cm) %"
+                                    <input class="form-check-input" type="checkbox" id="fg-bloques" 
+                                        @if(in_array("Bloques (>10 cm) %", $coarse_fraction)) checked @endif
+                                        value="Bloques (>10 cm) %"
                                            wire:model="coarse_fraction"
                                     >
                                     <label class="form-check-label" for="fg-bloques">Bloques (>10 cm) %</label>
@@ -294,31 +384,36 @@
                         <label for="">ORGÁNICA</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="organic_composition" id="co_ceniza" value="Ceniza"
+                                <input class="form-check-input" type="checkbox" id="co_ceniza" value="Ceniza"
+                                    @if(in_array("Ceniza", $organic_composition)) checked @endif
                                        wire:model="organic_composition"
                                 >
                                 <label class="form-check-label" for="co_ceniza">Ceniza</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="organic_composition" id="co_carbones" value="Carbones"
+                                <input class="form-check-input" type="checkbox" id="co_carbones" value="Carbones"
+                                    @if(in_array("Carbones", $organic_composition)) checked @endif
                                        wire:model="organic_composition"
                                 >
                                 <label class="form-check-label" for="co_carbones">Carbones</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="organic_composition" id="co_hueso" value="Hueso"
+                                <input class="form-check-input" type="checkbox" id="co_hueso" value="Hueso"
+                                    @if(in_array("Hueso", $organic_composition)) checked @endif
                                        wire:model="organic_composition"
                                 >
                                 <label class="form-check-label" for="co_hueso">Hueso</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="organic_composition" id="co_malacof" value="Malacof"
+                                <input class="form-check-input" type="checkbox" id="co_malacof" value="Malacof"
+                                    @if(in_array("Malacof", $organic_composition)) checked @endif
                                        wire:model="organic_composition"
                                 >
                                 <label class="form-check-label" for="co_malacof">Malacof</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="organic_composition" id="co_madera" value="Madera"
+                                <input class="form-check-input" type="checkbox" id="co_madera" value="Madera"
+                                    @if(in_array("Madera", $organic_composition)) checked @endif
                                        wire:model="organic_composition"
                                 >
                                 <label class="form-check-label" for="co_madera">Madera</label>
@@ -329,55 +424,64 @@
                         <label for="">INORGÁNICA</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-ladrillo" value="Ladrillo"
+                                <input class="form-check-input" type="checkbox" id="ci-ladrillo" value="Ladrillo"
+                                    @if(in_array("Ladrillo", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-ladrillo">Ladrillo</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-escoria" value="Escoria"
+                                <input class="form-check-input" type="checkbox" id="ci-escoria" value="Escoria"
+                                    @if(in_array("Escoria", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-escoria">Escoria</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-enlucido" value="Enlucido"
+                                <input class="form-check-input" type="checkbox" id="ci-enlucido" value="Enlucido"
+                                    @if(in_array("Enlucido", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-enlucido">Enlucido</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-mortero" value="Mortero"
+                                <input class="form-check-input" type="checkbox" id="ci-mortero" value="Mortero"
+                                    @if(in_array("Mortero", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-mortero">Mortero</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-cal" value="Cal"
+                                <input class="form-check-input" type="checkbox" id="ci-cal" value="Cal"
+                                    @if(in_array("Cal", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-cal">Cal</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-piedra_trabajada" value="Piedra trabajada"
+                                <input class="form-check-input" type="checkbox" id="ci-piedra_trabajada" value="Piedra trabajada"
+                                    @if(in_array("Piedra trabajada", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-piedra_trabajada">Piedra trabajada</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-tejas" value="Tejas"
+                                <input class="form-check-input" type="checkbox" id="ci-tejas" value="Tejas"
+                                    @if(in_array("Tejas", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-tejas">Tejas</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-adobes" value="Adobes"
+                                <input class="form-check-input" type="checkbox" id="ci-adobes" value="Adobes"
+                                @if(in_array("Adobes", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-adobes">Adobes</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inorganic_composition" id="ci-plastico" value="Plástico"
+                                <input class="form-check-input" type="checkbox" id="ci-plastico" value="Plástico"
+                                    @if(in_array("Plástico", $inorganic_composition)) checked @endif
                                        wire:model="inorganic_composition"
                                 >
                                 <label class="form-check-label" for="ci-plastico">Plástico</label>
